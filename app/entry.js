@@ -16,33 +16,33 @@ const wattle = angular.module('wattle', [ngTouch, ngAnimate, uiRouter, ngFileUpl
 
 let context = require.context('./config/', true, /\.js$/);
 context.keys().forEach( path => {
-  cfgram.config(context(path));
+  wattle.config(context(path));
 });
 
 context = require.context('./view/', true, /\.js$/);
 context.keys().forEach( key => {
   let name = pascalcase(path.basename(key, '.js'));
   let module = context(key);
-  cfgram.controller(name, module);
+  wattle.controller(name, module);
 });
 
 context = require.context('./service/', true, /\.js$/);
 context.keys().forEach( key => {
   let name = camelcase(path.basename(key, '.js'));
   let module = context(key);
-  cfgram.service(name, module);
+  wattle.service(name, module);
 });
 
 context = require.context('./component/', true, /\.js$/);
 context.keys().forEach( key => {
   let name = camelcase(path.basename(key, '.js'));
   let module = context(key);
-  cfgram.component(name, module);
+  wattle.component(name, module);
 });
 
 context = require.context('./filter/', true, /\.js$/);
 context.keys().forEach( key => {
   let name = camelcase(path.basename(key, '.js'));
   let module = context(key);
-  cfgram.filter(name, module);
+  wattle.filter(name, module);
 });
