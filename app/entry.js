@@ -9,10 +9,9 @@ const pascalcase = require('pascalcase');
 const uiRouter = require('angular-ui-router');
 const ngTouch = require('angular-touch');
 const ngAnimate = require('angular-animate');
-const ngFileUpload = require('ng-file-upload');
 const uiBootstrap = require('angular-ui-bootstrap');
 
-const wattle = angular.module('wattle', [ngTouch, ngAnimate, uiRouter, ngFileUpload, uiBootstrap]);
+const wattle = angular.module('wattle', [ngTouch, ngAnimate, uiRouter, uiBootstrap]);
 
 let context = require.context('./config/', true, /\.js$/);
 context.keys().forEach( path => {
