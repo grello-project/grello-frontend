@@ -16,6 +16,13 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       controllerAs: 'homeCtrl',
     },
     {
+      name: 'landing',
+      url: '/join',
+      template: require('../view/landing/landing.html'),
+      controller: 'LandingController',
+      controllerAs: 'landingCtrl',
+    },
+    {
       name: 'tasks',
       url: '/tasks',
       template: require('../view/tasks/tasks.html'),
