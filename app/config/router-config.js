@@ -4,10 +4,8 @@
 module.exports = ['$stateProvider', '$urlRouterProvider', routerConfig];
 
 function routerConfig($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.when('' , '/join#signup');
-  $urlRouterProvider.when('/' , '/join#signup');
-  $urlRouterProvider.when('/signup' , '/join#signup');
-  $urlRouterProvider.when('/login' , '/join#login');
+  $urlRouterProvider.when('' , '');
+  $urlRouterProvider.when('/' , '');
 
   let states = [
     {
@@ -18,11 +16,18 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       controllerAs: 'homeCtrl',
     },
     {
-      name: 'landing',
-      url: '/join',
-      template: require('../view/landing/landing.html'),
-      controller: 'LandingController',
-      controllerAs: 'landingCtrl',
+      name: 'tasks',
+      url: '/tasks',
+      template: require('../view/tasks/tasks.html'),
+      controller: 'TasksController',
+      controllerAs: 'tasksCtrl',
+    },
+    {
+      name: 'settings',
+      url: '/settings',
+      template: require('../view/settings/settings.html'),
+      controller: 'SettingsController',
+      controllerAs: 'settingsCtrl',
     },
   ];
 
