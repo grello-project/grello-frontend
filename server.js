@@ -1,5 +1,8 @@
 const Express = require('express')
 const app = Express()
+const dotenv = require('dotenv')
+
+dotenv.load()
 
 const PORT = process.env.PORT || 3000
 
