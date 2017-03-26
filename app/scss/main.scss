@@ -1,0 +1,15 @@
+// :::: BASE & THEME :::: //
+@import "lib/base/reset";
+@import "lib/theme/vars";
+@import "lib/base/base";
+
+// :::: LAYOUT :::: //
+@import "lib/layout/header";
+@import "lib/layout/footer";
+@import "lib/layout/layout";
+
+// ::: COMPONENT ::: //
+@import "../component/home/home";
+@import "../component/navbar/navbar";
+@import "../component/settings/settings";
+@import "../component/task-view/task-view";
