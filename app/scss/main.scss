@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-body{
-  background-color: purple;
-}
-=======
 // :::: BASE & THEME :::: //
 @import "lib/base/reset";
 @import "lib/theme/vars";
@@ -14,8 +9,7 @@ body{
 @import "lib/layout/layout";
 
 // ::: COMPONENT ::: //
-@import "../component/home/home";
-@import "../component/navbar/navbar";
-@import "../component/settings/settings";
-@import "../component/task-view/task-view";
->>>>>>> 84b04d009f64a8cb417ebbd4a3ac8ee7e20167f4
+// @import "../component/home/home";
+// @import "../component/navbar/navbar";
+// @import "../component/settings/settings";
+// @import "../component/task-view/task-view";
