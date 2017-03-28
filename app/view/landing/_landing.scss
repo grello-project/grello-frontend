@@ -7,6 +7,7 @@ nav {
   justify-content: space-between;
   background: rgba(255, 255, 255, 0.5);
   margin: -1% -1% 0 -1%;
+  padding: 1% 0;
 }
 
 p {
@@ -30,17 +31,19 @@ button {
 }
 
 .in-nav {
-  margin: 0 25px;
+  margin: 5px 25px;
 }
 
 .logo {
+  margin-top: 20%;
   cursor: pointer;
   cursor: hand;
 }
 
 .buttons {
-  margin-top: 30px;
+  margin-top: 20px;
 }
+
 .main {
   max-width: 40%;
   display: flex;
