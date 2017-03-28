@@ -4,8 +4,8 @@
 module.exports = ['$stateProvider', '$urlRouterProvider', routerConfig];
 
 function routerConfig($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.when('' , '');
-  $urlRouterProvider.when('/' , '');
+  $urlRouterProvider.when('' , 'join');
+  $urlRouterProvider.when('/' , 'join');
 
   let states = [
     {

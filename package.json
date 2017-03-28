@@ -1,8 +1,17 @@
 {
   "name": "grello_frontend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "entry.js",
   "repository": "https://github.com/ShibaScream/grello_frontend.git",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "./node_modules/webpack/bin/webpack.js",
+    "build-watch": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot",
+    "test": "./node_modules/karma/bin/karma start --single-run",
+    "test-watch": "./node_modules/karma/bin/karma start"
+  },
   "authors": [
     "Dan Peters <daniel.r.peters@icloud.com>",
     "Jessica Soltero <jessicamvs@gmail.com>",
@@ -36,6 +45,7 @@
     "pascalcase": "^0.1.1",
     "resolve-url-loader": "^2.0.2",
     "sass-loader": "^6.0.3",
+    "style-loader": "^0.16.0",
     "ui-router": "^1.0.0-alpha.3",
     "url-loader": "^0.5.8",
     "webpack": "^2.3.1"
