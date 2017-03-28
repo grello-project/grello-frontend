@@ -1,3 +1,21 @@
+<<<<<<< HEAD
 body{
   background-color: purple;
 }
+=======
+// :::: BASE & THEME :::: //
+@import "lib/base/reset";
+@import "lib/theme/vars";
+@import "lib/base/base";
+
+// :::: LAYOUT :::: //
+@import "lib/layout/header";
+@import "lib/layout/footer";
+@import "lib/layout/layout";
+
+// ::: COMPONENT ::: //
+@import "../component/home/home";
+@import "../component/navbar/navbar";
+@import "../component/settings/settings";
+@import "../component/task-view/task-view";
+>>>>>>> 84b04d009f64a8cb417ebbd4a3ac8ee7e20167f4
