@@ -1,7 +1,7 @@
 'use strict'
 
 require('./_settings.scss')
-//taskService below has not yet been created.
+
 module.exports = {
   template: require('./settings.html'),
   controller: ['$log', '$rootScope', authService, 'taskService', SettingsController],
