@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
 
-require('./_landing.scss');
+require('./_landing.scss')
 
-module.exports = ['$log', '$location', '$rootScope', 'authService', LandingController];
+module.exports = ['$log', '$location', '$rootScope', 'authService', LandingController]
 
 function LandingController($log, $location, authService) {
-  let url = $location.url();
-  url === '/join';
+  let url = $location.url()
+  url === '/join'
 }
