@@ -1,47 +1,47 @@
-'use strict';
+'use strict'
 
-require('./scss/main.scss');
+require('./scss/main.scss')
 
-const path = require('path');
-const angular = require('angular');
-const camelcase = require('camelcase');
-const pascalcase = require('pascalcase');
-const uiRouter = require('angular-ui-router');
-const ngTouch = require('angular-touch');
-const ngAnimate = require('angular-animate');
-const uiBootstrap = require('angular-ui-bootstrap');
+const path = require('path')
+const angular = require('angular')
+const camelcase = require('camelcase')
+const pascalcase = require('pascalcase')
+const uiRouter = require('angular-ui-router')
+const ngTouch = require('angular-touch')
+const ngAnimate = require('angular-animate')
+const uiBootstrap = require('angular-ui-bootstrap')
 
-const wattle = angular.module('wattle', [ngTouch, ngAnimate, uiRouter, uiBootstrap]);
+const wattle = angular.module('wattle', [ngTouch, ngAnimate, uiRouter, uiBootstrap])
 
-let context = require.context('./config/', true, /\.js$/);
+let context = require.context('./config/', true, /\.js$/)
 context.keys().forEach( path => {
-  wattle.config(context(path));
-});
+  wattle.config(context(path))
+})
 
-context = require.context('./view/', true, /\.js$/);
+context = require.context('./view/', true, /\.js$/)
 context.keys().forEach( key => {
-  let name = pascalcase(path.basename(key, '.js'));
-  let module = context(key);
-  wattle.controller(name, module);
-});
+  let name = pascalcase(path.basename(key, '.js'))
+  let module = context(key)
+  wattle.controller(name, module)
+})
 
-context = require.context('./service/', true, /\.js$/);
+context = require.context('./service/', true, /\.js$/)
 context.keys().forEach( key => {
-  let name = camelcase(path.basename(key, '.js'));
-  let module = context(key);
-  wattle.service(name, module);
-});
+  let name = camelcase(path.basename(key, '.js'))
+  let module = context(key)
+  wattle.service(name, module)
+})
 
-context = require.context('./component/', true, /\.js$/);
+context = require.context('./component/', true, /\.js$/)
 context.keys().forEach( key => {
-  let name = camelcase(path.basename(key, '.js'));
-  let module = context(key);
-  wattle.component(name, module);
-});
+  let name = camelcase(path.basename(key, '.js'))
+  let module = context(key)
+  wattle.component(name, module)
+})
 
-// context = require.context('./filter/', true, /\.js$/);
+// context = require.context('./filter/', true, /\.js$/)
 // context.keys().forEach( key => {
-//   let name = camelcase(path.basename(key, '.js'));
-//   let module = context(key);
-//   wattle.filter(name, module);
-// });
+//   let name = camelcase(path.basename(key, '.js'))
+//   let module = context(key)
+//   wattle.filter(name, module)
+// })
