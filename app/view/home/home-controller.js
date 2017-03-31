@@ -2,8 +2,8 @@
 
 require('./_home.scss');
 
-module.exports = ['$log', '$rootScope', 'galleryService', HomeController];
+module.exports = ['$log', '$rootScope', HomeController];
 
-function HomeController($log, $rootScope, galleryService) {
-  
+function HomeController($log, $rootScope) {
+
 }

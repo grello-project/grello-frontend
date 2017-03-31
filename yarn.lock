@@ -80,6 +80,10 @@ angular-animate@^1.6.3:
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.3.tgz#d228a14f47a4e50bea44ed15bbc4651d44d194f5"
 
+angular-drag-drop@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/angular-drag-drop/-/angular-drag-drop-3.1.0.tgz#63943b6ad30899d817f7043363318708a2993ece"
+
 angular-mocks@^1.6.3:
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.6.3.tgz#12fafc0f1e0903f16864004ba375bf3fb9101ef1"
@@ -4789,6 +4793,12 @@ strip-indent@^1.0.1:
 strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
+
+style-loader@^0.16.0:
+  version "0.16.1"
+  resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-0.16.1.tgz#50e325258d4e78421dd9680636b41e8661595d10"
+  dependencies:
+    loader-utils "^1.0.2"
 
 supports-color@^2.0.0:
   version "2.0.0"
