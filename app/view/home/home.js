@@ -9,7 +9,7 @@ module.exports = {
   controllerAs: 'homeCtrl'
 }
 
-function HomeController($log, $rootScope, taskService) {
+function HomeController($log, $rootScope, authService, taskService) {
   $log.debug('HomeController')
 
   this.tasks = []

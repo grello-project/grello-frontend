@@ -8,7 +8,7 @@ module.exports = {
   controllerAs: 'landingCtrl'
 }
 
-function LandingController($log, $location, authService) {
+function  LandingController($log, $location, authService) {
   let url = $location.url()
   url === '/join'
 }

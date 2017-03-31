@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = ['$q', '$log', '$http', '$window', authService]
+module.exports = ['$q', '$log', '$http', '$window', 'authService']
 
 function authService($q, $log, $http, $window){
   $log.debug('authService')
