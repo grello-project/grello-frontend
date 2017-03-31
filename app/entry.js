@@ -32,7 +32,7 @@ context.keys().forEach( key => {
   wattle.service(name, module)
 })
 
-context = require.context('./component/', true, /\.js$/)
+context = require.context('./components/', true, /\.js$/)
 context.keys().forEach( key => {
   let name = camelcase(path.basename(key, '.js'))
   let module = context(key)
