@@ -1,5 +1,8 @@
 const HTMLPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const dotenv = require('dotenv')
+
+dotenv.load()
 
 const production = process.env.NODE_ENV === 'production'
 

@@ -31,7 +31,7 @@
     "babel-loader": "^6.4.1",
     "babel-preset-es2015": "^6.24.0",
     "bootstrap-sass": "^3.3.7",
-    "camelcase": "^4.0.0",
+    "camelcase": "3.0.0",
     "clean-webpack-plugin": "^0.1.16",
     "css-loader": "^0.27.3",
     "dotenv": "^4.0.0",
@@ -63,8 +63,11 @@
     "karma-mocha": "^1.3.0",
     "karma-mocha-reporter": "^2.2.3",
     "karma-phantomjs-launcher": "^1.0.4",
+    "karma-requirejs": "^1.1.0",
     "karma-sinon": "^1.0.5",
     "karma-webpack": "^2.0.3",
+    "phantomjs-prebuilt": "^2.1.14",
+    "requirejs": "^2.3.3",
     "sinon": "^2.1.0",
     "webpack-dev-server": "^2.4.2"
   }

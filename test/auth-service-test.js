@@ -1,6 +1,6 @@
 'use strict'
 
-let __API_URL__ = 'http:localhost://3000'
+const URL = `${__API_URL__}/api`
 // require('../app/service/auth-service')
 
 // describe('Auth Service', function() {

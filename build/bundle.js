@@ -5597,7 +5597,7 @@ var substr = 'ab'.substr(-1) === 'b'
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(38);
+var content = __webpack_require__(37);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -51673,7 +51673,7 @@ $provide.value("$locale", {
 __webpack_require__(50);
 
 module.exports = {
-  template: __webpack_require__(42),
+  template: __webpack_require__(41),
   controller: ['$log', '$location', '$rootScope', 'autService', NavbarController],
   controllerAs: 'navbarCtrl'
 };
@@ -51722,7 +51722,7 @@ function NavbarController($log, $location, $rootScope, authService) {
 __webpack_require__(51);
 
 module.exports = {
-  template: __webpack_require__(43),
+  template: __webpack_require__(42),
   controller: ['$log', '$rootScope', authService, 'taskService', SettingsController],
   controllerAs: 'settingsCtrl'
 };
@@ -51741,7 +51741,7 @@ function SettingsController($log, $location, $rootScope, authService) {
 __webpack_require__(52);
 
 module.exports = {
-  template: __webpack_require__(44),
+  template: __webpack_require__(43),
   controller: ['$log', '$location', '$rootScope', 'authService', TaskviewController],
   controllerAs: 'taskviewCtrl'
 };
@@ -51779,13 +51779,13 @@ function routerConfig($stateProvider, $urlRouterProvider) {
   }, {
     name: 'tasks',
     url: '/tasks',
-    template: __webpack_require__(46),
+    template: __webpack_require__(45),
     controller: 'TasksController',
     controllerAs: 'tasksCtrl'
   }, {
     name: 'settings',
     url: '/settings',
-    template: __webpack_require__(45),
+    template: __webpack_require__(44),
     controller: 'SettingsController',
     controllerAs: 'settingsCtrl'
   }];
@@ -52280,8 +52280,8 @@ function fromByteArray (uint8) {
 
 
 var base64 = __webpack_require__(32)
-var ieee754 = __webpack_require__(47)
-var isArray = __webpack_require__(34)
+var ieee754 = __webpack_require__(46)
+var isArray = __webpack_require__(47)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -54063,13 +54063,16 @@ function isnan (val) {
 
 /***/ }),
 /* 34 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-var toString = {}.toString;
+exports = module.exports = __webpack_require__(0)(undefined);
+// imports
 
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
-};
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
 
 
 /***/ }),
@@ -54109,7 +54112,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n::-webkit-input-placeholder {\n  /* Chrome/Opera/Safari */\n  color: #888; }\n\n::-moz-placeholder {\n  /* Firefox 19+ */\n  color: #888; }\n\n:-ms-input-placeholder {\n  /* IE 10+ */\n  color: #888; }\n\n:-moz-placeholder {\n  /* Firefox 18- */\n  color: #888; }\n\nhtml, body {\n  width: 100%;\n  height: 100%;\n  font-family: serif;\n  color: #db9300; }\n  html body, body body {\n    background-color: #593c00;\n    margin-bottom: 2em; }\n\na {\n  text-decoration: none;\n  color: #000;\n  font-weight: 700; }\n\nh1 {\n  font-size: 5vw;\n  margin-bottom: 2.5%; }\n\nh2 {\n  font-size: 4vw;\n  margin: 1.25% 0; }\n\nh3 {\n  font-size: 3vw;\n  margin-bottom: 2.5%; }\n\nbutton, .btn-std {\n  padding: 1% 5%;\n  background: #926200;\n  color: #fff;\n  font-size: 2vw;\n  border: none;\n  border-radius: 0.5em;\n  cursor: pointer;\n  transition: 350ms all; }\n\ninput[type=\"text\"], input[type=\"password\"], .input-std {\n  width: 100%;\n  padding: 1.5vw 2vw;\n  font-size: 2vw;\n  border: solid 1px #FFAC00;\n  border-radius: 0.5em;\n  box-sizing: border-box; }\n  input[type=\"text\"]:focus, input[type=\"password\"]:focus, .input-std:focus {\n    background: #FFAC00;\n    color: #fff; }\n\ninput[disabled=\"disabled\"] {\n  background: #e3e3e3; }\n\n.input-std {\n  display: inline-block; }\n\nfieldset {\n  margin: 2% 0; }\n\nheader {\n  height: 12vw;\n  background: #FFAC00; }\n\nfooter {\n  height: 10vw;\n  background: #FFAC00;\n  margin-top: 10%; }\n\nmain {\n  width: 75%;\n  margin: 12%;\n  min-height: 36em; }\n", ""]);
 
 // exports
 
@@ -54123,7 +54126,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n::-webkit-input-placeholder {\n  /* Chrome/Opera/Safari */\n  color: #888; }\n\n::-moz-placeholder {\n  /* Firefox 19+ */\n  color: #888; }\n\n:-ms-input-placeholder {\n  /* IE 10+ */\n  color: #888; }\n\n:-moz-placeholder {\n  /* Firefox 18- */\n  color: #888; }\n\nhtml, body {\n  width: 100%;\n  height: 100%;\n  font-family: serif;\n  color: #db9300; }\n  html body, body body {\n    background-color: #593c00;\n    margin-bottom: 2em; }\n\na {\n  text-decoration: none;\n  color: #000;\n  font-weight: 700; }\n\nh1 {\n  font-size: 5vw;\n  margin-bottom: 2.5%; }\n\nh2 {\n  font-size: 4vw;\n  margin: 1.25% 0; }\n\nh3 {\n  font-size: 3vw;\n  margin-bottom: 2.5%; }\n\nbutton, .btn-std {\n  padding: 1% 5%;\n  background: #926200;\n  color: #fff;\n  font-size: 2vw;\n  border: none;\n  border-radius: 0.5em;\n  cursor: pointer;\n  transition: 350ms all; }\n\ninput[type=\"text\"], input[type=\"password\"], .input-std {\n  width: 100%;\n  padding: 1.5vw 2vw;\n  font-size: 2vw;\n  border: solid 1px #FFAC00;\n  border-radius: 0.5em;\n  box-sizing: border-box; }\n  input[type=\"text\"]:focus, input[type=\"password\"]:focus, .input-std:focus {\n    background: #FFAC00;\n    color: #fff; }\n\ninput[disabled=\"disabled\"] {\n  background: #e3e3e3; }\n\n.input-std {\n  display: inline-block; }\n\nfieldset {\n  margin: 2% 0; }\n\nheader {\n  height: 12vw;\n  background: #FFAC00; }\n\nfooter {\n  height: 10vw;\n  background: #FFAC00;\n  margin-top: 10%; }\n\nmain {\n  width: 75%;\n  margin: 12%;\n  min-height: 36em; }\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -54137,7 +54140,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "body {\n  background-image: url(" + __webpack_require__(40) + "); }\n\nnav {\n  display: flex;\n  justify-content: space-between;\n  background: rgba(255, 255, 255, 0.5);\n  margin: -1% -1% 0 -1%;\n  padding: 1% 0; }\n\np {\n  color: #E74C3C;\n  font-size: 2em;\n  font-weight: bold; }\n\nbutton {\n  background-color: #E74C3C;\n  color: white;\n  border: none;\n  padding: 10px 32px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n  font-weight: bold;\n  cursor: pointer;\n  cursor: hand; }\n\n.in-nav {\n  margin: 5px 25px; }\n\n.logo {\n  margin-top: 20%;\n  cursor: pointer;\n  cursor: hand; }\n\n.buttons {\n  margin-top: 20px; }\n\n.main {\n  max-width: 40%;\n  display: flex;\n  flex-flow: column;\n  justify-content: flex-start;\n  background: rgba(255, 255, 255, 0.5);\n  text-align: center;\n  width: 700px;\n  margin-left: auto;\n  margin-right: auto;\n  margin-top: 10%;\n  padding: 5% 10%; }\n\n.get-started {\n  margin-top: 5%;\n  padding: 3% 12%;\n  font-size: 18px;\n  border-radius: 5%; }\n\n.main-para {\n  color: black; }\n", ""]);
 
 // exports
 
@@ -54146,39 +54149,31 @@ exports.push([module.i, "", ""]);
 /* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(0)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "body {\n  background-image: url(" + __webpack_require__(41) + "); }\n\nnav {\n  display: flex;\n  justify-content: space-between;\n  background: rgba(255, 255, 255, 0.5);\n  margin: -1% -1% 0 -1%;\n  padding: 1% 0; }\n\np {\n  color: #E74C3C;\n  font-size: 2em;\n  font-weight: bold; }\n\nbutton {\n  background-color: #E74C3C;\n  color: white;\n  border: none;\n  padding: 10px 32px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n  font-weight: bold;\n  cursor: pointer;\n  cursor: hand; }\n\n.in-nav {\n  margin: 5px 25px; }\n\n.logo {\n  margin-top: 20%;\n  cursor: pointer;\n  cursor: hand; }\n\n.buttons {\n  margin-top: 20px; }\n\n.main {\n  max-width: 40%;\n  display: flex;\n  flex-flow: column;\n  justify-content: flex-start;\n  background: rgba(255, 255, 255, 0.5);\n  text-align: center;\n  width: 700px;\n  margin-left: auto;\n  margin-right: auto;\n  margin-top: 10%;\n  padding: 5% 10%; }\n\n.get-started {\n  margin-top: 5%;\n  padding: 3% 12%;\n  font-size: 18px;\n  border-radius: 5%; }\n\n.main-para {\n  color: black; }\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
 module.exports = __webpack_require__.p + "484e1256a4879558548b81b2d73bc463.jpg";
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports) {
 
 module.exports = "<section class=\"navbar\">\n  <nav>\n\n  </nav>\n</section>\n";
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports) {
 
 module.exports = "<section class=\"settings\">\n\n</section>\n";
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports) {
 
 module.exports = "<section class=\"task-view\">\n\n</section>\n";
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports) {
+
+module.exports = "";
 
 /***/ }),
 /* 45 */
@@ -54188,12 +54183,6 @@ module.exports = "";
 
 /***/ }),
 /* 46 */
-/***/ (function(module, exports) {
-
-module.exports = "";
-
-/***/ }),
-/* 47 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -54280,6 +54269,17 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
   buffer[offset + i - d] |= s * 128
 }
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports) {
+
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
 
 
 /***/ }),
@@ -54570,7 +54570,7 @@ module.exports = function (css) {
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(35);
+var content = __webpack_require__(34);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -54596,7 +54596,7 @@ if(false) {
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(36);
+var content = __webpack_require__(35);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -54622,7 +54622,7 @@ if(false) {
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(37);
+var content = __webpack_require__(36);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -54648,7 +54648,7 @@ if(false) {
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(39);
+var content = __webpack_require__(38);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -54674,7 +54674,7 @@ if(false) {
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(40);
+var content = __webpack_require__(39);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
