@@ -28,7 +28,7 @@ function NavbarController($log, $location, $rootScope, authService) {
 
   this.checkPath()
 
-  $rootScope.$on('$locationChangeSuccess', () => {
+  let checkPathListener = $rootScope.$on('$locationChangeSuccess', () => {
     this.checkPath()
   })
 
