@@ -1,23 +1,62 @@
 'use strict'
 
 const URL = `${__API_URL__}/api`
-// require('../app/service/auth-service')
+require('../app/service/auth-service')
 
-// describe('Auth Service', function() {
-//   beforeEach(() => {
-//     angular.mock.module('wattle')
-//     angular.mock.inject(( $rootScope, authService, $window, $httpBackend) => {
-//       this.$window = $window
-//       this.$rootScope = $rootScope
-//       this.authService = authService
-//       this.$httpBackend = $httpBackend
-//     })
-//   })
+describe('auth-service', function() {
 
-describe('example test', function() {
-  it('should pass', () => {
-    expect(true).toEqual(true)
+  beforeEach(() => {
+    angular.mock.module('wattle')
+    angular.mock.inject(( $rootScope, authService, $window, $httpBackend) => {
+      this.$window = $window
+      this.$rootScope = $rootScope
+      this.authService = authService
+      this.$httpBackend = $httpBackend
+    })
   })
-})
 
-// })
+
+  describe('authService.login()', () => {
+    it('should login a user and should place token in localStorage', () => {
+
+      let testUser = {
+        username: 'testUser',
+        password: 'testPassword'
+      }
+      this.authService.token = null
+      this.$window.localStorage.setItem('token', 'test token')
+
+      this.authService.getToken()
+      .then( token => {
+        expect(token).toEqual('test token')
+      })
+      .catch( err => {
+        expect(err).toEqual(null)
+      })
+
+      this.$rootScope.$apply()
+    })
+  })
+
+  describe('authService.getToken()', () => {
+    it('should return a token', () => {
+      this.authService.token = null
+      this.$window.localStorage.setItem('token', 'test token')
+
+      this.authService.getToken()
+      .then( token => {
+        expect(token).toEqual('test token')
+      })
+      .catch( err => {
+        expect(err).toEqual(null)
+      })
+
+      this.$rootScope.$apply()
+    })
+  })
+
+  describe('authService.logout()', () => {
+    
+  })
+
+})
