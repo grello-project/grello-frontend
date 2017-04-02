@@ -186,7 +186,7 @@ var stylesInDom = {},
 	singletonElement = null,
 	singletonCounter = 0,
 	styleElementsInsertedAtTop = [],
-	fixUrls = __webpack_require__(49);
+	fixUrls = __webpack_require__(47);
 
 module.exports = function(list, options) {
 	if(typeof DEBUG !== "undefined" && DEBUG) {
@@ -448,22 +448,40 @@ function updateLink(linkElement, options, obj) {
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"home\">\n  <nav class=\"task-container\">\n    <div>\n      <p class\"logo\">Wattle</p>\n    </div>\n\n  </nav>\n</section>\n";
+module.exports = "<section class='landing'>\n  <!-- <nav>\n\n    <div class=\"in-nav\">\n      <p class=\"logo\">Wattle</p>\n    </div>\n\n    <div class=\"buttons in-nav\">\n    <button type=\"submit\"           class=\"signup\">SIGNUP</button>\n    <button type=\"submit\" class=\"login\">LOGIN</button>\n    </div>\n\n  </nav> -->\n\n  <section class=\"main\">\n    <div><p class=\"main-para\">The better way to manage your Google comments and tasks</p></div>\n    <div><button type=\"submit\" class=\"get-started\">GET STARTED</button></div>\n </section>\n</section>\n";
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<section class='landing'>\n  <nav>\n\n    <div class=\"in-nav\">\n      <p class=\"logo\">Wattle</p>\n    </div>\n\n    <div class=\"buttons in-nav\">\n    <button type=\"submit\"           class=\"signup\">SIGNUP</button>\n    <button type=\"submit\" class=\"login\">LOGIN</button>\n    </div>\n\n  </nav>\n\n  <section class=\"main\">\n    <div><p class=\"main-para\">The better way to manage your Google comments and tasks</p></div>\n    <div><button type=\"submit\" class=\"get-started\">GET STARTED</button></div>\n </section>\n</section>\n";
+var map = {
+	"./home/home.js": 20,
+	"./navbar/navbar.js": 21,
+	"./settings/settings.js": 22,
+	"./task-view/task-view.js": 23
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 3;
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./navbar/navbar.js": 21,
-	"./settings/settings.js": 22,
-	"./task-view/task-view.js": 23
+	"./router-config.js": 24
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -486,7 +504,9 @@ webpackContext.id = 4;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./router-config.js": 24
+	"./auth-service.js": 26,
+	"./category-service.js": 27,
+	"./task-service.js": 28
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -509,8 +529,9 @@ webpackContext.id = 5;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./auth-service.js": 26,
-	"./task-service.js": 27
+	"./landing/landing-controller.js": 29,
+	"./settings/settings-controller.js": 30,
+	"./tasks/tasks-controller.js": 31
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -532,34 +553,16 @@ webpackContext.id = 6;
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var map = {
-	"./home/home.js": 28,
-	"./landing/landing-controller.js": 29,
-	"./settings/settings-controller.js": 30,
-	"./tasks/tasks-controller.js": 31
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 7;
+__webpack_require__(16);
+module.exports = 'ngAnimate';
+
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(17);
-module.exports = 'ngAnimate';
+module.exports = 'ngTouch';
 
 
 /***/ }),
@@ -567,20 +570,12 @@ module.exports = 'ngAnimate';
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(18);
-module.exports = 'ngTouch';
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(19);
 
 module.exports = 'ui.bootstrap';
 
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports) {
 
 /**
@@ -5269,43 +5264,32 @@ angular.module('ui.router.state')
 })(window, window.angular);
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(20);
+__webpack_require__(19);
 module.exports = angular;
 
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 function preserveCamelCase(str) {
-	let isLastCharLower = false;
-	let isLastCharUpper = false;
-	let isLastLastCharUpper = false;
+	var isLastCharLower = false;
 
-	for (let i = 0; i < str.length; i++) {
-		const c = str.charAt(i);
+	for (var i = 0; i < str.length; i++) {
+		var c = str.charAt(i);
 
 		if (isLastCharLower && (/[a-zA-Z]/).test(c) && c.toUpperCase() === c) {
 			str = str.substr(0, i) + '-' + str.substr(i);
 			isLastCharLower = false;
-			isLastLastCharUpper = isLastCharUpper;
-			isLastCharUpper = true;
 			i++;
-		} else if (isLastCharUpper && isLastLastCharUpper && (/[a-zA-Z]/).test(c) && c.toLowerCase() === c) {
-			str = str.substr(0, i - 1) + '-' + str.substr(i - 1);
-			isLastLastCharUpper = isLastCharUpper;
-			isLastCharUpper = false;
-			isLastCharLower = true;
 		} else {
-			isLastCharLower = c.toLowerCase() === c;
-			isLastLastCharUpper = isLastCharUpper;
-			isLastCharUpper = c.toUpperCase() === c;
+			isLastCharLower = (c.toLowerCase() === c);
 		}
 	}
 
@@ -5313,9 +5297,13 @@ function preserveCamelCase(str) {
 }
 
 module.exports = function () {
-	let str = [].map.call(arguments, x => x.trim()).filter(x => x.length).join('-');
+	var str = [].map.call(arguments, function (str) {
+		return str.trim();
+	}).filter(function (str) {
+		return str.length;
+	}).join('-');
 
-	if (str.length === 0) {
+	if (!str.length) {
 		return '';
 	}
 
@@ -5323,17 +5311,31 @@ module.exports = function () {
 		return str.toLowerCase();
 	}
 
+	if (!(/[_.\- ]+/).test(str)) {
+		if (str === str.toUpperCase()) {
+			return str.toLowerCase();
+		}
+
+		if (str[0] !== str[0].toLowerCase()) {
+			return str[0].toLowerCase() + str.slice(1);
+		}
+
+		return str;
+	}
+
 	str = preserveCamelCase(str);
 
 	return str
-		.replace(/^[_.\- ]+/, '')
-		.toLowerCase()
-		.replace(/[_.\- ]+(\w|$)/g, (m, p1) => p1.toUpperCase());
+	.replace(/^[_.\- ]+/, '')
+	.toLowerCase()
+	.replace(/[_.\- ]+(\w|$)/g, function (m, p1) {
+		return p1.toUpperCase();
+	});
 };
 
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports) {
 
 /*!
@@ -5360,7 +5362,7 @@ module.exports = pascalcase;
 
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -5588,10 +5590,10 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(48)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(46)))
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -5617,7 +5619,7 @@ if(false) {
 }
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports) {
 
 /**
@@ -9778,7 +9780,7 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
 
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports) {
 
 /**
@@ -10533,7 +10535,7 @@ makeSwipeDirective('ngSwipeRight', 1, 'swiperight');
 
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports) {
 
 /*
@@ -18314,7 +18316,7 @@ angular.module('ui.bootstrap.timepicker').run(function() {!angular.$$csp().noInl
 angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInlineStyle && !angular.$$uibTypeaheadCss && angular.element(document).find('head').prepend('<style type="text/css">[uib-typeahead-popup].dropdown-menu{display:block;}</style>'); angular.$$uibTypeaheadCss = true; });
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports) {
 
 /**
@@ -51664,52 +51666,43 @@ $provide.value("$locale", {
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// 'use strict'
+//
+// require('./_home.scss')
+// //taskService below has not yet been created.
+// module.exports = {
+//   template: require('./_home.html'),
+//   controller: ['$log', '$rootScope', 'taskService', HomeController],
+//   controllerAs: 'homeCtrl',
+// }
+// //taskService below has not yet been created.
+// function HomeController($log, $rootScope, taskService) {
+//   $log.debug('HomeController')
+//
+// }
+
+
+/***/ }),
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(50);
+__webpack_require__(48);
 
 module.exports = {
   template: __webpack_require__(41),
-  controller: ['$log', '$location', '$rootScope', 'autService', NavbarController],
+  controller: ['$log', '$location', '$rootScope', NavbarController],
   controllerAs: 'navbarCtrl'
 };
 
-function NavbarController($log, $location, $rootScope, authService) {
-  var _this = this;
-
+function NavbarController($log, $location, $rootScope) {
   $log.debug('NavbarController');
-
-  this.checkPath = function () {
-    var path = $location.path();
-    if (path === '/join') {
-      this.hideButtons = true;
-    }
-
-    if (path !== '/join') {
-      this.hideButtons = false;
-      authService.getToken().catch(function () {
-        $location.url('/join#login');
-      });
-    }
-  };
-
-  this.checkPath();
-
-  $rootScope.$on('$locationChangeSuccess', function () {
-    _this.checkPath();
-  });
-
-  this.logout = function () {
-    $log.log('navbarCtrl.logout()');
-    this.hideButtons = true;
-    authService.logout().then(function () {
-      $location.url('');
-    });
-  };
 }
 
 /***/ }),
@@ -51719,11 +51712,11 @@ function NavbarController($log, $location, $rootScope, authService) {
 "use strict";
 
 
-__webpack_require__(51);
+__webpack_require__(49);
 
 module.exports = {
   template: __webpack_require__(42),
-  controller: ['$log', '$rootScope', authService, 'taskService', SettingsController],
+  controller: ['$log', '$rootScope', 'authService', 'taskService', SettingsController],
   controllerAs: 'settingsCtrl'
 };
 
@@ -51736,26 +51729,26 @@ function SettingsController($log, $location, $rootScope, authService) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+// 'use strict'
+//
+// require('./_task-view.scss')
+//
+// module.exports = {
+//   template: require('./task-view.html'),
+//   controller: ['$log', '$location', '$rootScope', 'authService', TaskviewController],
+//   controllerAs: 'taskviewCtrl',
+// }
+//
+// function TaskviewController($log, $location, $rootScope, authService) {
+//   $log.debug('TaskviewController')
+// }
 
-
-__webpack_require__(52);
-
-module.exports = {
-  template: __webpack_require__(43),
-  controller: ['$log', '$location', '$rootScope', 'authService', TaskviewController],
-  controllerAs: 'taskviewCtrl'
-};
-
-function TaskviewController($log, $location, $rootScope, authService) {
-  $log.debug('TaskviewController');
-}
 
 /***/ }),
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
 
 
 module.exports = ['$stateProvider', '$urlRouterProvider', routerConfig];
@@ -51765,27 +51758,21 @@ function routerConfig($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.when('/', 'join');
 
   var states = [{
-    name: 'home',
-    url: '/home',
-    template: __webpack_require__(2),
-    controller: 'HomeController',
-    controllerAs: 'homeCtrl'
-  }, {
     name: 'landing',
     url: '/join',
-    template: __webpack_require__(3),
+    template: __webpack_require__(2),
     controller: 'LandingController',
     controllerAs: 'landingCtrl'
   }, {
     name: 'tasks',
     url: '/tasks',
-    template: __webpack_require__(45),
+    template: __webpack_require__(44),
     controller: 'TasksController',
     controllerAs: 'tasksCtrl'
   }, {
     name: 'settings',
     url: '/settings',
-    template: __webpack_require__(44),
+    template: __webpack_require__(43),
     controller: 'SettingsController',
     controllerAs: 'settingsCtrl'
   }];
@@ -51802,39 +51789,39 @@ function routerConfig($stateProvider, $urlRouterProvider) {
 "use strict";
 
 
-__webpack_require__(16);
+__webpack_require__(15);
 
-var path = __webpack_require__(15);
-var angular = __webpack_require__(12);
-var camelcase = __webpack_require__(13);
-var pascalcase = __webpack_require__(14);
-var uiRouter = __webpack_require__(11);
-var ngTouch = __webpack_require__(9);
-var ngAnimate = __webpack_require__(8);
-var uiBootstrap = __webpack_require__(10);
+var path = __webpack_require__(14);
+var angular = __webpack_require__(11);
+var camelcase = __webpack_require__(12);
+var pascalcase = __webpack_require__(13);
+var uiRouter = __webpack_require__(10);
+var ngTouch = __webpack_require__(8);
+var ngAnimate = __webpack_require__(7);
+var uiBootstrap = __webpack_require__(9);
 
 var wattle = angular.module('wattle', [ngTouch, ngAnimate, uiRouter, uiBootstrap]);
 
-var context = __webpack_require__(5);
+var context = __webpack_require__(4);
 context.keys().forEach(function (path) {
   wattle.config(context(path));
 });
 
-context = __webpack_require__(7);
+context = __webpack_require__(6);
 context.keys().forEach(function (key) {
   var name = pascalcase(path.basename(key, '.js'));
   var module = context(key);
   wattle.controller(name, module);
 });
 
-context = __webpack_require__(6);
+context = __webpack_require__(5);
 context.keys().forEach(function (key) {
   var name = camelcase(path.basename(key, '.js'));
   var module = context(key);
   wattle.service(name, module);
 });
 
-context = __webpack_require__(4);
+context = __webpack_require__(3);
 context.keys().forEach(function (key) {
   var name = camelcase(path.basename(key, '.js'));
   var module = context(key);
@@ -51940,6 +51927,42 @@ function authService($q, $log, $http, $window) {
 
 /***/ }),
 /* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = ['$q', '$log', '$http', 'authService', 'taskService', categoryService];
+
+function categoryService($q, $log, $http, authService, taskService) {
+
+  var service = {};
+
+  service.categories = [];
+
+  service.fetchCategories = function () {
+    return taskService.fetchTasks().then(function (tasks) {
+      $log.debug('here are the tasks:', tasks);
+      $log.debug('processing tasks');
+      var uniqueCategories = {};
+      tasks.forEach(function (task) {
+        if (!uniqueCategories.hasOwnProperty(task.category._id)) {
+          task.category.tasks = [task];
+          uniqueCategories[task.category._id] = task.category;
+        } else {
+          uniqueCategories[task.category._id].tasks.push(task);
+        }
+      });
+
+      return service.categories;
+    });
+  };
+
+  return service;
+}
+
+/***/ }),
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52065,61 +52088,16 @@ function taskService($q, $log, $http, authService) {
 }
 
 /***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(53);
-
-// module.exports = ['$log', '$rootScope', 'taskService', HomeController]
-module.exports = {
-  template: __webpack_require__(2),
-  controller: ['$log', '$rootScope', 'authService', 'taskService', HomeController],
-  controllerAs: 'homeCtrl'
-};
-
-function HomeController($log, $rootScope, authService, taskService) {
-  var _this2 = this;
-
-  $log.debug('HomeController');
-
-  this.tasks = [];
-
-  this.fetchTasks = function () {
-    var _this = this;
-
-    taskService.fetchTasks().then(function (tasks) {
-      _this.tasks = tasks;
-      _this.currentTask = tasks[0];
-    });
-  };
-
-  this.taskDeleteDone = function (task) {
-    if (this.currentTask._id === task._id) {
-      this.currentTask = null;
-    }
-  };
-
-  this.fetchTasks();
-
-  $rootScope.$on('$locationChangeSuccess', function () {
-    _this2.fetchTasks();
-  });
-}
-
-/***/ }),
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(54);
+__webpack_require__(50);
 
 module.exports = {
-  template: __webpack_require__(3),
+  template: __webpack_require__(2),
   controller: ['$log', '$location', '$rootScope', 'authService', LandingController],
   controllerAs: 'landingCtrl'
 };
@@ -52142,6 +52120,25 @@ function LandingController($log, $location, authService) {
 
 "use strict";
 
+
+__webpack_require__(51);
+
+module.exports = ['$location', '$log', 'authService', 'categoryService', TasksController];
+
+function TasksController($location, $log, authService, categoryService) {
+  var self = this;
+  self.categories = [];
+
+  authService.getToken().then(function (token) {
+    $location.url('/tasks');
+    categoryService.fetchCategories().then(function (categories) {
+      self.categories = categories;
+    });
+  }).catch(function (err) {
+    $log.debug(err);
+    $location.url('/');
+  });
+}
 
 /***/ }),
 /* 32 */
@@ -52280,8 +52277,8 @@ function fromByteArray (uint8) {
 
 
 var base64 = __webpack_require__(32)
-var ieee754 = __webpack_require__(46)
-var isArray = __webpack_require__(47)
+var ieee754 = __webpack_require__(45)
+var isArray = __webpack_require__(34)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -54059,20 +54056,17 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(55)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(52)))
 
 /***/ }),
 /* 34 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__(0)(undefined);
-// imports
+var toString = {}.toString;
 
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
 
 
 /***/ }),
@@ -54084,7 +54078,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "nav {\n  display: flex;\n  justify-content: space-between;\n  background-color: rgba(255, 255, 255, 0.5);\n  padding: 2%;\n  margin: -1% -1% 0 -1%; }\n\nul {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  margin-top: 0;\n  list-style-type: none; }\n\nli {\n  padding: 10%; }\n\na {\n  text-decoration: none;\n  color: #E74C3C; }\n\n.profile-pic {\n  max-width: 4em;\n  max-height: 4em; }\n\n.dropdown-menu {\n  background-color: #e5e5e5; }\n\na {\n  text-decoration: none;\n  color: #E74C3C; }\n", ""]);
 
 // exports
 
@@ -54112,7 +54106,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n::-webkit-input-placeholder {\n  /* Chrome/Opera/Safari */\n  color: #888; }\n\n::-moz-placeholder {\n  /* Firefox 19+ */\n  color: #888; }\n\n:-ms-input-placeholder {\n  /* IE 10+ */\n  color: #888; }\n\n:-moz-placeholder {\n  /* Firefox 18- */\n  color: #888; }\n\nhtml, body {\n  width: 100%;\n  height: 100%;\n  font-family: serif;\n  color: #db9300; }\n  html body, body body {\n    background-color: #593c00;\n    margin-bottom: 2em; }\n\na {\n  text-decoration: none;\n  color: #000;\n  font-weight: 700; }\n\nh1 {\n  font-size: 5vw;\n  margin-bottom: 2.5%; }\n\nh2 {\n  font-size: 4vw;\n  margin: 1.25% 0; }\n\nh3 {\n  font-size: 3vw;\n  margin-bottom: 2.5%; }\n\nbutton, .btn-std {\n  padding: 1% 5%;\n  background: #926200;\n  color: #fff;\n  font-size: 2vw;\n  border: none;\n  border-radius: 0.5em;\n  cursor: pointer;\n  transition: 350ms all; }\n\ninput[type=\"text\"], input[type=\"password\"], .input-std {\n  width: 100%;\n  padding: 1.5vw 2vw;\n  font-size: 2vw;\n  border: solid 1px #FFAC00;\n  border-radius: 0.5em;\n  box-sizing: border-box; }\n  input[type=\"text\"]:focus, input[type=\"password\"]:focus, .input-std:focus {\n    background: #FFAC00;\n    color: #fff; }\n\ninput[disabled=\"disabled\"] {\n  background: #e3e3e3; }\n\n.input-std {\n  display: inline-block; }\n\nfieldset {\n  margin: 2% 0; }\n\nheader {\n  height: 12vw;\n  background: #FFAC00; }\n\nfooter {\n  height: 10vw;\n  background: #FFAC00;\n  margin-top: 10%; }\n\nmain {\n  width: 75%;\n  margin: 12%;\n  min-height: 36em; }\n", ""]);
+exports.push([module.i, ".caret {\n  display: inline-block;\n  width: 0;\n  height: 0;\n  margin-left: 2px;\n  vertical-align: middle;\n  border-top: 4px dashed;\n  border-top: 4px solid \\9;\n  border-right: 4px solid transparent;\n  border-left: 4px solid transparent; }\n\n.dropup,\n.dropdown {\n  position: relative; }\n\n.dropdown-toggle:focus {\n  outline: 0; }\n\n.dropdown-menu {\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 1000;\n  display: none;\n  float: left;\n  min-width: 160px;\n  padding: 5px 0;\n  margin: 2px 0 0;\n  list-style: none;\n  font-size: 14px;\n  text-align: left;\n  background-color: #ffae1a;\n  border: 1px solid #ccc;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  border-radius: 4px;\n  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n  background-clip: padding-box; }\n  .dropdown-menu.pull-right {\n    right: 0;\n    left: auto; }\n  .dropdown-menu .divider {\n    height: 1px;\n    margin: 9px 0;\n    overflow: hidden;\n    background-color: #e5e5e5; }\n  .dropdown-menu > li > a {\n    display: block;\n    padding: 3px 20px;\n    clear: both;\n    font-weight: normal;\n    line-height: 1.42857;\n    color: #333333;\n    white-space: nowrap; }\n\n.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {\n  text-decoration: none;\n  color: #262626;\n  background-color: #f5f5f5; }\n\n.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {\n  color: #fff;\n  text-decoration: none;\n  outline: 0;\n  background-color: #88f4f8; }\n\n.dropdown-menu > .disabled > a, .dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {\n  color: #777777; }\n\n.dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {\n  text-decoration: none;\n  background-color: transparent;\n  background-image: none;\n  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);\n  cursor: not-allowed; }\n\n.open > .dropdown-menu {\n  display: block; }\n\n.open > a {\n  outline: 0; }\n\n.dropdown-menu-right {\n  left: auto;\n  right: 0; }\n\n.dropdown-menu-left {\n  left: 0;\n  right: auto; }\n\n.dropdown-header {\n  display: block;\n  padding: 3px 20px;\n  font-size: 12px;\n  line-height: 1.42857;\n  color: #777777;\n  white-space: nowrap; }\n\n.dropdown-backdrop {\n  position: fixed;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  top: 0;\n  z-index: 990; }\n\n.pull-right > .dropdown-menu {\n  right: 0;\n  left: auto; }\n\n.dropup .caret,\n.navbar-fixed-bottom .dropdown .caret {\n  border-top: 0;\n  border-bottom: 4px dashed;\n  border-bottom: 4px solid \\9;\n  content: \"\"; }\n\n.dropup .dropdown-menu,\n.navbar-fixed-bottom .dropdown .dropdown-menu {\n  top: auto;\n  bottom: 100%;\n  margin-bottom: 2px; }\n\n@media (min-width: 768px) {\n  .navbar-right .dropdown-menu {\n    right: 0;\n    left: auto; }\n  .navbar-right .dropdown-menu-left {\n    left: 0;\n    right: auto; } }\n\n/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n::-webkit-input-placeholder {\n  /* Chrome/Opera/Safari */\n  color: #888; }\n\n::-moz-placeholder {\n  /* Firefox 19+ */\n  color: #888; }\n\n:-ms-input-placeholder {\n  /* IE 10+ */\n  color: #888; }\n\n:-moz-placeholder {\n  /* Firefox 18- */\n  color: #888; }\n\nhtml, body {\n  width: 100%;\n  height: 100%;\n  font-family: serif;\n  color: #db9300; }\n  html body, body body {\n    background-color: #593c00;\n    margin-bottom: 2em; }\n\na {\n  text-decoration: none;\n  color: #000;\n  font-weight: 700; }\n\nh1 {\n  font-size: 5vw;\n  margin-bottom: 2.5%; }\n\nh2 {\n  font-size: 4vw;\n  margin: 1.25% 0; }\n\nh3 {\n  font-size: 3vw;\n  margin-bottom: 2.5%; }\n\nbutton, .btn-std {\n  padding: 1% 5%;\n  background: #926200;\n  color: #fff;\n  font-size: 2vw;\n  border: none;\n  border-radius: 0.5em;\n  cursor: pointer;\n  transition: 350ms all; }\n\ninput[type=\"text\"], input[type=\"password\"], .input-std {\n  width: 100%;\n  padding: 1.5vw 2vw;\n  font-size: 2vw;\n  border: solid 1px #FFAC00;\n  border-radius: 0.5em;\n  box-sizing: border-box; }\n  input[type=\"text\"]:focus, input[type=\"password\"]:focus, .input-std:focus {\n    background: #FFAC00;\n    color: #fff; }\n\ninput[disabled=\"disabled\"] {\n  background: #e3e3e3; }\n\n.input-std {\n  display: inline-block; }\n\nfieldset {\n  margin: 2% 0; }\n\nheader {\n  height: 12vw;\n  background: #FFAC00; }\n\nfooter {\n  height: 10vw;\n  background: #FFAC00;\n  margin-top: 10%; }\n\nmain {\n  width: 75%;\n  margin: 12%;\n  min-height: 36em; }\n\n.caret {\n  display: inline-block;\n  width: 0;\n  height: 0;\n  margin-left: 2px;\n  vertical-align: middle;\n  border-top: 4px dashed;\n  border-top: 4px solid \\9;\n  border-right: 4px solid transparent;\n  border-left: 4px solid transparent; }\n\n.dropup,\n.dropdown {\n  position: relative; }\n\n.dropdown-toggle:focus {\n  outline: 0; }\n\n.dropdown-menu {\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 1000;\n  display: none;\n  float: left;\n  min-width: 160px;\n  padding: 5px 0;\n  margin: 2px 0 0;\n  list-style: none;\n  font-size: 14px;\n  text-align: left;\n  background-color: #ffae1a;\n  border: 1px solid #ccc;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  border-radius: 4px;\n  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n  background-clip: padding-box; }\n  .dropdown-menu.pull-right {\n    right: 0;\n    left: auto; }\n  .dropdown-menu .divider {\n    height: 1px;\n    margin: 9px 0;\n    overflow: hidden;\n    background-color: #e5e5e5; }\n  .dropdown-menu > li > a {\n    display: block;\n    padding: 3px 20px;\n    clear: both;\n    font-weight: normal;\n    line-height: 1.42857;\n    color: #333333;\n    white-space: nowrap; }\n\n.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {\n  text-decoration: none;\n  color: #262626;\n  background-color: #f5f5f5; }\n\n.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {\n  color: #fff;\n  text-decoration: none;\n  outline: 0;\n  background-color: #88f4f8; }\n\n.dropdown-menu > .disabled > a, .dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {\n  color: #777777; }\n\n.dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {\n  text-decoration: none;\n  background-color: transparent;\n  background-image: none;\n  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);\n  cursor: not-allowed; }\n\n.open > .dropdown-menu {\n  display: block; }\n\n.open > a {\n  outline: 0; }\n\n.dropdown-menu-right {\n  left: auto;\n  right: 0; }\n\n.dropdown-menu-left {\n  left: 0;\n  right: auto; }\n\n.dropdown-header {\n  display: block;\n  padding: 3px 20px;\n  font-size: 12px;\n  line-height: 1.42857;\n  color: #777777;\n  white-space: nowrap; }\n\n.dropdown-backdrop {\n  position: fixed;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  top: 0;\n  z-index: 990; }\n\n.pull-right > .dropdown-menu {\n  right: 0;\n  left: auto; }\n\n.dropup .caret,\n.navbar-fixed-bottom .dropdown .caret {\n  border-top: 0;\n  border-bottom: 4px dashed;\n  border-bottom: 4px solid \\9;\n  content: \"\"; }\n\n.dropup .dropdown-menu,\n.navbar-fixed-bottom .dropdown .dropdown-menu {\n  top: auto;\n  bottom: 100%;\n  margin-bottom: 2px; }\n\n@media (min-width: 768px) {\n  .navbar-right .dropdown-menu {\n    right: 0;\n    left: auto; }\n  .navbar-right .dropdown-menu-left {\n    left: 0;\n    right: auto; } }\n", ""]);
 
 // exports
 
@@ -54126,7 +54120,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "body {\n  background-image: url(" + __webpack_require__(40) + "); }\n\nnav {\n  display: flex;\n  justify-content: space-between;\n  background: rgba(255, 255, 255, 0.5);\n  margin: -1% -1% 0 -1%;\n  padding: 1% 0; }\n\np {\n  color: #E74C3C;\n  font-size: 2em;\n  font-weight: bold; }\n\nbutton {\n  background-color: #E74C3C;\n  color: white;\n  border: none;\n  padding: 10px 32px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n  font-weight: bold;\n  cursor: pointer;\n  cursor: hand; }\n\n.in-nav {\n  margin: 5px 25px; }\n\n.logo {\n  margin-top: 20%;\n  cursor: pointer;\n  cursor: hand; }\n\n.buttons {\n  margin-top: 20px; }\n\n.main {\n  max-width: 40%;\n  display: flex;\n  flex-flow: column;\n  justify-content: flex-start;\n  background: rgba(255, 255, 255, 0.5);\n  text-align: center;\n  width: 700px;\n  margin-left: auto;\n  margin-right: auto;\n  margin-top: 10%;\n  padding: 5% 10%; }\n\n.get-started {\n  margin-top: 5%;\n  padding: 3% 12%;\n  font-size: 18px;\n  border-radius: 5%; }\n\n.main-para {\n  color: black; }\n", ""]);
 
 // exports
 
@@ -54140,7 +54134,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  background-image: url(" + __webpack_require__(40) + "); }\n\nnav {\n  display: flex;\n  justify-content: space-between;\n  background: rgba(255, 255, 255, 0.5);\n  margin: -1% -1% 0 -1%;\n  padding: 1% 0; }\n\np {\n  color: #E74C3C;\n  font-size: 2em;\n  font-weight: bold; }\n\nbutton {\n  background-color: #E74C3C;\n  color: white;\n  border: none;\n  padding: 10px 32px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n  font-weight: bold;\n  cursor: pointer;\n  cursor: hand; }\n\n.in-nav {\n  margin: 5px 25px; }\n\n.logo {\n  margin-top: 20%;\n  cursor: pointer;\n  cursor: hand; }\n\n.buttons {\n  margin-top: 20px; }\n\n.main {\n  max-width: 40%;\n  display: flex;\n  flex-flow: column;\n  justify-content: flex-start;\n  background: rgba(255, 255, 255, 0.5);\n  text-align: center;\n  width: 700px;\n  margin-left: auto;\n  margin-right: auto;\n  margin-top: 10%;\n  padding: 5% 10%; }\n\n.get-started {\n  margin-top: 5%;\n  padding: 3% 12%;\n  font-size: 18px;\n  border-radius: 5%; }\n\n.main-para {\n  color: black; }\n", ""]);
+exports.push([module.i, "body {\n  background-image: none;\n  background-color: white; }\n", ""]);
 
 // exports
 
@@ -54155,7 +54149,7 @@ module.exports = __webpack_require__.p + "484e1256a4879558548b81b2d73bc463.jpg";
 /* 41 */
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"navbar\">\n  <nav>\n\n  </nav>\n</section>\n";
+module.exports = "<section>\n  <nav>\n    <div><p class=\"logo\"><a class=\"home-tag\" href=\"#!/home\">Wattle</a></p></div>\n\n    <div uib-dropdown is-open=\"status.isopen\">\n\n        <img class=\"profile-pic\" uib-dropdown-toggle ng-disabled=\"disabled\"\n      src=\"http://www.designbytic.com/wp-content/uploads/2015/09/google-dk-flat1.png\">\n\n      <ul class=\"dropdown-menu dropdown-menu-right\" uib-dropdown-menu role=\"menu\">\n        <li role=\"menuitem\"><a href='#'>Settings</a></li>\n        <li role=\"menuitem\"><a href='#'>Logout</a></li>\n      </ul>\n    </div>\n  </nav>\n</section>\n";
 
 /***/ }),
 /* 42 */
@@ -54167,22 +54161,16 @@ module.exports = "<section class=\"settings\">\n\n</section>\n";
 /* 43 */
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"task-view\">\n\n</section>\n";
+module.exports = "";
 
 /***/ }),
 /* 44 */
 /***/ (function(module, exports) {
 
-module.exports = "";
+module.exports = "<section>\n  <h1>Tasks View</h1>\n  <div class=\"category_view\">\n    <category ng-repeat=\"category in tasksCtrl.categories\" category=\"category\"></category>\n  </div>\n</section>\n";
 
 /***/ }),
 /* 45 */
-/***/ (function(module, exports) {
-
-module.exports = "";
-
-/***/ }),
-/* 46 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -54272,18 +54260,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 47 */
-/***/ (function(module, exports) {
-
-var toString = {}.toString;
-
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
-};
-
-
-/***/ }),
-/* 48 */
+/* 46 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -54469,7 +54446,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 49 */
+/* 47 */
 /***/ (function(module, exports) {
 
 
@@ -54564,13 +54541,13 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 50 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(34);
+var content = __webpack_require__(35);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -54590,13 +54567,13 @@ if(false) {
 }
 
 /***/ }),
-/* 51 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(35);
+var content = __webpack_require__(36);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -54616,65 +54593,13 @@ if(false) {
 }
 
 /***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(36);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(1)(content, {});
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./_task-view.scss", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./_task-view.scss");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 53 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
 var content = __webpack_require__(38);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(1)(content, {});
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./_home.scss", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./_home.scss");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(39);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -54694,7 +54619,33 @@ if(false) {
 }
 
 /***/ }),
-/* 55 */
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(39);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./_tasks.scss", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./_tasks.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 52 */
 /***/ (function(module, exports) {
 
 var g;

@@ -1,20 +1,12 @@
+'use strict'
 
-'use strict';
-
-module.exports = ['$stateProvider', '$urlRouterProvider', routerConfig];
+module.exports = ['$stateProvider', '$urlRouterProvider', routerConfig]
 
 function routerConfig($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.when('' , 'join');
-  $urlRouterProvider.when('/' , 'join');
+  $urlRouterProvider.when('' , 'join')
+  $urlRouterProvider.when('/' , 'join')
 
   let states = [
-    {
-      name: 'home',
-      url: '/home',
-      template: require('../view/home/home.html'),
-      controller: 'HomeController',
-      controllerAs: 'homeCtrl',
-    },
     {
       name: 'landing',
       url: '/join',
@@ -36,9 +28,9 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       controller: 'SettingsController',
       controllerAs: 'settingsCtrl',
     },
-  ];
+  ]
 
   states.forEach( state => {
-    $stateProvider.state(state);
-  });
+    $stateProvider.state(state)
+  })
 }

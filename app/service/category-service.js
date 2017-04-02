@@ -8,10 +8,12 @@ function categoryService ($q, $log, $http, authService, taskService) {
 
   service.categories = []
 
-  service.getCategories = function () {
-    taskService
+  service.fetchCategories = function () {
+    return taskService
       .fetchTasks()
       .then(tasks => {
+        $log.debug('here are the tasks:', tasks)
+        $log.debug('processing tasks')
         let uniqueCategories = {}
         tasks.forEach(task => {
           if (!uniqueCategories.hasOwnProperty(task.category._id)) {
@@ -21,12 +23,11 @@ function categoryService ($q, $log, $http, authService, taskService) {
             uniqueCategories[task.category._id].tasks.push(task)
           }
         })
-        uniqueCategories.keys().forEach( key => {
-          service.categories.push(uniqueCategories[key])
-        })
-        service.categories.sort((a, b) => {
-          return a.priority - b.priority
-        })
+
+
+        return service.categories
       })
   }
+
+  return service
 }

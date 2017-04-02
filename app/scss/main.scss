@@ -1,3 +1,4 @@
+@import "lib/bootstrap/_custom-bootstrap.scss";
 
 // :::: BASE & THEME :::: //
 @import "lib/base/reset";
@@ -8,6 +9,8 @@
 @import "lib/layout/header";
 @import "lib/layout/footer";
 @import "lib/layout/layout";
+
+@import "lib/bootstrap/custom-bootstrap";
 
 // ::: COMPONENT ::: //
 // @import "../component/home/home";
