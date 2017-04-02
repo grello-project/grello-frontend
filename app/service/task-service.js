@@ -6,7 +6,11 @@ testResponse.data = [
     _id: 1,
     name: 'task1',
     priority: 1,
-    category: 'uncategorized',
+    category: {
+      _id: '000',
+      name: 'uncategorized',
+      priority: 1
+    },
     document: {
       _id: 1,
       name: 'document1'
@@ -16,7 +20,11 @@ testResponse.data = [
     _id: 2,
     name: 'task2',
     priority: 2,
-    category: 'uncategorized',
+    category: {
+      _id: '000',
+      name: 'uncategorized',
+      priority: 1
+    },
     document: {
       _id: 1,
       name: 'document1'
@@ -26,7 +34,11 @@ testResponse.data = [
     _id: 3,
     name: 'task3',
     priority: 3,
-    category: 'uncategorized',
+    category: {
+      _id: '001',
+      name: 'P0',
+      priority: 2
+    },
     document: {
       _id: 1,
       name: 'document1'
