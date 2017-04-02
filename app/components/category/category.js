@@ -1,7 +1,9 @@
 'use strict'
 
+require('./_category.scss')
+
 module.exports = {
-  template: './category.html',
+  template: require('./category.html'),
   controller: ['$log', 'categoryService', categoryController],
   controllerAs: 'categoryCtrl',
   bindings: {
@@ -11,6 +13,10 @@ module.exports = {
 
 function categoryController () {
   let self = this
-  this.title = 'this is a category'
   this.tasks = []
+
+  self.$onInit = function () {
+    this.title = this.category.name
+  }
+
 }

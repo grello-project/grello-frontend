@@ -3,7 +3,7 @@
 require('./_task-item.scss')
 
 module.exports = {
-  template: './task-item.html',
+  template: require('./task-item.html'),
   controller: ['$log', taskController],
   controllerAs:'taskCtrl',
   bindings: {
@@ -13,4 +13,5 @@ module.exports = {
 
 function taskController () {
   let self = this
+
 }

@@ -1,4 +1,4 @@
 <div class="category">
-  <h2>categoryCtrl.title</h2>
-  <task-item ng-repeat="task in categoryCtrl.tasks" task="task"></task-item>
+  <h2>{{ categoryCtrl.title }}</h2>
+  <task-item ng-repeat="task in categoryCtrl.category.tasks" task="task"></task-item>
 </div>

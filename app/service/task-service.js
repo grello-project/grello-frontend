@@ -4,7 +4,7 @@ let testResponse = {}
 testResponse.data = [
   {
     _id: 1,
-    name: 'task1',
+    comment: 'task1',
     priority: 1,
     category: {
       _id: '000',
@@ -18,7 +18,7 @@ testResponse.data = [
     user: '123'
   },{
     _id: 2,
-    name: 'task2',
+    comment: 'task2',
     priority: 2,
     category: {
       _id: '000',
@@ -32,7 +32,7 @@ testResponse.data = [
     user: '123'
   },{
     _id: 3,
-    name: 'task3',
+    comment: 'task3',
     priority: 3,
     category: {
       _id: '001',
