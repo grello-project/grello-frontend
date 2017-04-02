@@ -56,7 +56,33 @@ describe('auth-service', function() {
   })
 
   describe('authService.logout()', () => {
-    
+    it('should logout the user', () => {
+      this.authService.token = null
+      this.$window.localStorage.setItem('token', 'test token')
+
+      this.authService.getToken()
+      .then( token => {
+        expect(token).toEqual('test token')
+      })
+      .catch( err => {
+        expect(err).toEqual(null)
+      })
+
+      this.authService.logout()
+      .then( () => {
+        expect(this.$window.localStorage.getItem('token')).toEqual(null)
+      })
+      .catch( err => {
+        expect(err).toEqual(null)
+      })
+
+      this.$rootScope.$apply()
+    })
+  })
+
+  describe('authService.setToken()', () => {
+    it('should let a token into localStorage')
+    //not ready to be tested
   })
 
 })
