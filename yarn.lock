@@ -80,6 +80,10 @@ angular-animate@^1.6.3:
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.3.tgz#d228a14f47a4e50bea44ed15bbc4651d44d194f5"
 
+angular-drag-drop@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/angular-drag-drop/-/angular-drag-drop-3.1.0.tgz#63943b6ad30899d817f7043363318708a2993ece"
+
 angular-mocks@^1.6.3:
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.6.3.tgz#12fafc0f1e0903f16864004ba375bf3fb9101ef1"

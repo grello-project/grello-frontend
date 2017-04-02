@@ -4,11 +4,11 @@ require('./_navbar.scss')
 
 module.exports = {
   template: require('./navbar.html'),
-  controller: ['$log', '$location', '$rootScope', 'autService', NavbarController],
+  controller: ['$log', '$location', '$rootScope', NavbarController],
   controllerAs: 'navbarCtrl'
 }
 
-function NavbarController($log, $location, $rootScope, authService) {
+function NavbarController($log, $location, $rootScope){
   $log.debug('NavbarController')
 
   this.checkPath = function() {

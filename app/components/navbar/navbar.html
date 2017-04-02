@@ -1,5 +1,16 @@
-<section class="navbar">
+<section>
   <nav>
+    <div><p class="logo"><a class="home-tag" href="#!/home">Wattle</a></p></div>
 
+    <div uib-dropdown is-open="status.isopen">
+
+        <img class="profile-pic" uib-dropdown-toggle ng-disabled="disabled"
+      src="http://www.designbytic.com/wp-content/uploads/2015/09/google-dk-flat1.png">
+
+      <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu">
+        <li role="menuitem"><a href='#'>Settings</a></li>
+        <li role="menuitem"><a href='#'>Logout</a></li>
+      </ul>
+    </div>
   </nav>
 </section>
