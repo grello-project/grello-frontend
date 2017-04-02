@@ -4,8 +4,11 @@ require('./_task-item.scss')
 
 module.exports = {
   template: './task-item.html',
-  controller: taskController,
-  controllerAs:'taskCtrl'
+  controller: ['$log', taskController],
+  controllerAs:'taskCtrl',
+  bindings: {
+    task: '<'
+  }
 }
 
 function taskController () {

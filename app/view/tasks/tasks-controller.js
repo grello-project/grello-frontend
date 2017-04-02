@@ -6,11 +6,11 @@ module.exports = [
   '$location',
   '$log',
   'authService',
-  'taskService',
-  TaskController
+  'categoryService',
+  TasksController
 ]
 
-function TaskController ($location, $log, authService, taskService) {
+function TasksController ($location, $log, authService, categoryService) {
   const self = this
   self.categories = []
 
@@ -18,6 +18,11 @@ function TaskController ($location, $log, authService, taskService) {
     .getToken()
     .then( token => {
       $location.url('/tasks')
+      categoryService
+        .fetchCategories()
+        .then( categories => {
+          self.categories = categories
+        })
     })
     .catch( err => {
       $log.debug(err)

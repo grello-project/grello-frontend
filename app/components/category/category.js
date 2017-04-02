@@ -2,10 +2,15 @@
 
 module.exports = {
   template: './category.html',
-  controller: categoryController,
-  controllerAs: 'categoryCtrl'
+  controller: ['$log', 'categoryService', categoryController],
+  controllerAs: 'categoryCtrl',
+  bindings: {
+    category: '<'
+  }
 }
 
 function categoryController () {
   let self = this
+  this.title = 'this is a category'
+  this.tasks = []
 }

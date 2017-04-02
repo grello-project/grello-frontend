@@ -54,7 +54,7 @@ function taskService($q, $log, $http, authService) {
 
   let service = {}
 
-  service.task = []
+  service.tasks = []
   //
   // service.createTask = function(task) {
   //   $log.debug('taskService.createTask()')
@@ -102,8 +102,8 @@ function taskService($q, $log, $http, authService) {
     })
     .then( res => {
       $log.log('task retrieved')
-      service.task = res.data
-      return service.task
+      service.tasks = res.data
+      return service.tasks
     })
     .catch( err => {
       $log.error(err.message)
