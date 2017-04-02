@@ -1,11 +1,10 @@
+'use strict'
 
-'use strict';
-
-module.exports = ['$stateProvider', '$urlRouterProvider', routerConfig];
+module.exports = ['$stateProvider', '$urlRouterProvider', routerConfig]
 
 function routerConfig($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.when('' , 'join');
-  $urlRouterProvider.when('/' , 'join');
+  $urlRouterProvider.when('' , 'join')
+  $urlRouterProvider.when('/' , 'join')
 
   let states = [
     {
@@ -36,9 +35,9 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       controller: 'SettingsController',
       controllerAs: 'settingsCtrl',
     },
-  ];
+  ]
 
   states.forEach( state => {
-    $stateProvider.state(state);
-  });
+    $stateProvider.state(state)
+  })
 }

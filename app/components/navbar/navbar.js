@@ -1,17 +1,14 @@
+'use strict'
 
-
-require('./_navbar.scss');
+require('./_navbar.scss')
 
 module.exports = {
   template: require('./navbar.html'),
   controller: ['$log', '$location', '$rootScope', NavbarController],
-  controllerAs: 'navbarCtrl',
-  bindings: {
-    user: '='
-  }
-};
+  controllerAs: 'navbarCtrl'
+}
 
 function NavbarController($log, $location, $rootScope){
-  $log.debug('NavbarController');
+  $log.debug('NavbarController')
 
 }
