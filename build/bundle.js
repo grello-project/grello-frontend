@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 25);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -146,7 +146,7 @@ function toComment(sourceMap) {
   return '/*# ' + data + ' */';
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33).Buffer))
 
 /***/ }),
 /* 1 */
@@ -186,7 +186,7 @@ var stylesInDom = {},
 	singletonElement = null,
 	singletonCounter = 0,
 	styleElementsInsertedAtTop = [],
-	fixUrls = __webpack_require__(38);
+	fixUrls = __webpack_require__(49);
 
 module.exports = function(list, options) {
 	if(typeof DEBUG !== "undefined" && DEBUG) {
@@ -448,43 +448,22 @@ function updateLink(linkElement, options, obj) {
 /* 2 */
 /***/ (function(module, exports) {
 
-function webpackEmptyContext(req) {
-	throw new Error("Cannot find module '" + req + "'.");
-}
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 2;
+module.exports = "<section class=\"home\">\n  <nav class=\"task-container\">\n    <div>\n      <p class\"logo\">Wattle</p>\n    </div>\n\n  </nav>\n</section>\n";
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var map = {
-	"./router-config.js": 19
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 3;
+module.exports = "<section class='landing'>\n  <nav>\n\n    <div class=\"in-nav\">\n      <p class=\"logo\">Wattle</p>\n    </div>\n\n    <div class=\"buttons in-nav\">\n    <button type=\"submit\"           class=\"signup\">SIGNUP</button>\n    <button type=\"submit\" class=\"login\">LOGIN</button>\n    </div>\n\n  </nav>\n\n  <section class=\"main\">\n    <div><p class=\"main-para\">The better way to manage your Google comments and tasks</p></div>\n    <div><button type=\"submit\" class=\"get-started\">GET STARTED</button></div>\n </section>\n</section>\n";
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./auth-service.js": 21
+	"./navbar/navbar.js": 21,
+	"./settings/settings.js": 22,
+	"./task-view/task-view.js": 23
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -507,10 +486,7 @@ webpackContext.id = 4;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./home/home-controller.js": 22,
-	"./landing/landing-controller.js": 23,
-	"./settings/settings-controller.js": 24,
-	"./tasks/tasks-controller.js": 25
+	"./router-config.js": 24
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -532,29 +508,79 @@ webpackContext.id = 5;
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(15);
-module.exports = 'ngAnimate';
-
+var map = {
+	"./auth-service.js": 26,
+	"./task-service.js": 27
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 6;
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(16);
-module.exports = 'ngTouch';
-
+var map = {
+	"./home/home.js": 28,
+	"./landing/landing-controller.js": 29,
+	"./settings/settings-controller.js": 30,
+	"./tasks/tasks-controller.js": 31
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 7;
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(17);
+module.exports = 'ngAnimate';
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(18);
+module.exports = 'ngTouch';
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(19);
 
 module.exports = 'ui.bootstrap';
 
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports) {
 
 /**
@@ -5243,15 +5269,15 @@ angular.module('ui.router.state')
 })(window, window.angular);
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(18);
+__webpack_require__(20);
 module.exports = angular;
 
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5307,7 +5333,7 @@ module.exports = function () {
 
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports) {
 
 /*!
@@ -5334,7 +5360,7 @@ module.exports = pascalcase;
 
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -5562,16 +5588,16 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(37)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(48)))
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(28);
+var content = __webpack_require__(38);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -5591,7 +5617,7 @@ if(false) {
 }
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports) {
 
 /**
@@ -9752,7 +9778,7 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
 
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports) {
 
 /**
@@ -10507,7 +10533,7 @@ makeSwipeDirective('ngSwipeRight', 1, 'swiperight');
 
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports) {
 
 /*
@@ -18288,7 +18314,7 @@ angular.module('ui.bootstrap.timepicker').run(function() {!angular.$$csp().noInl
 angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInlineStyle && !angular.$$uibTypeaheadCss && angular.element(document).find('head').prepend('<style type="text/css">[uib-typeahead-popup].dropdown-menu{display:block;}</style>'); angular.$$uibTypeaheadCss = true; });
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports) {
 
 /**
@@ -51638,7 +51664,94 @@ $provide.value("$locale", {
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ }),
-/* 19 */
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(50);
+
+module.exports = {
+  template: __webpack_require__(42),
+  controller: ['$log', '$location', '$rootScope', 'autService', NavbarController],
+  controllerAs: 'navbarCtrl'
+};
+
+function NavbarController($log, $location, $rootScope, authService) {
+  var _this = this;
+
+  $log.debug('NavbarController');
+
+  this.checkPath = function () {
+    var path = $location.path();
+    if (path === '/join') {
+      this.hideButtons = true;
+    }
+
+    if (path !== '/join') {
+      this.hideButtons = false;
+      authService.getToken().catch(function () {
+        $location.url('/join#login');
+      });
+    }
+  };
+
+  this.checkPath();
+
+  $rootScope.$on('$locationChangeSuccess', function () {
+    _this.checkPath();
+  });
+
+  this.logout = function () {
+    $log.log('navbarCtrl.logout()');
+    this.hideButtons = true;
+    authService.logout().then(function () {
+      $location.url('');
+    });
+  };
+}
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(51);
+
+module.exports = {
+  template: __webpack_require__(43),
+  controller: ['$log', '$rootScope', authService, 'taskService', SettingsController],
+  controllerAs: 'settingsCtrl'
+};
+
+function SettingsController($log, $location, $rootScope, authService) {
+  $log.debug('SettingsController');
+}
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(52);
+
+module.exports = {
+  template: __webpack_require__(44),
+  controller: ['$log', '$location', '$rootScope', 'authService', TaskviewController],
+  controllerAs: 'taskviewCtrl'
+};
+
+function TaskviewController($log, $location, $rootScope, authService) {
+  $log.debug('TaskviewController');
+}
+
+/***/ }),
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51654,25 +51767,25 @@ function routerConfig($stateProvider, $urlRouterProvider) {
   var states = [{
     name: 'home',
     url: '/home',
-    template: __webpack_require__(31),
+    template: __webpack_require__(2),
     controller: 'HomeController',
     controllerAs: 'homeCtrl'
   }, {
     name: 'landing',
     url: '/join',
-    template: __webpack_require__(32),
+    template: __webpack_require__(3),
     controller: 'LandingController',
     controllerAs: 'landingCtrl'
   }, {
     name: 'tasks',
     url: '/tasks',
-    template: __webpack_require__(34),
+    template: __webpack_require__(46),
     controller: 'TasksController',
     controllerAs: 'tasksCtrl'
   }, {
     name: 'settings',
     url: '/settings',
-    template: __webpack_require__(33),
+    template: __webpack_require__(45),
     controller: 'SettingsController',
     controllerAs: 'settingsCtrl'
   }];
@@ -51683,60 +51796,60 @@ function routerConfig($stateProvider, $urlRouterProvider) {
 }
 
 /***/ }),
-/* 20 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(14);
+__webpack_require__(16);
 
-var path = __webpack_require__(13);
-var angular = __webpack_require__(10);
-var camelcase = __webpack_require__(11);
-var pascalcase = __webpack_require__(12);
-var uiRouter = __webpack_require__(9);
-var ngTouch = __webpack_require__(7);
-var ngAnimate = __webpack_require__(6);
-var uiBootstrap = __webpack_require__(8);
+var path = __webpack_require__(15);
+var angular = __webpack_require__(12);
+var camelcase = __webpack_require__(13);
+var pascalcase = __webpack_require__(14);
+var uiRouter = __webpack_require__(11);
+var ngTouch = __webpack_require__(9);
+var ngAnimate = __webpack_require__(8);
+var uiBootstrap = __webpack_require__(10);
 
 var wattle = angular.module('wattle', [ngTouch, ngAnimate, uiRouter, uiBootstrap]);
 
-var context = __webpack_require__(3);
+var context = __webpack_require__(5);
 context.keys().forEach(function (path) {
   wattle.config(context(path));
 });
 
-context = __webpack_require__(5);
+context = __webpack_require__(7);
 context.keys().forEach(function (key) {
   var name = pascalcase(path.basename(key, '.js'));
   var module = context(key);
   wattle.controller(name, module);
 });
 
-context = __webpack_require__(4);
+context = __webpack_require__(6);
 context.keys().forEach(function (key) {
   var name = camelcase(path.basename(key, '.js'));
   var module = context(key);
   wattle.service(name, module);
 });
 
-context = __webpack_require__(2);
+context = __webpack_require__(4);
 context.keys().forEach(function (key) {
   var name = camelcase(path.basename(key, '.js'));
   var module = context(key);
   wattle.component(name, module);
 });
 
-// context = require.context('./filter/', true, /\.js$/);
+// context = require.context('./filter/', true, /\.js$/)
 // context.keys().forEach( key => {
-//   let name = camelcase(path.basename(key, '.js'));
-//   let module = context(key);
-//   wattle.filter(name, module);
-// });
+//   let name = camelcase(path.basename(key, '.js'))
+//   let module = context(key)
+//   wattle.filter(name, module)
+// })
 
 /***/ }),
-/* 21 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51826,22 +51939,190 @@ function authService($q, $log, $http, $window) {
 }
 
 /***/ }),
-/* 22 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+module.exports = ['$q', '$log', '$http', 'authService', taskService];
+
+function taskService($q, $log, $http, authService) {
+  $log.debug('taskService()');
+
+  var service = {};
+
+  service.task = [];
+
+  service.createTask = function (task) {
+    $log.debug('taskService.createTask()');
+
+    return authService.getToken().then(function (token) {
+      var url = undefined + '/api/task';
+      var config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token
+        }
+      };
+
+      return $http.post(url, task, config);
+    }).then(function (res) {
+      $log.log('task created');
+      var task = res.data;
+      service.task.unshift(task);
+      return task;
+    }).catch(function (err) {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
+  service.fetchTasks = function () {
+    $log.debug('taskService.createTasks()');
+
+    return authService.getToken().then(function (token) {
+      var url = undefined + '/api/task';
+      var config = {
+        headers: {
+          Accept: 'application/json',
+          Authorization: 'Bearer ' + token
+        }
+      };
+
+      return $http.get(url, config);
+    }).then(function (res) {
+      $log.log('task retrieved');
+      service.task = res.data;
+      return service.task;
+    }).catch(function (err) {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
+  service.updateTask = function (taskID, taskData) {
+    $log.debug('taskService.updateTask()');
+    $log.debug(typeof taskID === 'undefined' ? 'undefined' : _typeof(taskID));
+
+    return authService.getToken().then(function (token) {
+      var url = undefined + '/api/task/' + taskID;
+      var config = {
+        headers: {
+          Accept: 'application/json',
+          Authorization: 'Bearer ' + token,
+          'Content-Type': 'application/json'
+        }
+      };
+
+      return $http.put(url, taskData, config);
+    }).then(function (res) {
+      for (var i = 0; i < service.task.length; i++) {
+        var current = service.task[i];
+        if (current._id === taskID) {
+          service.task[i] = res.data;
+          break;
+        }
+      }
+
+      return res.data;
+    }).catch(function (err) {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
+  service.deleteTask = function (taskID) {
+    $log.debug('taskService.updateTask()');
+
+    return authService.getToken().then(function (token) {
+      var url = undefined + '/api/task/' + taskID;
+      var config = {
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      };
+
+      return $http.delete(url, config);
+    }).then(function (res) {
+      for (var i = 0; i < service.task.length; i++) {
+        var current = service.task[i];
+        if (current._id === taskID) {
+          service.task.splice(i, 1);
+          break;
+        }
+      }
+    }).catch(function (err) {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
+  return service;
+}
 
 /***/ }),
-/* 23 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(39);
+__webpack_require__(53);
 
-module.exports = ['$log', '$location', '$rootScope', 'authService', LandingController];
+// module.exports = ['$log', '$rootScope', 'taskService', HomeController]
+module.exports = {
+  template: __webpack_require__(2),
+  controller: ['$log', '$rootScope', 'authService', 'taskService', HomeController],
+  controllerAs: 'homeCtrl'
+};
+
+function HomeController($log, $rootScope, authService, taskService) {
+  var _this2 = this;
+
+  $log.debug('HomeController');
+
+  this.tasks = [];
+
+  this.fetchTasks = function () {
+    var _this = this;
+
+    taskService.fetchTasks().then(function (tasks) {
+      _this.tasks = tasks;
+      _this.currentTask = tasks[0];
+    });
+  };
+
+  this.taskDeleteDone = function (task) {
+    if (this.currentTask._id === task._id) {
+      this.currentTask = null;
+    }
+  };
+
+  this.fetchTasks();
+
+  $rootScope.$on('$locationChangeSuccess', function () {
+    _this2.fetchTasks();
+  });
+}
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(54);
+
+module.exports = {
+  template: __webpack_require__(3),
+  controller: ['$log', '$location', '$rootScope', 'authService', LandingController],
+  controllerAs: 'landingCtrl'
+};
 
 function LandingController($log, $location, authService) {
   var url = $location.url();
@@ -51849,21 +52130,21 @@ function LandingController($log, $location, authService) {
 }
 
 /***/ }),
-/* 24 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /***/ }),
-/* 25 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /***/ }),
-/* 26 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51984,7 +52265,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 27 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51998,9 +52279,9 @@ function fromByteArray (uint8) {
 
 
 
-var base64 = __webpack_require__(26)
-var ieee754 = __webpack_require__(35)
-var isArray = __webpack_require__(36)
+var base64 = __webpack_require__(32)
+var ieee754 = __webpack_require__(47)
+var isArray = __webpack_require__(34)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -53778,10 +54059,63 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(40)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(55)))
 
 /***/ }),
-/* 28 */
+/* 34 */
+/***/ (function(module, exports) {
+
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
+
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/***/ }),
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(undefined);
@@ -53795,7 +54129,7 @@ exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 |
 
 
 /***/ }),
-/* 29 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(undefined);
@@ -53803,43 +54137,63 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  background-image: url(" + __webpack_require__(30) + "); }\n\nnav {\n  display: flex;\n  justify-content: space-between;\n  background: rgba(255, 255, 255, 0.5);\n  margin: -1% -1% 0 -1%;\n  padding: 1% 0; }\n\np {\n  color: #E74C3C;\n  font-size: 2em;\n  font-weight: bold; }\n\nbutton {\n  background-color: #E74C3C;\n  color: white;\n  border: none;\n  padding: 10px 32px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n  font-weight: bold;\n  cursor: pointer;\n  cursor: hand; }\n\n.in-nav {\n  margin: 5px 25px; }\n\n.logo {\n  margin-top: 20%;\n  cursor: pointer;\n  cursor: hand; }\n\n.buttons {\n  margin-top: 20px; }\n\n.main {\n  max-width: 40%;\n  display: flex;\n  flex-flow: column;\n  justify-content: flex-start;\n  background: rgba(255, 255, 255, 0.5);\n  text-align: center;\n  width: 700px;\n  margin-left: auto;\n  margin-right: auto;\n  margin-top: 10%;\n  padding: 5% 10%; }\n\n.get-started {\n  margin-top: 5%;\n  padding: 3% 12%;\n  font-size: 18px;\n  border-radius: 5%; }\n\n.main-para {\n  color: black; }\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
 
 /***/ }),
-/* 30 */
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "body {\n  background-image: url(" + __webpack_require__(41) + "); }\n\nnav {\n  display: flex;\n  justify-content: space-between;\n  background: rgba(255, 255, 255, 0.5);\n  margin: -1% -1% 0 -1%;\n  padding: 1% 0; }\n\np {\n  color: #E74C3C;\n  font-size: 2em;\n  font-weight: bold; }\n\nbutton {\n  background-color: #E74C3C;\n  color: white;\n  border: none;\n  padding: 10px 32px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n  font-weight: bold;\n  cursor: pointer;\n  cursor: hand; }\n\n.in-nav {\n  margin: 5px 25px; }\n\n.logo {\n  margin-top: 20%;\n  cursor: pointer;\n  cursor: hand; }\n\n.buttons {\n  margin-top: 20px; }\n\n.main {\n  max-width: 40%;\n  display: flex;\n  flex-flow: column;\n  justify-content: flex-start;\n  background: rgba(255, 255, 255, 0.5);\n  text-align: center;\n  width: 700px;\n  margin-left: auto;\n  margin-right: auto;\n  margin-top: 10%;\n  padding: 5% 10%; }\n\n.get-started {\n  margin-top: 5%;\n  padding: 3% 12%;\n  font-size: 18px;\n  border-radius: 5%; }\n\n.main-para {\n  color: black; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "484e1256a4879558548b81b2d73bc463.jpg";
 
 /***/ }),
-/* 31 */
+/* 42 */
+/***/ (function(module, exports) {
+
+module.exports = "<section class=\"navbar\">\n  <nav>\n\n  </nav>\n</section>\n";
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports) {
+
+module.exports = "<section class=\"settings\">\n\n</section>\n";
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports) {
+
+module.exports = "<section class=\"task-view\">\n\n</section>\n";
+
+/***/ }),
+/* 45 */
 /***/ (function(module, exports) {
 
 module.exports = "";
 
 /***/ }),
-/* 32 */
-/***/ (function(module, exports) {
-
-module.exports = "<section class='landing'>\n  <nav>\n\n    <div class=\"in-nav\">\n      <p class=\"logo\">Wattle</p>\n    </div>\n\n    <div class=\"buttons in-nav\">\n    <button type=\"submit\"           class=\"signup\">SIGNUP</button>\n    <button type=\"submit\" class=\"login\">LOGIN</button>\n    </div>\n\n  </nav>\n\n  <section class=\"main\">\n    <div><p class=\"main-para\">The better way to manage your Google comments and tasks</p></div>\n    <div><button type=\"submit\" class=\"get-started\">GET STARTED</button></div>\n</section>\n";
-
-/***/ }),
-/* 33 */
+/* 46 */
 /***/ (function(module, exports) {
 
 module.exports = "";
 
 /***/ }),
-/* 34 */
-/***/ (function(module, exports) {
-
-module.exports = "";
-
-/***/ }),
-/* 35 */
+/* 47 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -53929,18 +54283,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 36 */
-/***/ (function(module, exports) {
-
-var toString = {}.toString;
-
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
-};
-
-
-/***/ }),
-/* 37 */
+/* 48 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -54126,7 +54469,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 38 */
+/* 49 */
 /***/ (function(module, exports) {
 
 
@@ -54221,13 +54564,117 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 39 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(29);
+var content = __webpack_require__(35);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./_navbar.scss", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./_navbar.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(36);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./_settings.scss", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./_settings.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(37);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./_task-view.scss", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./_task-view.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(39);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./_home.scss", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./_home.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(40);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -54247,7 +54694,7 @@ if(false) {
 }
 
 /***/ }),
-/* 40 */
+/* 55 */
 /***/ (function(module, exports) {
 
 var g;
