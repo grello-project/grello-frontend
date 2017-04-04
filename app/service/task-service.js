@@ -1,5 +1,52 @@
 'use strict'
 
+let testResponse = {}
+testResponse.data = [
+  {
+    _id: 1,
+    comment: 'task1',
+    priority: 1,
+    category: {
+      _id: '000',
+      name: 'uncategorized',
+      priority: 1
+    },
+    document: {
+      _id: 1,
+      name: 'document1'
+    },
+    user: '123'
+  },{
+    _id: 2,
+    comment: 'task2',
+    priority: 2,
+    category: {
+      _id: '000',
+      name: 'uncategorized',
+      priority: 1
+    },
+    document: {
+      _id: 1,
+      name: 'document1'
+    },
+    user: '123'
+  },{
+    _id: 3,
+    comment: 'task3',
+    priority: 3,
+    category: {
+      _id: '001',
+      name: 'P0',
+      priority: 2
+    },
+    document: {
+      _id: 1,
+      name: 'document1'
+    },
+    user: '123'
+  }
+]
+
 module.exports = ['$q', '$log', '$http', 'authService', taskService]
 
 function taskService($q, $log, $http, authService) {
@@ -7,35 +54,35 @@ function taskService($q, $log, $http, authService) {
 
   let service = {}
 
-  service.task = []
-
-  service.createTask = function(task) {
-    $log.debug('taskService.createTask()')
-
-    return authService.getToken()
-    .then( token => {
-      let url = `${__API_URL__}/api/task`
-      let config = {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      }
-
-      return $http.post(url, task, config)
-    })
-    .then( res => {
-      $log.log('task created')
-      let task = res.data
-      service.task.unshift(task)
-      return task
-    })
-    .catch( err => {
-      $log.error(err.message)
-      return $q.reject(err)
-    })
-  }
+  service.tasks = []
+  //
+  // service.createTask = function(task) {
+  //   $log.debug('taskService.createTask()')
+  //
+  //   return authService.getToken()
+  //   .then( token => {
+  //     let url = `${__API_URL__}/api/task`
+  //     let config = {
+  //       headers: {
+  //         Accept: 'application/json',
+  //         'Content-Type': 'application/json',
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     }
+  //
+  //     return $http.post(url, task, config)
+  //   })
+  //   .then( res => {
+  //     $log.log('task created')
+  //     let task = res.data
+  //     service.task.unshift(task)
+  //     return task
+  //   })
+  //   .catch( err => {
+  //     $log.error(err.message)
+  //     return $q.reject(err)
+  //   })
+  // }
 
 
   service.fetchTasks = function() {
@@ -50,13 +97,13 @@ function taskService($q, $log, $http, authService) {
           Authorization: `Bearer ${token}`
         }
       }
-
-      return $http.get(url, config)
+      return $q.resolve(testResponse)
+      // return $http.get(url, config)
     })
     .then( res => {
       $log.log('task retrieved')
-      service.task = res.data
-      return service.task
+      service.tasks = res.data
+      return service.tasks
     })
     .catch( err => {
       $log.error(err.message)
@@ -98,7 +145,7 @@ function taskService($q, $log, $http, authService) {
     })
   }
 
-  service.deleteTask = function(taskID) {
+  service.resolveTask = function(taskID) {
     $log.debug('taskService.updateTask()')
 
     return authService.getToken()
@@ -110,7 +157,7 @@ function taskService($q, $log, $http, authService) {
         },
       }
 
-      return $http.delete(url, config)
+      return $http.put(url, config)
     })
     .then( res => {
       for (let i = 0; i < service.task.length; i++) {

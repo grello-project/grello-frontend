@@ -2,13 +2,23 @@
 
 require('./_landing.scss')
 
-module.exports = {
-  template: require('./landing.html'),
-  controller: ['$log', '$location', '$rootScope', 'authService', LandingController],
-  controllerAs: 'landingCtrl'
-}
+module.exports = [
+  '$log',
+  '$location',
+  '$rootScope',
+  'authService',
+  LandingController
+]
 
-function  LandingController($log, $location, authService) {
+function  LandingController($log, $location, $rootScope, authService) {
   let url = $location.url()
-  url === '/join'
+  authService
+    .getToken()
+    .then( token => {
+      $location.url('/tasks')
+    })
+    .catch( err => {
+      $log.debug(err)
+      $location.url('/')
+    })
 }
