@@ -2,27 +2,27 @@
   background-image: url('../../assets/landing-background.jpg')  !important;
 }
 
-// .main {
-//   max-width: 40%;
-//   display: flex;
-//   flex-flow: column;
-//   justify-content: flex-start;
-//   background: rgba(255, 255, 255, 0.5);
-//   text-align: center;
-//   width: 700px ;
-//   margin-left: auto ;
-//   margin-right: auto ;
-//   margin-top: 10%;
-//   padding: 5% 10%;
-// }
-//
-// .get-started {
-//   margin-top: 5%;
-//   padding: 3% 12%;
-//   font-size: 18px;
-//   border-radius: 5%;
-// }
-//
-// .main-para {
-//   color: black;
-// }
+.main {
+  max-width: 40%;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  background: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  width: 700px ;
+  margin-left: auto ;
+  margin-right: auto ;
+  margin-top: 10%;
+  padding: 5% 10%;
+}
+
+.get-started {
+  margin-top: 5%;
+  padding: 3% 12%;
+  font-size: 18px;
+  border-radius: 5%;
+}
+
+.main-para {
+  color: black;
+}
