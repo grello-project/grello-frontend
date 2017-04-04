@@ -24,7 +24,17 @@ function categoryService ($q, $log, $http, authService, taskService) {
           }
         })
 
+        $log.debug('here are the uniqueCategories:', uniqueCategories)
 
+        let keys = Object.keys(uniqueCategories).forEach( key => {
+          service.categories.push(uniqueCategories[key])
+        })
+        
+        service.categories.sort((a, b) => {
+          return a.priority - b.priority
+        })
+
+        $log.debug('result equals: ', service.categories)
         return service.categories
       })
   }

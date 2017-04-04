@@ -4,15 +4,19 @@ require('./_tasks.scss')
 
 module.exports = [
   '$location',
+  '$scope',
   '$log',
   'authService',
   'categoryService',
   TasksController
 ]
 
-function TasksController ($location, $log, authService, categoryService) {
+function TasksController ($location, $scope, $log, authService, categoryService) {
   const self = this
-  self.categories = []
+  self.models = {
+    selected: null,
+    categories: []
+  }
 
   authService
     .getToken()
@@ -21,7 +25,8 @@ function TasksController ($location, $log, authService, categoryService) {
       categoryService
         .fetchCategories()
         .then( categories => {
-          self.categories = categories
+          $log.debug('self.categories assigned to categories')
+          self.models.categories = categories
         })
     })
     .catch( err => {
