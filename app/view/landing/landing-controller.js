@@ -2,28 +2,29 @@
 
 require('./_landing.scss')
 
-module.exports = [
-  '$log',
-  '$location',
-  '$rootScope',
-  'authService',
-  LandingController
-]
+module.exports = ['$log', '$location', '$rootScope', 'authService', LandingController]
 
-function  LandingController($log, $location, $rootScope, authService) {
+function LandingController($log, $location, $rootScope, authService) {
   $log.debug('LandingController')
 
-  let url = $location.url()
+  const token = $location.search().token
 
-  // authService
-  //   .getToken()
-  //   .then( token => {
-  //     $location.url('/tasks')
-  //   })
-  //   .catch( err => {
-  //     $log.debug(err)
-  //     $location.url('/')
-  //   })
+  if(token){
+    authService.setToken(token)
+    .then(() => {
+      $location.url('/tasks')
+    })
+  }
+
+  authService
+    .getToken()
+    .then( token => {
+      $location.url('/tasks')
+    })
+    .catch( err => {
+      $log.debug(err)
+      $location.url('/')
+    })
 
   const googleAuthBase = 'https://accounts.google.com/o/oauth2/v2/auth'
   const googleAuthResponseType = 'response_type=code'
