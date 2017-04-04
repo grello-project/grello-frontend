@@ -18,6 +18,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       __API_URL__: JSON.stringify(process.env.API_URL),
+      __CLIENT_ID__: JSON.stringify(process.env.CLIENT_ID),
       __DEBUG__: JSON.stringify(!production)
     })
   ],
