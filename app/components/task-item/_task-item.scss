@@ -1,0 +1,25 @@
+.task_item {
+  border: 1px solid black;
+  margin-top: 1em;
+  min-height: 3em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.task_item:hover {
+  cursor: grab;
+}
+
+.task_item:active {
+  cursor: grabbing;
+}
+
+.drag_drop_icon {
+  max-width: 2em;
+  max-height: 2em;
+}
+.left_icon {
+  margin: .5em;
+  min-width: 2em;
+}

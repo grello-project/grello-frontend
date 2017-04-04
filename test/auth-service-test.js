@@ -15,14 +15,15 @@ describe('auth-service', function() {
     })
   })
 
+  const testUser = {
+    username: 'testUser',
+    password: 'testPassword'
+  }
+
 
   describe('authService.login()', () => {
     it('should login a user and should place token in localStorage', () => {
 
-      let testUser = {
-        username: 'testUser',
-        password: 'testPassword'
-      }
       this.authService.token = null
       this.$window.localStorage.setItem('token', 'test token')
 
@@ -80,9 +81,10 @@ describe('auth-service', function() {
     })
   })
 
-  describe('authService.setToken()', () => {
-    it('should let a token into localStorage')
+
+  // describe('authService.setToken()', () => {
+  //   it('should let a token into localStorage')
     //not ready to be tested
-  })
+  // })
 
 })
