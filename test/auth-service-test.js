@@ -29,7 +29,7 @@ describe('auth-service', function() {
 
       this.authService.getToken()
       .then( token => {
-        expect(token).toEqual('test token')
+        expect(token).toEqual('test')
       })
       .catch( err => {
         expect(err).toEqual(null)
@@ -42,11 +42,11 @@ describe('auth-service', function() {
   describe('authService.getToken()', () => {
     it('should return a token', () => {
       this.authService.token = null
-      this.$window.localStorage.setItem('token', 'test token')
+      this.$window.localStorage.setItem('token', 'test')
 
       this.authService.getToken()
       .then( token => {
-        expect(token).toEqual('test token')
+        expect(token).toEqual('test')
       })
       .catch( err => {
         expect(err).toEqual(null)
@@ -59,11 +59,11 @@ describe('auth-service', function() {
   describe('authService.logout()', () => {
     it('should logout the user', () => {
       this.authService.token = null
-      this.$window.localStorage.setItem('token', 'test token')
+      this.$window.localStorage.setItem('token', 'test')
 
       this.authService.getToken()
       .then( token => {
-        expect(token).toEqual('test token')
+        expect(token).toEqual('test')
       })
       .catch( err => {
         expect(err).toEqual(null)

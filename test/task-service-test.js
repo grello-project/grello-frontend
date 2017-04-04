@@ -143,7 +143,4 @@ describe('task-service', function() {
     this.$rootScope.$apply()
 
   })
-
-  expect(typeof )
-
 })
