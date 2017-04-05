@@ -17,7 +17,7 @@
       <!--show if the user is not logged in -->
       <div ng-hide="navbarCtrl.menuShow()" class="buttons in-nav">
         <button type="submit" class="signup">SIGNUP</button>
-        <button type="submit" class="login">LOGIN</button>
+        <button ng-click="navbarCtrl.logout()" class="login">LOGIN</button>
       </div>
 
   </nav>
