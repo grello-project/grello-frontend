@@ -6,6 +6,7 @@ function authService($q, $log, $location, $http, $window){
   $log.debug('authService')
 
   let service = {}
+
   let token
 
   service.setToken = function(_token){

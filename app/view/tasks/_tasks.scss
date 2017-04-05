@@ -5,4 +5,16 @@
 
 .category_view {
   display: flex;
+  border: 1px solid red;
+}
+
+.category_box {
+  flex-direction: row;
+  display: block;
+  min-height: 30em;
+  min-width: 25em;
+  max-width: 25em;
+  margin: 1em;
+  border: 1px solid green;
+  position: relative;
 }
