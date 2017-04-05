@@ -1,7 +1,17 @@
-languagelanguage: node_js
+language: node_js
 node_js:
   - 'stable'
+addons:
+  apt:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+      - gcc-4.8
+      - g++-4.8
+env:
+  - CXX=g++-4.8
 sudo: required
 before_script: npm i
 script:
+  - npm run build
   - npm run lint
