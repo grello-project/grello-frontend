@@ -1,15 +1,18 @@
 @import "../../scss/lib/theme/vars";
 
-body{
-  // background-image: none;
-}
-
 nav {
   display: flex;
   justify-content: space-between;
   background-color: rgba(255, 255, 255, 0.5);
   padding: 2%;
   margin: -1% -1% 0 -1%;
+  background-color: #294247;
+}
+
+p {
+  color: #E74C3C;
+  font-size: 2em;
+  font-weight: bold;
 }
 
 ul{
@@ -30,6 +33,34 @@ a {
   color: #E74C3C;
 }
 
+button {
+  background-color: #E74C3C;
+  color: white;
+  border: none;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.in-nav {
+  margin: 5px 25px;
+}
+
+.logo {
+  margin-top: 20%;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
 .profile-pic{
   max-width: 4em;
   max-height: 4em;
@@ -37,9 +68,4 @@ a {
 
 .dropdown-menu {
   background-color: #e5e5e5;
-}
-
-a {
-  text-decoration: none;
-  color: #E74C3C;
 }
