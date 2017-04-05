@@ -2,9 +2,12 @@
   border: 1px solid black;
   margin-top: 1em;
   min-height: 3em;
+  min-width: 19em;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  position: relative;
+  padding: 1em;
 }
 
 .task_item:hover {
