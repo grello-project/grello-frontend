@@ -1,6 +1,12 @@
 <section class="tasksView">
-  <h1>Tasks View</h1>
+  <h2>Tasks View</h2>
   <div class="category_view">
-    <category ng-repeat="category in tasksCtrl.categories" category="category"></category>
+    <category
+      class="category_box"
+      ng-repeat="category in tasksCtrl.models.categories"
+      selected="self.models.selected"
+      category="category"
+      >
+    </category>
   </div>
 </section>

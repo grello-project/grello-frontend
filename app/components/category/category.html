@@ -1,12 +1,14 @@
-<div class="category" >
-  <h2>{{ categoryCtrl.title }}</h2>
-  <div dnd-lists="categoryCtrl.category.tasks">
-    <task-item
-      ng-repeat="task in categoryCtrl.category.tasks"
-      task="task"
-      dnd-draggable="task"
-      dnd-moved="list.splice($index, 1)"
-      dnd-effect-allowed="move"
-    ></task-item>
-  </div>
+<h3 class="category_title">{{ categoryCtrl.title }}</h3>
+<div class="inner_category">
+  <ul class="task_list" dnd-list="categoryCtrl.category.tasks">
+    <li
+    ng-repeat="task in categoryCtrl.category.tasks"
+    class="task_item"
+    dnd-draggable="task"
+    dnd-moved="categoryCtrl.category.tasks.splice($index, 1)"
+    dnd-effect-allowed="move"
+    >
+      {{ task.comment }}
+    </li>
+  </ul>
 </div>
