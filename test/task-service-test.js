@@ -144,6 +144,6 @@ describe('task-service', function() {
 
   })
 
-  expect(typeof )
+  // expect(typeof )
 
 })
