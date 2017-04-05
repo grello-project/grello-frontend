@@ -52339,7 +52339,12 @@ function categoryController($log, $scope, categoryService) {
   var self = this;
 
   self.$onInit = function () {
-    this.title = this.category.name;
+    $log.debug('this is the category:', self.category);
+    self.title = self.category.categoryName;
+  };
+
+  self.changeEvent = function (task) {
+    $log.debug('this task changed: ' + task);
   };
 }
 
@@ -52510,32 +52515,32 @@ var ngAnimate = __webpack_require__(6);
 var uiBootstrap = __webpack_require__(9);
 var dndLists = __webpack_require__(7);
 
-var wattle = angular.module('wattle', [ngTouch, ngAnimate, uiRouter, uiBootstrap, dndLists]);
+angular.module('wattle', [ngTouch, ngAnimate, uiRouter, uiBootstrap, dndLists]);
 
 var context = __webpack_require__(3);
 context.keys().forEach(function (path) {
-  wattle.config(context(path));
+  angular.module('wattle').config(context(path));
 });
 
 context = __webpack_require__(5);
 context.keys().forEach(function (key) {
   var name = pascalcase(path.basename(key, '.js'));
   var module = context(key);
-  wattle.controller(name, module);
+  angular.module('wattle').controller(name, module);
 });
 
 context = __webpack_require__(4);
 context.keys().forEach(function (key) {
   var name = camelcase(path.basename(key, '.js'));
   var module = context(key);
-  wattle.service(name, module);
+  angular.module('wattle').factory(name, module);
 });
 
 context = __webpack_require__(2);
 context.keys().forEach(function (key) {
   var name = camelcase(path.basename(key, '.js'));
   var module = context(key);
-  wattle.component(name, module);
+  angular.module('wattle').component(name, module);
 });
 
 // context = require.context('./filter/', true, /\.js$/)
@@ -52552,16 +52557,16 @@ context.keys().forEach(function (key) {
 "use strict";
 
 
-module.exports = ['$q', '$log', '$http', '$window', authService];
+module.exports = ['$q', '$log', '$location', '$http', '$window', authService];
 
-function authService($q, $log, $http, $window) {
+function authService($q, $log, $location, $http, $window) {
   $log.debug('authService');
 
   var service = {};
-  // FOR DEVELOPMENT PURPOSES
-  var token = 'test';
 
-  function setToken(_token) {
+  var token = void 0;
+
+  service.setToken = function (_token) {
     $log.debug('authService.setToken()');
 
     if (!_token) {
@@ -52571,16 +52576,17 @@ function authService($q, $log, $http, $window) {
     $window.localStorage.setItem('token', _token);
     token = _token;
     return $q.resolve(token);
-  }
+  };
 
   service.getToken = function () {
-    $log.debug('authService.getToken');
+    $log.debug('authService.getToken()');
     if (token) {
       return $q.resolve(token);
     }
 
     token = $window.localStorage.getItem('token');
     if (token) return $q.resolve(token);
+
     return $q.reject(new Error('token not found'));
   };
 
@@ -52590,47 +52596,6 @@ function authService($q, $log, $http, $window) {
     $window.localStorage.removeItem('token');
     token = null;
     return $q.resolve();
-  };
-
-  service.signup = function (user) {
-    $log.debug('authService.signup()');
-
-    var url = undefined + '/api/signup';
-    var config = {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
-    };
-
-    return $http.post(url, user, config).then(function (res) {
-      $log.log('success', res.data);
-      return setToken(res.data);
-    }).catch(function (err) {
-      $log.error('failure', err.message);
-      return $q.reject(err);
-    });
-  };
-
-  service.login = function (user) {
-    $log.debug('authService.login()');
-
-    var url = undefined + '/api/login';
-    var base64 = $window.btoa(user.username + ':' + user.password);
-    var config = {
-      headers: {
-        Accept: 'application/json',
-        Authorization: 'Basic ' + base64
-      }
-    };
-
-    return $http.get(url, config).then(function (res) {
-      $log.log('success', res.data);
-      return setToken(res.data);
-    }).catch(function (err) {
-      $log.error(err.message);
-      return $q.reject(err);
-    });
   };
 
   return service;
@@ -52658,19 +52623,27 @@ function categoryService($q, $log, $http, authService, taskService) {
       var uniqueCategories = {};
       tasks.forEach(function (task) {
         if (!uniqueCategories.hasOwnProperty(task.category._id)) {
-          task.category.tasks = [task];
-          uniqueCategories[task.category._id] = task.category;
+          uniqueCategories[task.category._id] = {
+            categoryID: task.category._id,
+            categoryName: task.category.name,
+            categoryPriority: task.category.priority,
+            tasks: [task]
+          };
         } else {
           uniqueCategories[task.category._id].tasks.push(task);
         }
       });
+
       $log.debug('here are the uniqueCategories:', uniqueCategories);
+
       var keys = Object.keys(uniqueCategories).forEach(function (key) {
         service.categories.push(uniqueCategories[key]);
       });
+
       service.categories.sort(function (a, b) {
         return a.priority - b.priority;
       });
+
       $log.debug('result equals: ', service.categories);
       return service.categories;
     });
@@ -52721,6 +52694,20 @@ testResponse.data = [{
   _id: 3,
   comment: 'task3',
   priority: 3,
+  category: {
+    _id: '001',
+    name: 'P0',
+    priority: 2
+  },
+  document: {
+    _id: 1,
+    name: 'document1'
+  },
+  user: '123'
+}, {
+  _id: 4,
+  comment: 'task4',
+  priority: 4,
   category: {
     _id: '001',
     name: 'P0',
@@ -52866,13 +52853,32 @@ __webpack_require__(60);
 module.exports = ['$log', '$location', '$rootScope', 'authService', LandingController];
 
 function LandingController($log, $location, $rootScope, authService) {
-  var url = $location.url();
+  $log.debug('LandingController');
+
+  var token = $location.search().token;
+
+  if (token) {
+    authService.setToken(token).then(function () {
+      $location.url('/tasks');
+    });
+  }
+
   authService.getToken().then(function (token) {
     $location.url('/tasks');
   }).catch(function (err) {
     $log.debug(err);
     $location.url('/');
   });
+
+  var googleAuthBase = 'https://accounts.google.com/o/oauth2/v2/auth';
+  var googleAuthResponseType = 'response_type=code';
+  var googleAuthClientID = 'client_id=' + undefined;
+  var googleAuthScope = 'scope=profile%20email%20openid%20https://www.googleapis.com/auth/drive';
+  var googleAuthRedirectURI = 'redirect_uri=http://localhost:3000/auth/google/callback';
+  var googleAuthAccessType = 'access_type=offline';
+  var googleAuthPrompt = 'prompt=consent';
+
+  this.googleAuthURL = googleAuthBase + '?' + googleAuthResponseType + '&' + googleAuthClientID + '&' + googleAuthScope + '&' + googleAuthRedirectURI + '&' + googleAuthAccessType + '&' + googleAuthPrompt;
 }
 
 /***/ }),
@@ -52891,20 +52897,28 @@ function LandingController($log, $location, $rootScope, authService) {
 
 __webpack_require__(61);
 
-module.exports = ['$location', '$log', 'authService', 'categoryService', TasksController];
+module.exports = ['$location', '$scope', '$log', 'authService', 'categoryService', TasksController];
 
-function TasksController($location, $log, authService, categoryService) {
+function TasksController($location, $scope, $log, authService, categoryService) {
   var self = this;
-  self.categories = [];
+  self.models = {
+    selected: null,
+    categories: []
+  };
 
   authService.getToken().then(function (token) {
     $location.url('/tasks');
     categoryService.fetchCategories().then(function (categories) {
-      self.categories = categories;
+      $log.debug('self.categories assigned to categories');
+      self.models.categories = categories;
     });
   }).catch(function (err) {
     $log.debug(err);
     $location.url('/');
+  });
+
+  $scope.$watch('self.categories.tasks', function () {
+    $log.debug('hey the categories have changed');
   });
 }
 
@@ -54835,7 +54849,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, ".category {\n  background: transparent;\n  border: 1px solid gray;\n  min-height: 20em;\n  min-width: 25em;\n  margin: 1em;\n  padding: 1em; }\n\nh2 {\n  text-align: center; }\n", ""]);
+exports.push([module.i, ".category {\n  background: transparent;\n  border: 1px solid gray;\n  min-height: 20em;\n  min-width: 25em;\n  margin: 1em;\n  padding: 1em; }\n\n.category_title {\n  background: gray;\n  width: 100%;\n  height: 1.2em;\n  text-align: center; }\n\n.inner_category {\n  margin: 1em;\n  padding: 1em; }\n\nul[dnd-list] .dndDraggingSource {\n  display: none; }\n\nul[dnd-list] .dndPlaceholder {\n  background-color: #ddd;\n  display: block;\n  min-height: 3em;\n  min-width: 19em;\n  padding: 1em;\n  margin-top: 1em; }\n", ""]);
 
 // exports
 
@@ -54849,7 +54863,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "nav {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  background-color: rgba(255, 255, 255, .5);\n  padding: 2%;\n  margin: -1% -1% 0 -1%; }\n\nul {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  margin-top: 0;\n  list-style-type: none; }\n\nli {\n  padding: 10%; }\n\na {\n  text-decoration: none;\n  color: #E74C3C; }\n\n.profile-pic {\n  max-width: 4em;\n  max-height: 4em; }\n\n.dropdown-menu {\n  background-color: #e5e5e5; }\n\na {\n  text-decoration: none;\n  color: #E74C3C; }\n", ""]);
+exports.push([module.i, "nav {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  background-color: rgba(255, 255, 255, .5);\n  padding: 2%;\n  margin: -1% -1% 0 -1%;\n  background-color: #294247; }\n\np {\n  color: #E74C3C;\n  font-size: 2em;\n  font-weight: bold; }\n\na {\n  text-decoration: none;\n  color: #E74C3C; }\n\nbutton {\n  background-color: #E74C3C;\n  color: white;\n  border: none;\n  padding: 10px 32px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n  font-weight: bold;\n  cursor: pointer;\n  cursor: hand; }\n\n.in-nav {\n  margin: 5px 25px; }\n\n.logo {\n  margin-top: 20%;\n  cursor: pointer;\n  cursor: hand; }\n\n.buttons {\n  margin-top: 20px; }\n\n.profile-pic {\n  max-width: 4em;\n  max-height: 4em; }\n\n.dropdown-menu {\n  background-color: #e5e5e5; }\n", ""]);
 
 // exports
 
@@ -54877,7 +54891,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, ".task_item {\n  border: 1px solid black;\n  margin-top: 1em;\n  min-height: 3em;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center; }\n\n.task_item:hover {\n  cursor: -webkit-grab;\n  cursor: grab; }\n\n.task_item:active {\n  cursor: -webkit-grabbing;\n  cursor: grabbing; }\n\n.drag_drop_icon {\n  max-width: 2em;\n  max-height: 2em; }\n\n.left_icon {\n  margin: .5em;\n  min-width: 2em; }\n", ""]);
+exports.push([module.i, ".task_item {\n  border: 1px solid black;\n  margin-top: 1em;\n  min-height: 3em;\n  min-width: 19em;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: relative;\n  padding: 1em; }\n\n.task_item:hover {\n  cursor: -webkit-grab;\n  cursor: grab; }\n\n.task_item:active {\n  cursor: -webkit-grabbing;\n  cursor: grabbing; }\n\n.drag_drop_icon {\n  max-width: 2em;\n  max-height: 2em; }\n\n.left_icon {\n  margin: .5em;\n  min-width: 2em; }\n", ""]);
 
 // exports
 
@@ -54891,7 +54905,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, ".caret {\n  display: inline-block;\n  width: 0;\n  height: 0;\n  margin-left: 2px;\n  vertical-align: middle;\n  border-top: 4px dashed;\n  border-top: 4px solid \\9;\n  border-right: 4px solid transparent;\n  border-left: 4px solid transparent; }\n\n.dropup,\n.dropdown {\n  position: relative; }\n\n.dropdown-toggle:focus {\n  outline: 0; }\n\n.dropdown-menu {\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 1000;\n  display: none;\n  float: left;\n  min-width: 160px;\n  padding: 5px 0;\n  margin: 2px 0 0;\n  list-style: none;\n  font-size: 14px;\n  text-align: left;\n  background-color: #ffae1a;\n  border: 1px solid #ccc;\n  border: 1px solid rgba(0, 0, 0, .15);\n  border-radius: 4px;\n  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);\n  background-clip: padding-box; }\n  .dropdown-menu.pull-right {\n    right: 0;\n    left: auto; }\n  .dropdown-menu .divider {\n    height: 1px;\n    margin: 9px 0;\n    overflow: hidden;\n    background-color: #e5e5e5; }\n  .dropdown-menu > li > a {\n    display: block;\n    padding: 3px 20px;\n    clear: both;\n    font-weight: normal;\n    line-height: 1.42857;\n    color: #333333;\n    white-space: nowrap; }\n\n.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {\n  text-decoration: none;\n  color: #262626;\n  background-color: #f5f5f5; }\n\n.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {\n  color: #fff;\n  text-decoration: none;\n  outline: 0;\n  background-color: #88f4f8; }\n\n.dropdown-menu > .disabled > a, .dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {\n  color: #777777; }\n\n.dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {\n  text-decoration: none;\n  background-color: transparent;\n  background-image: none;\n  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);\n  cursor: not-allowed; }\n\n.open > .dropdown-menu {\n  display: block; }\n\n.open > a {\n  outline: 0; }\n\n.dropdown-menu-right {\n  left: auto;\n  right: 0; }\n\n.dropdown-menu-left {\n  left: 0;\n  right: auto; }\n\n.dropdown-header {\n  display: block;\n  padding: 3px 20px;\n  font-size: 12px;\n  line-height: 1.42857;\n  color: #777777;\n  white-space: nowrap; }\n\n.dropdown-backdrop {\n  position: fixed;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  top: 0;\n  z-index: 990; }\n\n.pull-right > .dropdown-menu {\n  right: 0;\n  left: auto; }\n\n.dropup .caret,\n.navbar-fixed-bottom .dropdown .caret {\n  border-top: 0;\n  border-bottom: 4px dashed;\n  border-bottom: 4px solid \\9;\n  content: \"\"; }\n\n.dropup .dropdown-menu,\n.navbar-fixed-bottom .dropdown .dropdown-menu {\n  top: auto;\n  bottom: 100%;\n  margin-bottom: 2px; }\n\n@media (min-width: 768px) {\n  .navbar-right .dropdown-menu {\n    right: 0;\n    left: auto; }\n  .navbar-right .dropdown-menu-left {\n    left: 0;\n    right: auto; } }\n\n/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n::-webkit-input-placeholder {\n  /* Chrome/Opera/Safari */\n  color: #888; }\n\n::-moz-placeholder {\n  /* Firefox 19+ */\n  color: #888; }\n\n:-ms-input-placeholder {\n  /* IE 10+ */\n  color: #888; }\n\n:-moz-placeholder {\n  /* Firefox 18- */\n  color: #888; }\n\nhtml, body {\n  width: 100%;\n  height: 100%;\n  font-family: serif;\n  color: #db9300; }\n  html body, body body {\n    background-color: white;\n    margin-bottom: 2em; }\n\na {\n  text-decoration: none;\n  color: #000;\n  font-weight: 700; }\n\nh1 {\n  font-size: 5vw;\n  margin-bottom: 2.5%; }\n\nh2 {\n  font-size: 4vw;\n  margin: 1.25% 0; }\n\nh3 {\n  font-size: 3vw;\n  margin-bottom: 2.5%; }\n\nbutton, .btn-std {\n  padding: 1% 5%;\n  background: #926200;\n  color: #fff;\n  font-size: 2vw;\n  border: none;\n  border-radius: 0.5em;\n  cursor: pointer;\n  -webkit-transition: 350ms all;\n  transition: 350ms all; }\n\ninput[type=\"text\"], input[type=\"password\"], .input-std {\n  width: 100%;\n  padding: 1.5vw 2vw;\n  font-size: 2vw;\n  border: solid 1px #FFAC00;\n  border-radius: 0.5em;\n  box-sizing: border-box; }\n  input[type=\"text\"]:focus, input[type=\"password\"]:focus, .input-std:focus {\n    background: #FFAC00;\n    color: #fff; }\n\ninput[disabled=\"disabled\"] {\n  background: #e3e3e3; }\n\n.input-std {\n  display: inline-block; }\n\nfieldset {\n  margin: 2% 0; }\n\nheader {\n  height: 12vw;\n  background: #FFAC00; }\n\nfooter {\n  height: 10vw;\n  background: #FFAC00;\n  margin-top: 10%; }\n\nmain {\n  width: 75%;\n  margin: 12%;\n  min-height: 36em; }\n\n.caret {\n  display: inline-block;\n  width: 0;\n  height: 0;\n  margin-left: 2px;\n  vertical-align: middle;\n  border-top: 4px dashed;\n  border-top: 4px solid \\9;\n  border-right: 4px solid transparent;\n  border-left: 4px solid transparent; }\n\n.dropup,\n.dropdown {\n  position: relative; }\n\n.dropdown-toggle:focus {\n  outline: 0; }\n\n.dropdown-menu {\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 1000;\n  display: none;\n  float: left;\n  min-width: 160px;\n  padding: 5px 0;\n  margin: 2px 0 0;\n  list-style: none;\n  font-size: 14px;\n  text-align: left;\n  background-color: #ffae1a;\n  border: 1px solid #ccc;\n  border: 1px solid rgba(0, 0, 0, .15);\n  border-radius: 4px;\n  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);\n  background-clip: padding-box; }\n  .dropdown-menu.pull-right {\n    right: 0;\n    left: auto; }\n  .dropdown-menu .divider {\n    height: 1px;\n    margin: 9px 0;\n    overflow: hidden;\n    background-color: #e5e5e5; }\n  .dropdown-menu > li > a {\n    display: block;\n    padding: 3px 20px;\n    clear: both;\n    font-weight: normal;\n    line-height: 1.42857;\n    color: #333333;\n    white-space: nowrap; }\n\n.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {\n  text-decoration: none;\n  color: #262626;\n  background-color: #f5f5f5; }\n\n.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {\n  color: #fff;\n  text-decoration: none;\n  outline: 0;\n  background-color: #88f4f8; }\n\n.dropdown-menu > .disabled > a, .dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {\n  color: #777777; }\n\n.dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {\n  text-decoration: none;\n  background-color: transparent;\n  background-image: none;\n  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);\n  cursor: not-allowed; }\n\n.open > .dropdown-menu {\n  display: block; }\n\n.open > a {\n  outline: 0; }\n\n.dropdown-menu-right {\n  left: auto;\n  right: 0; }\n\n.dropdown-menu-left {\n  left: 0;\n  right: auto; }\n\n.dropdown-header {\n  display: block;\n  padding: 3px 20px;\n  font-size: 12px;\n  line-height: 1.42857;\n  color: #777777;\n  white-space: nowrap; }\n\n.dropdown-backdrop {\n  position: fixed;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  top: 0;\n  z-index: 990; }\n\n.pull-right > .dropdown-menu {\n  right: 0;\n  left: auto; }\n\n.dropup .caret,\n.navbar-fixed-bottom .dropdown .caret {\n  border-top: 0;\n  border-bottom: 4px dashed;\n  border-bottom: 4px solid \\9;\n  content: \"\"; }\n\n.dropup .dropdown-menu,\n.navbar-fixed-bottom .dropdown .dropdown-menu {\n  top: auto;\n  bottom: 100%;\n  margin-bottom: 2px; }\n\n@media (min-width: 768px) {\n  .navbar-right .dropdown-menu {\n    right: 0;\n    left: auto; }\n  .navbar-right .dropdown-menu-left {\n    left: 0;\n    right: auto; } }\n", ""]);
+exports.push([module.i, ".caret {\n  display: inline-block;\n  width: 0;\n  height: 0;\n  margin-left: 2px;\n  vertical-align: middle;\n  border-top: 4px dashed;\n  border-top: 4px solid \\9;\n  border-right: 4px solid transparent;\n  border-left: 4px solid transparent; }\n\n.dropup,\n.dropdown {\n  position: relative; }\n\n.dropdown-toggle:focus {\n  outline: 0; }\n\n.dropdown-menu {\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 1000;\n  display: none;\n  float: left;\n  min-width: 160px;\n  padding: 5px 0;\n  margin: 2px 0 0;\n  list-style: none;\n  font-size: 14px;\n  text-align: left;\n  background-color: #ffae1a;\n  border: 1px solid #ccc;\n  border: 1px solid rgba(0, 0, 0, .15);\n  border-radius: 4px;\n  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);\n  background-clip: padding-box; }\n  .dropdown-menu.pull-right {\n    right: 0;\n    left: auto; }\n  .dropdown-menu .divider {\n    height: 1px;\n    margin: 9px 0;\n    overflow: hidden;\n    background-color: #e5e5e5; }\n  .dropdown-menu > li > a {\n    display: block;\n    padding: 3px 20px;\n    clear: both;\n    font-weight: normal;\n    line-height: 1.42857;\n    color: #333333;\n    white-space: nowrap; }\n\n.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {\n  text-decoration: none;\n  color: #262626;\n  background-color: #f5f5f5; }\n\n.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {\n  color: #fff;\n  text-decoration: none;\n  outline: 0;\n  background-color: #88f4f8; }\n\n.dropdown-menu > .disabled > a, .dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {\n  color: #777777; }\n\n.dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {\n  text-decoration: none;\n  background-color: transparent;\n  background-image: none;\n  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);\n  cursor: not-allowed; }\n\n.open > .dropdown-menu {\n  display: block; }\n\n.open > a {\n  outline: 0; }\n\n.dropdown-menu-right {\n  left: auto;\n  right: 0; }\n\n.dropdown-menu-left {\n  left: 0;\n  right: auto; }\n\n.dropdown-header {\n  display: block;\n  padding: 3px 20px;\n  font-size: 12px;\n  line-height: 1.42857;\n  color: #777777;\n  white-space: nowrap; }\n\n.dropdown-backdrop {\n  position: fixed;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  top: 0;\n  z-index: 990; }\n\n.pull-right > .dropdown-menu {\n  right: 0;\n  left: auto; }\n\n.dropup .caret,\n.navbar-fixed-bottom .dropdown .caret {\n  border-top: 0;\n  border-bottom: 4px dashed;\n  border-bottom: 4px solid \\9;\n  content: \"\"; }\n\n.dropup .dropdown-menu,\n.navbar-fixed-bottom .dropdown .dropdown-menu {\n  top: auto;\n  bottom: 100%;\n  margin-bottom: 2px; }\n\n@media (min-width: 768px) {\n  .navbar-right .dropdown-menu {\n    right: 0;\n    left: auto; }\n  .navbar-right .dropdown-menu-left {\n    left: 0;\n    right: auto; } }\n\n/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n::-webkit-input-placeholder {\n  /* Chrome/Opera/Safari */\n  color: #888; }\n\n::-moz-placeholder {\n  /* Firefox 19+ */\n  color: #888; }\n\n:-ms-input-placeholder {\n  /* IE 10+ */\n  color: #888; }\n\n:-moz-placeholder {\n  /* Firefox 18- */\n  color: #888; }\n\nhtml, body {\n  width: 100%;\n  height: 100%;\n  font-family: serif;\n  color: #db9300; }\n\na {\n  text-decoration: none;\n  color: #000;\n  font-weight: 700; }\n\nh1 {\n  font-size: 5vw;\n  margin-bottom: 2.5%; }\n\nh2 {\n  font-size: 4vw;\n  margin: 1.25% 0; }\n\nh3 {\n  font-size: 3vw;\n  margin-bottom: 2.5%; }\n\nbutton, .btn-std {\n  padding: 1% 5%;\n  background: #926200;\n  color: #fff;\n  font-size: 2vw;\n  border: none;\n  border-radius: 0.5em;\n  cursor: pointer;\n  -webkit-transition: 350ms all;\n  transition: 350ms all; }\n\ninput[type=\"text\"], input[type=\"password\"], .input-std {\n  width: 100%;\n  padding: 1.5vw 2vw;\n  font-size: 2vw;\n  border: solid 1px #FFAC00;\n  border-radius: 0.5em;\n  box-sizing: border-box; }\n  input[type=\"text\"]:focus, input[type=\"password\"]:focus, .input-std:focus {\n    background: #FFAC00;\n    color: #fff; }\n\ninput[disabled=\"disabled\"] {\n  background: #e3e3e3; }\n\n.input-std {\n  display: inline-block; }\n\nfieldset {\n  margin: 2% 0; }\n\nheader {\n  height: 12vw; }\n\n.caret {\n  display: inline-block;\n  width: 0;\n  height: 0;\n  margin-left: 2px;\n  vertical-align: middle;\n  border-top: 4px dashed;\n  border-top: 4px solid \\9;\n  border-right: 4px solid transparent;\n  border-left: 4px solid transparent; }\n\n.dropup,\n.dropdown {\n  position: relative; }\n\n.dropdown-toggle:focus {\n  outline: 0; }\n\n.dropdown-menu {\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 1000;\n  display: none;\n  float: left;\n  min-width: 160px;\n  padding: 5px 0;\n  margin: 2px 0 0;\n  list-style: none;\n  font-size: 14px;\n  text-align: left;\n  background-color: #ffae1a;\n  border: 1px solid #ccc;\n  border: 1px solid rgba(0, 0, 0, .15);\n  border-radius: 4px;\n  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);\n  background-clip: padding-box; }\n  .dropdown-menu.pull-right {\n    right: 0;\n    left: auto; }\n  .dropdown-menu .divider {\n    height: 1px;\n    margin: 9px 0;\n    overflow: hidden;\n    background-color: #e5e5e5; }\n  .dropdown-menu > li > a {\n    display: block;\n    padding: 3px 20px;\n    clear: both;\n    font-weight: normal;\n    line-height: 1.42857;\n    color: #333333;\n    white-space: nowrap; }\n\n.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {\n  text-decoration: none;\n  color: #262626;\n  background-color: #f5f5f5; }\n\n.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {\n  color: #fff;\n  text-decoration: none;\n  outline: 0;\n  background-color: #88f4f8; }\n\n.dropdown-menu > .disabled > a, .dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {\n  color: #777777; }\n\n.dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {\n  text-decoration: none;\n  background-color: transparent;\n  background-image: none;\n  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);\n  cursor: not-allowed; }\n\n.open > .dropdown-menu {\n  display: block; }\n\n.open > a {\n  outline: 0; }\n\n.dropdown-menu-right {\n  left: auto;\n  right: 0; }\n\n.dropdown-menu-left {\n  left: 0;\n  right: auto; }\n\n.dropdown-header {\n  display: block;\n  padding: 3px 20px;\n  font-size: 12px;\n  line-height: 1.42857;\n  color: #777777;\n  white-space: nowrap; }\n\n.dropdown-backdrop {\n  position: fixed;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  top: 0;\n  z-index: 990; }\n\n.pull-right > .dropdown-menu {\n  right: 0;\n  left: auto; }\n\n.dropup .caret,\n.navbar-fixed-bottom .dropdown .caret {\n  border-top: 0;\n  border-bottom: 4px dashed;\n  border-bottom: 4px solid \\9;\n  content: \"\"; }\n\n.dropup .dropdown-menu,\n.navbar-fixed-bottom .dropdown .dropdown-menu {\n  top: auto;\n  bottom: 100%;\n  margin-bottom: 2px; }\n\n@media (min-width: 768px) {\n  .navbar-right .dropdown-menu {\n    right: 0;\n    left: auto; }\n  .navbar-right .dropdown-menu-left {\n    left: 0;\n    right: auto; } }\n", ""]);
 
 // exports
 
@@ -54905,7 +54919,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  background-image: url(" + __webpack_require__(43) + "); }\n\nnav {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  background: rgba(255, 255, 255, .5);\n  margin: -1% -1% 0 -1%;\n  padding: 1% 0; }\n\np {\n  color: #E74C3C;\n  font-size: 2em;\n  font-weight: bold; }\n\nbutton {\n  background-color: #E74C3C;\n  color: white;\n  border: none;\n  padding: 10px 32px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n  font-weight: bold;\n  cursor: pointer;\n  cursor: hand; }\n\n.in-nav {\n  margin: 5px 25px; }\n\n.logo {\n  margin-top: 20%;\n  cursor: pointer;\n  cursor: hand; }\n\n.buttons {\n  margin-top: 20px; }\n\n.main {\n  max-width: 40%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: column;\n          flex-flow: column;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n  background: rgba(255, 255, 255, .5);\n  text-align: center;\n  width: 700px;\n  margin-left: auto;\n  margin-right: auto;\n  margin-top: 10%;\n  padding: 5% 10%; }\n\n.get-started {\n  margin-top: 5%;\n  padding: 3% 12%;\n  font-size: 18px;\n  border-radius: 5%; }\n\n.main-para {\n  color: black; }\n", ""]);
+exports.push([module.i, ".landing {\n  background-image: url(" + __webpack_require__(43) + ") !important;\n  position: fixed;\n  padding: 0;\n  margin: 0;\n  left: 0;\n  width: 100%;\n  height: 100%; }\n\n.main {\n  max-width: 40%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: column;\n          flex-flow: column;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n  background: rgba(255, 255, 255, .5);\n  text-align: center;\n  width: 700px;\n  margin-left: auto;\n  margin-right: auto;\n  margin-top: 10%;\n  padding: 5% 10%; }\n\n.get-started {\n  margin-top: 5%;\n  padding: 3% 12%;\n  font-size: 18px;\n  border-radius: 5%; }\n\n.main-para {\n  color: black; }\n", ""]);
 
 // exports
 
@@ -54919,7 +54933,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  background-image: none;\n  background-color: white; }\n\n.category_view {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n", ""]);
+exports.push([module.i, ".tasksView {\n  background-image: none;\n  background-color: white; }\n\n.category_view {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  border: 1px solid red; }\n\n.category_box {\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  display: block;\n  min-height: 30em;\n  min-width: 25em;\n  max-width: 25em;\n  margin: 1em;\n  border: 1px solid green;\n  position: relative; }\n", ""]);
 
 // exports
 
@@ -54928,7 +54942,7 @@ exports.push([module.i, "body {\n  background-image: none;\n  background-color: 
 /* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "484e1256a4879558548b81b2d73bc463.jpg";
+module.exports = __webpack_require__.p + "60d4b6a32d623830238563bc2e288137.jpg";
 
 /***/ }),
 /* 44 */
@@ -54940,13 +54954,13 @@ module.exports = __webpack_require__.p + "a02d1571f27c92480f25efa8dd22038d.svg";
 /* 45 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"category\" >\n  <h2>{{ categoryCtrl.title }}</h2>\n  <div dnd-lists=\"categoryCtrl.category.tasks\">\n    <task-item\n      ng-repeat=\"task in categoryCtrl.category.tasks\"\n      task=\"task\"\n      dnd-draggable=\"task\"\n      dnd-moved=\"list.splice($index, 1)\"\n      dnd-effect-allowed=\"move\"\n    ></task-item>\n  </div>\n</div>\n";
+module.exports = "<h3 class=\"category_title\">{{ categoryCtrl.title }}</h3>\n<div class=\"inner_category\">\n  <ul dnd-list=\"categoryCtrl.category.tasks\">\n    <li\n    ng-repeat=\"task in categoryCtrl.category.tasks\"\n    class=\"task_item\"\n    dnd-draggable=\"task\"\n    dnd-moved=\"categoryCtrl.category.tasks.splice($index, 1)\"\n    dnd-effect-allowed=\"move\"\n    >\n      {{ task.comment }}\n    </li>\n  </ul>\n</div>\n";
 
 /***/ }),
 /* 46 */
 /***/ (function(module, exports) {
 
-module.exports = "<section>\n  <nav>\n    <div><p class=\"logo\"><a class=\"home-tag\" href=\"#!/home\">Wattle</a></p></div>\n\n    <div uib-dropdown is-open=\"status.isopen\">\n\n        <img class=\"profile-pic\" uib-dropdown-toggle ng-disabled=\"disabled\"\n      src=\"http://www.designbytic.com/wp-content/uploads/2015/09/google-dk-flat1.png\">\n\n      <ul class=\"dropdown-menu dropdown-menu-right\" uib-dropdown-menu role=\"menu\">\n        <li role=\"menuitem\"><a href='#'>Settings</a></li>\n        <li role=\"menuitem\"><a href='#'>Logout</a></li>\n      </ul>\n    </div>\n  </nav>\n</section>\n";
+module.exports = "<section>\n  <nav>\n    <div><p class=\"logo\"><a class=\"home-tag\" href=\"#!/tasks\">Wattle</a></p></div>\n\n    <div ng-hide ng-showuib-dropdown is-open=\"status.isopen\" class=\"drop-nav\">\n\n      <!-- show when the user is logged in -->\n        <img class=\"profile-pic\" uib-dropdown-toggle ng-disabled=\"disabled\"\n      src=\"http://www.designbytic.com/wp-content/uploads/2015/09/google-dk-flat1.png\">\n\n      <ul class=\"dropdown-menu dropdown-menu-right\" uib-dropdown-menu role=\"menu\">\n        <li role=\"menuitem\"><a href='#'>Settings</a></li>\n        <li role=\"menuitem\" ng-click=\"navbarCtrl.logout()\"><a href='#'>Logout</a></li>\n      </ul>\n    </div>\n\n      <!--show if the user is not logged in -->\n      <div ng-hide=\"navbarCtrl.menuShow()\" class=\"buttons in-nav\">\n        <button type=\"submit\" class=\"signup\">SIGNUP</button>\n        <button ng-click=\"navbarCtrl.logout()\" class=\"login\">LOGIN</button>\n      </div>\n\n  </nav>\n</section>\n";
 
 /***/ }),
 /* 47 */
@@ -54964,7 +54978,7 @@ module.exports = "<div class=\"task_item\">\n  <div class=\"left_icon\">\n    <i
 /* 49 */
 /***/ (function(module, exports) {
 
-module.exports = "<section class='landing'>\n  <!-- <nav>\n\n    <div class=\"in-nav\">\n      <p class=\"logo\">Wattle</p>\n    </div>\n\n    <div class=\"buttons in-nav\">\n    <button type=\"submit\"           class=\"signup\">SIGNUP</button>\n    <button type=\"submit\" class=\"login\">LOGIN</button>\n    </div>\n\n  </nav> -->\n\n  <section class=\"main\">\n    <div><p class=\"main-para\">The better way to manage your Google comments and tasks</p></div>\n    <div><button type=\"submit\" class=\"get-started\">GET STARTED</button></div>\n </section>\n</section>\n";
+module.exports = "<section class=\"landing\">\n\n  <div class=\"main\">\n    <div><p class=\"main-para\">The better way to manage your Google comments and tasks</p></div>\n    <div><a ng-href=\"{{landingCtrl.googleAuthURL}}\" class=\"get-started\">GET STARTED</a></div>\n    <div><button type=\"submit\" class=\"get-started\">GET STARTED</button></div>\n  </div>\n\n</section>\n";
 
 /***/ }),
 /* 50 */
@@ -54976,7 +54990,7 @@ module.exports = "";
 /* 51 */
 /***/ (function(module, exports) {
 
-module.exports = "<section>\n  <h1>Tasks View</h1>\n  <div class=\"category_view\">\n    <category ng-repeat=\"category in tasksCtrl.categories\" category=\"category\"></category>\n  </div>\n</section>\n";
+module.exports = "<section class=\"tasksView\">\n  <h2>Tasks View</h2>\n  <div class=\"category_view\">\n    <category\n      class=\"category_box\"\n      ng-repeat=\"category in tasksCtrl.models.categories\"\n      selected=\"self.models.selected\"\n      category=\"category\"\n      >\n    </category>\n  </div>\n</section>\n";
 
 /***/ }),
 /* 52 */
