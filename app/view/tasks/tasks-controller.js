@@ -33,4 +33,8 @@ function TasksController ($location, $scope, $log, authService, categoryService)
       $log.debug(err)
       $location.url('/')
     })
+
+  $scope.$watch('self.categories.tasks', () => {
+    $log.debug('hey the categories have changed')
+  })
 }

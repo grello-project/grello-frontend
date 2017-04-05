@@ -17,8 +17,12 @@ function categoryService ($q, $log, $http, authService, taskService) {
         let uniqueCategories = {}
         tasks.forEach(task => {
           if (!uniqueCategories.hasOwnProperty(task.category._id)) {
-            task.category.tasks = [task]
-            uniqueCategories[task.category._id] = task.category
+            uniqueCategories[task.category._id] = {
+              categoryID: task.category._id,
+              categoryName: task.category.name,
+              categoryPriority: task.category.priority,
+              tasks: [task]
+            }
           } else {
             uniqueCategories[task.category._id].tasks.push(task)
           }
@@ -29,7 +33,7 @@ function categoryService ($q, $log, $http, authService, taskService) {
         let keys = Object.keys(uniqueCategories).forEach( key => {
           service.categories.push(uniqueCategories[key])
         })
-        
+
         service.categories.sort((a, b) => {
           return a.priority - b.priority
         })

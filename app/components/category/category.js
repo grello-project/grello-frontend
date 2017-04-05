@@ -15,7 +15,12 @@ function categoryController ($log, $scope, categoryService) {
   let self = this
 
   self.$onInit = function () {
-    this.title = this.category.name
+    $log.debug('this is the category:', self.category)
+    self.title = self.category.categoryName
   }
-  
+
+  self.changeEvent = (task) => {
+    $log.debug(`this task changed: ${task}`)
+  }
+
 }
