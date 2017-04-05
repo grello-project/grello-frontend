@@ -19,6 +19,9 @@
     "Kyle Winkler <kyle.winckler@gmail.com>",
     "Carolina Ceja <cejac10@gmail.com"
   ],
+  "engines": {
+    "node": "4.4.7"
+  },
   "license": "MIT",
   "dependencies": {
     "angular": "^1.6.3",
