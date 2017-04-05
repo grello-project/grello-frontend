@@ -21,6 +21,7 @@ function categoryService ($q, $log, $http, authService, taskService) {
               categoryID: task.category._id,
               categoryName: task.category.name,
               categoryPriority: task.category.priority,
+              categoryRef: task.category,
               tasks: [task]
             }
           } else {
@@ -41,6 +42,10 @@ function categoryService ($q, $log, $http, authService, taskService) {
         $log.debug('result equals: ', service.categories)
         return service.categories
       })
+  }
+
+  service.updateCategories = function () {
+
   }
 
   return service
