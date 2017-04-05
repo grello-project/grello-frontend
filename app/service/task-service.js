@@ -55,50 +55,21 @@ function taskService($q, $log, $http, authService) {
   let service = {}
 
   service.tasks = []
-  //
-  // service.createTask = function(task) {
-  //   $log.debug('taskService.createTask()')
-  //
-  //   return authService.getToken()
-  //   .then( token => {
-  //     let url = `${__API_URL__}/api/task`
-  //     let config = {
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     }
-  //
-  //     return $http.post(url, task, config)
-  //   })
-  //   .then( res => {
-  //     $log.log('task created')
-  //     let task = res.data
-  //     service.task.unshift(task)
-  //     return task
-  //   })
-  //   .catch( err => {
-  //     $log.error(err.message)
-  //     return $q.reject(err)
-  //   })
-  // }
-
 
   service.fetchTasks = function() {
     $log.debug('taskService.createTasks()')
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/task`
+      let url = `${__API_URL__}/api/tasks`
       let config = {
         headers: {
           Accept: 'application/json',
           Authorization: `Bearer ${token}`
         }
       }
-      return $q.resolve(testResponse)
-      // return $http.get(url, config)
+      // return $q.resolve(testResponse)
+      return $http.get(url, config)
     })
     .then( res => {
       $log.log('task retrieved')
