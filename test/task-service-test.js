@@ -2,6 +2,7 @@
 
 const URL = `${__API_URL__}/api`
 require('../app/service/auth-service')
+let token = 'test token'
 
 let testUser = {
   username: 'testUser',
@@ -13,7 +14,7 @@ let testUser = {
 describe('task-service', function() {
   beforeEach(() => {
     angular.mock.module('wattle')
-    angular.mock.inject(( $rootScope, authService, $window, $httpBackend, taskService, categoryService, $q) => {
+    angular.mock.inject(( $log, $rootScope, authService, $window, $httpBackend, taskService, categoryService, $q) => {
       this.$window = $window
       this.$rootScope = $rootScope
       this.authService = authService
@@ -22,77 +23,31 @@ describe('task-service', function() {
       this.$q = $q
       this.categoryService = categoryService
       this.sandbox = sinon.sandbox.create()
+      this.$log = $log
     })
+    // this.authService.signup(testUser)
+    // .then(token => {
+    //   $this.log.log('TOKEN HERE?: ', token)
+    // })
   })
   afterEach(() => {
     this.sandbox.restore()
   })
 
-  it('fetchTasks', () => {
-    let token = 'test token'
+  describe('fetch tasks', () => {
+
     beforeEach(() => {
       let Promise = this.$q
       this.sandbox
-        .stub(this.authService, 'getToken')
-        .resolves(token)
+      .stub(this.authService, 'getToken')
+      .resolves(token)
     })
 
-    let headers = {
-      Accept: 'application/json',
-      Authorization: `Bearer ${token}`
-    }
-
-    let testCategoryData =   [
-      {
-        _id: 1,
-        comment: 'task1',
-        priority: 1,
-        category: {
-          _id: '000',
-          name: 'uncategorized',
-          priority: 1
-        },
-        document: {
-          _id: 1,
-          name: 'document1'
-        },
-        user: '123'
-      },
-      {
-        _id: 2,
-        comment: 'task2',
-        priority: 2,
-        category: {
-          _id: '000',
-          name: 'uncategorized',
-          priority: 1
-        },
-        document: {
-          _id: 1,
-          name: 'document1'
-        },
-        user: '123'
-      },{
-        _id: 3,
-        comment: 'task3',
-        priority: 3,
-        category: {
-          _id: '001',
-          name: 'P0',
-          priority: 2
-        },
-        document: {
-          _id: 1,
-          name: 'document1'
-        },
-        user: '123'
-      }
-    ]
-
-    this.$httpBackend
-      .expectGET(`${URL}/task`, headers)
-      .respond(200,
-      [
+    it('fetchTasks', () => {
+      let url = `${URL}/task`
+      console.info(`THIS IS THE CURRENT URL IN TEST: ${url}`)
+      let res = {}
+      res.data = [
         {
           _id: 1,
           comment: 'task1',
@@ -107,7 +62,8 @@ describe('task-service', function() {
             name: 'document1'
           },
           user: '123'
-        },{
+        },
+        {
           _id: 2,
           comment: 'task2',
           priority: 2,
@@ -137,10 +93,17 @@ describe('task-service', function() {
           user: '123'
         }
       ]
-    )
-    this.categoryService.fetchCategories(testCategoryData)
-    this.$httpBackend.flush()
-    this.$rootScope.$apply()
+      let headers = {
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+      this.$httpBackend
+        .expectGET(url, headers)
+        .respond(200, res)
 
+      this.taskService.fetchTasks()
+      this.$httpBackend.flush()
+      this.$rootScope.$apply()
+    })
   })
 })

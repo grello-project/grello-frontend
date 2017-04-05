@@ -90,20 +90,22 @@ function taskService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
+      console.info(`THIS IS THE TOKEN: ${token}`)
       let url = `${__API_URL__}/api/task`
+      console.info(`THIS IS THE CURRENT URL IN SERVICE: ${url}`)
       let config = {
         headers: {
           Accept: 'application/json',
           Authorization: `Bearer ${token}`
         }
       }
-      return $q.resolve(testResponse)
-      // return $http.get(url, config)
+      // return $q.resolve(testResponse)
+      return $http.get(url, config)
     })
     .then( res => {
       $log.log('task retrieved')
       service.tasks = res.data
-      return service.tasks
+      return $q.resolve(service.tasks)
     })
     .catch( err => {
       $log.error(err.message)
