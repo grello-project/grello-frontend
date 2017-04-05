@@ -12,6 +12,3 @@ env:
   - CXX=g++-4.8
 sudo: required
 before_script: npm i
-script:
-  - npm run lint
-  - npm run test
