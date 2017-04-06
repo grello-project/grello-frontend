@@ -20,7 +20,6 @@ describe('auth-service', function() {
     password: 'testPassword'
   }
 
-
   describe('authService.login()', () => {
     it('should login a user and should place token in localStorage', () => {
 
@@ -39,10 +38,17 @@ describe('auth-service', function() {
     })
   })
 
+  describe('authService.login()', () => {
+    it('should be a function', () => {
+      expect(typeof this.authService.login).toEqual('function')
+    })
+  })
+
+
   describe('authService.getToken()', () => {
     it('should return a token', () => {
       this.authService.token = null
-      this.$window.localStorage.setItem('token', 'test')
+      this.$window.localStorage.setItem('token', 'test token')
 
       this.authService.getToken()
       .then( token => {
@@ -57,9 +63,16 @@ describe('auth-service', function() {
   })
 
   describe('authService.logout()', () => {
+    it('should be a function', () => {
+      expect(typeof this.authService.getToken).toEqual('function')
+    })
+  })
+
+
+  describe('authService.logout()', () => {
     it('should logout the user', () => {
       this.authService.token = null
-      this.$window.localStorage.setItem('token', 'test')
+      this.$window.localStorage.setItem('token', 'test token')
 
       this.authService.getToken()
       .then( token => {
@@ -80,16 +93,11 @@ describe('auth-service', function() {
       this.$rootScope.$apply()
     })
   })
-  describe('authService', () => {
+
+  describe('authService.logout()', () => {
     it('should be a function', () => {
-      expect().toEqual()
+      expect(typeof this.authService.logout).toEqual('function')
     })
   })
-
-
-  // describe('authService.setToken()', () => {
-  //   it('should let a token into localStorage')
-    //not ready to be tested
-  // })
 
 })
