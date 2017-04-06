@@ -45,8 +45,17 @@ function categoryService ($q, $log, $http, authService, taskService) {
       })
   }
 
-  service.updateCategories = function () {
+  service.createCategory = function (name) {
+    $log.debug('new category created with name:', name)
+    return Promise.resolve()
+  }
 
+  service.updateCategories = function () {
+    service.categories.forEach( category => {
+      category.tasks.forEach( task => {
+        taskService.updateTask(task)
+      })
+    })
   }
 
   return service

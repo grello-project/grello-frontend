@@ -18,6 +18,15 @@ function TasksController ($location, $scope, $log, authService, categoryService)
     categories: []
   }
 
+  // this is a special placeholder category for creating new categories
+  let newCategory = function (i) {
+    this.categoryID = 'newCat'
+    this.categoryName = ''
+    this.categoryPriority = i
+    this.categoryRef = null
+    this.tasks = []
+  }
+
   authService
     .getToken()
     .then( token => {
@@ -27,6 +36,7 @@ function TasksController ($location, $scope, $log, authService, categoryService)
         .then( categories => {
           $log.debug('self.categories assigned to categories')
           self.models.categories = categories
+          self.models.categories.push(new newCategory(self.models.categories.length))
         })
     })
     .catch( err => {
@@ -34,7 +44,4 @@ function TasksController ($location, $scope, $log, authService, categoryService)
       $location.url('/')
     })
 
-  $scope.$watch('self.categories.tasks', () => {
-    $log.debug('hey the categories have changed')
-  })
 }
