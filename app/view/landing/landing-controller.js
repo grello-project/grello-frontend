@@ -34,5 +34,5 @@ function LandingController($log, $location, $rootScope, authService) {
   const googleAuthAccessType = 'access_type=offline'
   const googleAuthPrompt = 'prompt=consent'
 
-  this.googleAuthURL = `${googleAuthBase}?${googleAuthResponseType}&${googleAuthClientID}&${googleAuthScope}&${googleAuthRedirectURI}&${googleAuthAccessType}`
+  this.googleAuthURL = `${googleAuthBase}?${googleAuthResponseType}&${googleAuthClientID}&${googleAuthScope}&${googleAuthRedirectURI}&${googleAuthAccessType}&${googleAuthPrompt}`
 }
