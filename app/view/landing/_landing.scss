@@ -1,5 +1,5 @@
 .landing {
-  background-image: url('../../assets/landing-background.jpg')  !important;
+  background-image: url('../../assets/landing-background.jpg');
   position: fixed;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
@@ -18,9 +18,8 @@
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.6);
   text-align: center;
-  width: 700px ;
   margin-left: auto ;
   margin-right: auto ;
   margin-top: 10%;
@@ -28,12 +27,17 @@
 }
 
 .get-started {
-  margin-top: 5%;
-  padding: 3% 12%;
   font-size: 18px;
-  border-radius: 5%;
+  color: white;
+}
+
+.get-started-button {
+  margin: 5% 15% 0 15%;
+  padding: 3% 12%;
 }
 
 .main-para {
   color: black;
+  font-weight: bold;
+  font-size: 2em;
 }

@@ -1,6 +1,6 @@
 <section>
   <nav>
-    <a href="#!/tasks"><h1>Wattle</h1></a>
+    <h1 class="logo"><a class="home-tag logo" href="#!/tasks">Wattle</a></h1>
 
     <div ng-hide="navbarCtrl.hideButtons" uib-dropdown is-open="status.isopen">
 
@@ -17,10 +17,10 @@
     </div>
 
       <!--show if the user is not logged in -->
-    <div ng-hide="navbarCtrl.hideLogButtons" class="buttons in-nav">
-      <button type="submit" class="signup">SIGNUP</button>
-      <button class="login">LOGIN</button>
-    </div>
+      <div ng-hide="navbarCtrl.hideLogButtons" class="buttons in-nav">
+        <button class="login">LOGIN</button>
+      </div>
+
 
   </nav>
 </section>
