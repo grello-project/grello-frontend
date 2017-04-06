@@ -4,8 +4,11 @@
 
     <div ng-hide="navbarCtrl.hideButtons" uib-dropdown is-open="status.isopen">
 
+      <div class="profile">
+        <h3>Welcome, {{navbarCtrl.user.name}}</h3>
         <img class="profile-pic" uib-dropdown-toggle ng-disabled="disabled"
-      src="http://www.designbytic.com/wp-content/uploads/2015/09/google-dk-flat1.png">
+        ng-src="{{navbarCtrl.user.profilePic}}"/>
+      </div>
 
       <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu">
         <li role="menuitem"><a href='#'>Settings</a></li>

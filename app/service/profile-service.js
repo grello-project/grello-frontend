@@ -24,7 +24,9 @@ function profileService($q, $log, $http, authService) {
     .then( res => {
       $log.log('user retrieved')
       service.user = res.data
+      $log.log('user from server', res.data)
       return service.user
+
     })
     .catch( err => {
       $log.error(err.message)
@@ -32,4 +34,5 @@ function profileService($q, $log, $http, authService) {
     })
   }
 
+  return service
 }
