@@ -20,7 +20,6 @@ describe('auth-service', function() {
     password: 'testPassword'
   }
 
-
   describe('authService.login()', () => {
     it('should login a user and should place token in localStorage', () => {
 
@@ -29,7 +28,7 @@ describe('auth-service', function() {
 
       this.authService.getToken()
       .then( token => {
-        expect(token).toEqual('test token')
+        expect(token).toEqual('test')
       })
       .catch( err => {
         expect(err).toEqual(null)
@@ -39,6 +38,13 @@ describe('auth-service', function() {
     })
   })
 
+  describe('authService.login()', () => {
+    it('should be a function', () => {
+      expect(typeof this.authService.login).toEqual('function')
+    })
+  })
+
+
   describe('authService.getToken()', () => {
     it('should return a token', () => {
       this.authService.token = null
@@ -46,7 +52,7 @@ describe('auth-service', function() {
 
       this.authService.getToken()
       .then( token => {
-        expect(token).toEqual('test token')
+        expect(token).toEqual('test')
       })
       .catch( err => {
         expect(err).toEqual(null)
@@ -57,13 +63,20 @@ describe('auth-service', function() {
   })
 
   describe('authService.logout()', () => {
+    it('should be a function', () => {
+      expect(typeof this.authService.getToken).toEqual('function')
+    })
+  })
+
+
+  describe('authService.logout()', () => {
     it('should logout the user', () => {
       this.authService.token = null
       this.$window.localStorage.setItem('token', 'test token')
 
       this.authService.getToken()
       .then( token => {
-        expect(token).toEqual('test token')
+        expect(token).toEqual('test')
       })
       .catch( err => {
         expect(err).toEqual(null)
@@ -81,10 +94,10 @@ describe('auth-service', function() {
     })
   })
 
-
-  // describe('authService.setToken()', () => {
-  //   it('should let a token into localStorage')
-    //not ready to be tested
-  // })
+  describe('authService.logout()', () => {
+    it('should be a function', () => {
+      expect(typeof this.authService.logout).toEqual('function')
+    })
+  })
 
 })

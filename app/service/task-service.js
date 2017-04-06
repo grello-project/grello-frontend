@@ -75,7 +75,9 @@ function taskService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
+
       let url = `${__API_URL__}/api/tasks`
+
       let config = {
         headers: {
           Accept: 'application/json',
@@ -87,7 +89,7 @@ function taskService($q, $log, $http, authService) {
     .then( res => {
       $log.log('task retrieved')
       service.tasks = res.data
-      return service.tasks
+      return $q.resolve(service.tasks)
     })
     .catch( err => {
       $log.error(err.message)
