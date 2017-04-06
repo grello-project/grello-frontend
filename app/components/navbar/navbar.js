@@ -11,8 +11,6 @@ module.exports = {
 function NavbarController($log, $location, $rootScope, authService, profileService){
   $log.debug('NavbarController')
 
-  profileService.getUser().then(user => this.user = user).catch(err => $log.err(err))
-
   this.checkPath = function() {
     let path = $location.path()
     $log.debug('THE PATH', path)
@@ -29,8 +27,12 @@ function NavbarController($log, $location, $rootScope, authService, profileServi
     authService.logout()
   }
 
+
   const deregistrationCallback = $rootScope.$on('$locationChangeSuccess', () => {
     this.checkPath()
+    profileService.getUser()
+    .then(user => this.user = user)
+    .catch(err => $log.error(err))
   })
 
   $rootScope.$on('$destroy', deregistrationCallback)

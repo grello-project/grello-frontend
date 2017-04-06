@@ -1,6 +1,7 @@
 @import "../../scss/lib/theme/vars";
 
 nav {
+  height: 5em;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -77,7 +78,7 @@ h3 {
   margin: 1em;
   max-width: 4em;
   max-height: 4em;
-  border-radius: 30px;
+  border-radius: 25px;
 }
 
 .dropdown-menu {
