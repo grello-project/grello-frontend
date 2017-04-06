@@ -25,7 +25,7 @@ googleID, name, array of tasks.
 Tags will identify properties on the comment object so that we can create custom filters.
 
 ### -Task: 
-All tasks to be completed.
+All tasks to be completed. These tasks are imported from Google Docs, where the tasks are created.
 
 ### -User: 
 All users that have created accounts.
