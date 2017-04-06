@@ -1,9 +1,14 @@
 .landing {
   background-image: url('../../assets/landing-background.jpg')  !important;
-  position:fixed;
-  padding:0;
-  margin:0;
-  left:0;
+  position: fixed;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  padding: 0;
+  margin: 0;
+  left: 0;
   width: 100%;
   height: 100%;
 }

@@ -23,7 +23,6 @@ function categoryController ($log, $scope, taskService, categoryService) {
     if (!angular.equals(self.tasks_clone, self.category.tasks)) {
       $log.debug(`doCheck called on ${self.category.categoryName}`)
       updateTasks()
-      $log.debug('this is the current data on the taskService:', taskService.tasks)
       self.tasks_clone = angular.copy(self.category.tasks)
     }
   }
