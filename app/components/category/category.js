@@ -19,6 +19,7 @@ function categoryController ($log, $scope, taskService, categoryService) {
   self.$onInit = function () {
     $log.debug('this is the category:', self.category)
     self.title = self.category.categoryName
+    self.tasks_clone = angular.copy(self.category.tasks)
   }
 
   self.$doCheck = function () {
@@ -42,6 +43,7 @@ function categoryController ($log, $scope, taskService, categoryService) {
     self.category.tasks.forEach( (task, index) => {
       task.priority = index
       task.category = self.category.categoryRef
+      taskService.updateTask(task)
     })
   }
 
