@@ -1,16 +1,23 @@
 <section>
   <nav>
-    <div><p class="logo"><a class="home-tag" href="#!/home">Wattle</a></p></div>
+    <div><h1 class="logo"><a class="home-tag" href="#!/tasks">Wattle</a></h1></div>
 
-    <div uib-dropdown is-open="status.isopen">
+    <div ng-hide="navbarCtrl.hideButtons" uib-dropdown is-open="status.isopen">
 
         <img class="profile-pic" uib-dropdown-toggle ng-disabled="disabled"
       src="http://www.designbytic.com/wp-content/uploads/2015/09/google-dk-flat1.png">
 
       <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu">
         <li role="menuitem"><a href='#'>Settings</a></li>
-        <li role="menuitem"><a href='#'>Logout</a></li>
+        <li role="menuitem" ng-click="navbarCtrl.logout()"><a href='#'>Logout</a></li>
       </ul>
     </div>
+
+      <!--show if the user is not logged in -->
+      <div ng-hide="navbarCtrl.hideLogButtons" class="buttons in-nav">
+        <button type="submit" class="signup">SIGNUP</button>
+        <button class="login">LOGIN</button>
+      </div>
+
   </nav>
 </section>

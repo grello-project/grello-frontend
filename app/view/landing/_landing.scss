@@ -1,47 +1,16 @@
-body {
-  background-image: url('../../assets/landing-background.jpg');
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  background: rgba(255, 255, 255, 0.5);
-  margin: -1% -1% 0 -1%;
-  padding: 1% 0;
-}
-
-p {
-  color: #E74C3C;
-  font-size: 2em;
-  font-weight: bold;
-}
-
-button {
-  background-color: #E74C3C;
-  color: white;
-  border: none;
-  padding: 10px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  cursor: hand;
-}
-
-.in-nav {
-  margin: 5px 25px;
-}
-
-.logo {
-  margin-top: 20%;
-  cursor: pointer;
-  cursor: hand;
-}
-
-.buttons {
-  margin-top: 20px;
+.landing {
+  background-image: url('../../assets/landing-background.jpg')  !important;
+  position: fixed;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  padding: 0;
+  margin: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .main {

@@ -12,32 +12,38 @@ const ngAnimate = require('angular-animate')
 const uiBootstrap = require('angular-ui-bootstrap')
 const dndLists = require('angular-drag-and-drop-lists')
 
-const wattle = angular.module('wattle', [ngTouch, ngAnimate, uiRouter, uiBootstrap, dndLists])
+angular.module('wattle', [ngTouch, ngAnimate, uiRouter, uiBootstrap, dndLists])
+
+angular.module('wattle').config(['$httpProvider', corsSettings])
+
+function corsSettings ($httpProvider) {
+  $httpProvider.defaults.useXDomain = true
+}
 
 let context = require.context('./config/', true, /\.js$/)
 context.keys().forEach( path => {
-  wattle.config(context(path))
+  angular.module('wattle').config(context(path))
 })
 
 context = require.context('./view/', true, /\.js$/)
 context.keys().forEach( key => {
   let name = pascalcase(path.basename(key, '.js'))
   let module = context(key)
-  wattle.controller(name, module)
+  angular.module('wattle').controller(name, module)
 })
 
 context = require.context('./service/', true, /\.js$/)
 context.keys().forEach( key => {
   let name = camelcase(path.basename(key, '.js'))
   let module = context(key)
-  wattle.service(name, module)
+  angular.module('wattle').factory(name, module)
 })
 
 context = require.context('./components/', true, /\.js$/)
 context.keys().forEach( key => {
   let name = camelcase(path.basename(key, '.js'))
   let module = context(key)
-  wattle.component(name, module)
+  angular.module('wattle').component(name, module)
 })
 
 // context = require.context('./filter/', true, /\.js$/)

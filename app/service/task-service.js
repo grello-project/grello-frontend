@@ -44,6 +44,20 @@ testResponse.data = [
       name: 'document1'
     },
     user: '123'
+  },{
+    _id: 4,
+    comment: 'task4',
+    priority: 4,
+    category: {
+      _id: '001',
+      name: 'P0',
+      priority: 2
+    },
+    document: {
+      _id: 1,
+      name: 'document1'
+    },
+    user: '123'
   }
 ]
 
@@ -55,44 +69,15 @@ function taskService($q, $log, $http, authService) {
   let service = {}
 
   service.tasks = []
-  //
-  // service.createTask = function(task) {
-  //   $log.debug('taskService.createTask()')
-  //
-  //   return authService.getToken()
-  //   .then( token => {
-  //     let url = `${__API_URL__}/api/task`
-  //     let config = {
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     }
-  //
-  //     return $http.post(url, task, config)
-  //   })
-  //   .then( res => {
-  //     $log.log('task created')
-  //     let task = res.data
-  //     service.task.unshift(task)
-  //     return task
-  //   })
-  //   .catch( err => {
-  //     $log.error(err.message)
-  //     return $q.reject(err)
-  //   })
-  // }
-
 
   service.fetchTasks = function() {
     $log.debug('taskService.createTasks()')
 
     return authService.getToken()
     .then( token => {
-      console.info(`THIS IS THE TOKEN: ${token}`)
-      let url = `${__API_URL__}/api/task`
-      console.info(`THIS IS THE CURRENT URL IN SERVICE: ${url}`)
+
+      let url = `${__API_URL__}/api/tasks`
+
       let config = {
         headers: {
           Accept: 'application/json',

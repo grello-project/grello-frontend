@@ -1,17 +1,17 @@
 
 <!DOCTYPE html>
-<html ng-app="wattle" ng-strict-di>
+<html ng-app="wattle">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" contents="width=device-width, initial-scale=1">
     <title>Wattle</title>
   </head>
   <body>
-    <header>
-      <navbar></navbar>
-    </header>
     <div id="main-container">
-      <ui-view></ui-view>
+      <navbar></navbar>
+      <main>
+        <ui-view></ui-view>
+      </main>
     </div>
   </body>
 </html>
