@@ -4,14 +4,12 @@ require('./_navbar.scss')
 
 module.exports = {
   template: require('./navbar.html'),
-  controller: ['$log', '$location', '$rootScope', 'authService', NavbarController],
+  controller: ['$log', '$location', '$rootScope', 'authService', 'profileService', NavbarController],
   controllerAs: 'navbarCtrl'
 }
 
-function NavbarController($log, $location, $rootScope, authService){
+function NavbarController($log, $location, $rootScope, authService, profileService){
   $log.debug('NavbarController')
-
-  $on
 
   this.checkPath = function() {
     let path = $location.path()
@@ -27,6 +25,7 @@ function NavbarController($log, $location, $rootScope, authService){
 
   this.logout = function() {
     authService.logout()
+    profileService.getUser()
   }
 
   $rootScope.$on('$locationChangeSuccess', () => {

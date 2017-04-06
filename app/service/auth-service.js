@@ -10,7 +10,7 @@ function authService($q, $log, $location, $http, $window){
   let token
 
   // FOR DEVELOPMENT PURPOSES
-  token = 'test'
+  // token = 'test'
 
   service.setToken = function(_token){
     $log.debug('authService.setToken()')
