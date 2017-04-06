@@ -14,13 +14,22 @@ Our goal is to provide a project workflow that will easily couple tasks to the a
 
 All data is stored using Mongo in the Backend of our Project
 
--Category: The different naming conventions used for each container, whether it be
+### -Category: 
+The different naming conventions used for each container, whether it be
  for different project names, or to assign urgency ratings for unassigned tasks.
 
--Document: googleID, name, array of tasks.
+### -Document: 
+googleID, name, array of tasks.
 
--Tag: Tags will identify properties on the comment object so that we can create custom filters.
+### -Tag: 
+Tags will identify properties on the comment object so that we can create custom filters.
 
--Task: All tasks to be completed.
+### -Task: 
+All tasks to be completed. These tasks are imported from Google Docs, where the tasks are created.
 
--User: All users that have created accounts.
+### -User: 
+All users that have created accounts.
+
+### OAUTH:
+
+The user is signed into Google already, and is using Google docs. Next, permission is granted by the user allowing google to share their information with the Wattle app. Then the Google OAuth API sends server code to the Wattle backend server. The Wattle backend server then sends the code back to the OAuth API with their 'secret' included. Then the Google OAuth API sends back an access token with the request token. Then a request, with the bearer authorization token in the header, is sent to the Google openid API, which will fetch a specific set of information about the user. The user is then placed into the application's database, and can begin using Wattle.
