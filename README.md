@@ -14,16 +14,21 @@ Our goal is to provide a project workflow that will easily couple tasks to the a
 
 All data is stored using Mongo in the Backend of our Project
 
-### -Category: The different naming conventions used for each container, whether it be
+### -Category: 
+The different naming conventions used for each container, whether it be
  for different project names, or to assign urgency ratings for unassigned tasks.
 
-### -Document: googleID, name, array of tasks.
+### -Document: 
+googleID, name, array of tasks.
 
-### -Tag: Tags will identify properties on the comment object so that we can create custom filters.
+### -Tag: 
+Tags will identify properties on the comment object so that we can create custom filters.
 
-### -Task: All tasks to be completed.
+### -Task: 
+All tasks to be completed.
 
-### -User: All users that have created accounts.
+### -User: 
+All users that have created accounts.
 
 ### OAUTH:
 
