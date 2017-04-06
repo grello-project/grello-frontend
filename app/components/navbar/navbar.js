@@ -13,7 +13,8 @@ function NavbarController($log, $location, $rootScope, authService){
 
   this.checkPath = function() {
     let path = $location.path()
-    if (path === '/join'){
+    $log.debug('THE PATH', path)
+    if (path !== '/tasks' ){
       this.hideButtons = true
       this.hideLogButtons = false
     } else {
@@ -22,6 +23,13 @@ function NavbarController($log, $location, $rootScope, authService){
     }
   }
 
-  this.checkPath()
+  this.logout = function() {
+    authService.logout()
+  }
 
+  const deregistrationCallback = $rootScope.$on('$locationChangeSuccess', () => {
+    this.checkPath()
+  })
+
+  $rootScope.$on('$destroy', deregistrationCallback)
 }
