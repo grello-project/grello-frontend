@@ -1,19 +1,19 @@
-'use strict'
-
-const URL = `${__API_URL__}/api`
-require('../app/service/category-service')
-
-describe('category-service', function() {
-  beforeEach(() => {
-    angular.mock.module('wattle')
-    angular.mock.inject(( $rootScope, authService, $window, $httpBackend, categoryService) => {
-      this.$window = $window
-      this.$rootScope = $rootScope
-      this.authService = authService
-      this.$httpBackend = $httpBackend
-      this.categoryService = categoryService
-    })
-  })
+// 'use strict'
+//
+// const URL = `${__API_URL__}/api`
+// require('../app/service/category-service')
+//
+// describe('category-service', function() {
+//   beforeEach(() => {
+//     angular.mock.module('wattle')
+//     angular.mock.inject(( $rootScope, authService, $window, $httpBackend, categoryService) => {
+//       this.$window = $window
+//       this.$rootScope = $rootScope
+//       this.authService = authService
+//       this.$httpBackend = $httpBackend
+//       this.categoryService = categoryService
+//     })
+//   })
 
   // describe('service.fetchCategories()', () => {
   //   it('should fetch categories', () => {
@@ -40,4 +40,4 @@ describe('category-service', function() {
   //     this.$rootScope.$apply()
   //   })
   // })
-})
+// })

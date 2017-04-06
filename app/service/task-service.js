@@ -75,20 +75,22 @@ function taskService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
+
       let url = `${__API_URL__}/api/tasks`
+
       let config = {
         headers: {
           Accept: 'application/json',
           Authorization: `Bearer ${token}`
         }
       }
-      // return $q.resolve(testResponse)
-      return $http.get(url, config)
+      return $q.resolve(testResponse)
+      // return $http.get(url, config)
     })
     .then( res => {
       $log.log('task retrieved')
       service.tasks = res.data
-      return service.tasks
+      return $q.resolve(service.tasks)
     })
     .catch( err => {
       $log.error(err.message)
@@ -96,13 +98,13 @@ function taskService($q, $log, $http, authService) {
     })
   }
 
-  service.updateTask = function(taskID, taskData) {
+  service.updateTask = function(task) {
     $log.debug('taskService.updateTask()')
-    $log.debug(typeof taskID)
+    $log.debug(typeof task._id)
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/task/${taskID}`
+      let url = `${__API_URL__}/api/task/${task._id}`
       let config = {
         headers: {
           Accept: 'application/json',
@@ -114,10 +116,10 @@ function taskService($q, $log, $http, authService) {
       return $http.put(url, taskData, config)
     })
     .then( res => {
-      for (let i = 0; i < service.task.length; i++) {
-        let current = service.task[i]
-        if (current._id === taskID) {
-          service.task[i] = res.data
+      for (let i = 0; i < service.tasks.length; i++) {
+        let current = service.tasks[i]
+        if (current._id === task._id) {
+          service.tasks[i] = res.data
           break
         }
       }
@@ -130,12 +132,12 @@ function taskService($q, $log, $http, authService) {
     })
   }
 
-  service.resolveTask = function(taskID) {
+  service.resolveTask = function(task) {
     $log.debug('taskService.updateTask()')
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/task/${taskID}`
+      let url = `${__API_URL__}/api/task/${task._id}`
       let config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -145,10 +147,10 @@ function taskService($q, $log, $http, authService) {
       return $http.put(url, config)
     })
     .then( res => {
-      for (let i = 0; i < service.task.length; i++) {
-        let current = service.task[i]
-        if (current._id === taskID) {
-          service.task.splice(i, 1)
+      for (let i = 0; i < service.tasks.length; i++) {
+        let current = service.tasks[i]
+        if (current._id === task._id) {
+          service.tasks.splice(i, 1)
           break
         }
       }
