@@ -111,7 +111,6 @@ function taskService($q, $log, $http, authService) {
           'Content-Type': 'application/json',
         },
       }
-
       return $http.put(url, taskData, config)
     })
     .then( res => {
