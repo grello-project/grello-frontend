@@ -27,6 +27,7 @@ function categoryService ($q, $log, $http, authService, taskService) {
           } else {
             uniqueCategories[task.category._id].tasks.push(task)
           }
+
         })
 
         $log.debug('here are the uniqueCategories:', uniqueCategories)

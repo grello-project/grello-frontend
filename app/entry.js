@@ -14,6 +14,12 @@ const dndLists = require('angular-drag-and-drop-lists')
 
 angular.module('wattle', [ngTouch, ngAnimate, uiRouter, uiBootstrap, dndLists])
 
+angular.module('wattle').config(['$httpProvider', corsSettings])
+
+function corsSettings ($httpProvider) {
+  $httpProvider.defaults.useXDomain = true
+}
+
 let context = require.context('./config/', true, /\.js$/)
 context.keys().forEach( path => {
   angular.module('wattle').config(context(path))
