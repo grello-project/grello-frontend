@@ -1,8 +1,10 @@
 @import "../../scss/lib/theme/vars";
 
 nav {
+  height: 5em;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: rgba(255, 255, 255, 0.5);
   padding: 2%;
   margin: -1% -1% 0 -0;
@@ -47,6 +49,17 @@ button {
   cursor: hand;
 }
 
+h3 {
+  display: flex;
+  align-items: center;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .in-nav {
   margin: 5px 25px;
 }
@@ -62,8 +75,10 @@ button {
 }
 
 .profile-pic{
+  margin: 1em;
   max-width: 4em;
   max-height: 4em;
+  border-radius: 25px;
 }
 
 .dropdown-menu {
