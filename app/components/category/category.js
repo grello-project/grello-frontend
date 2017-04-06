@@ -13,6 +13,8 @@ module.exports = {
 
 function categoryController ($log, $scope, taskService, categoryService) {
   let self = this
+  self.showNewCategoryForm = false
+  self.newCategoryName = null
 
   self.$onInit = function () {
     $log.debug('this is the category:', self.category)
@@ -25,6 +27,15 @@ function categoryController ($log, $scope, taskService, categoryService) {
       updateTasks()
       self.tasks_clone = angular.copy(self.category.tasks)
     }
+  }
+
+  self.createNewCategory = function () {
+    categoryService
+      .createCategory(self.newCategoryName)
+      .then(() => {
+        $log.debug('resolved')
+      })
+    self.showNewCategoryForm = false
   }
 
   function updateTasks () {

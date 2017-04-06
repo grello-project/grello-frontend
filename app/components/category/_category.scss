@@ -35,3 +35,17 @@ ul[dnd-list] .dndPlaceholder {
 .task_list {
   min-height: 20em;
 }
+
+#newCat {
+  border: 1px dashed gray;
+}
+
+#newCatPlus {
+  max-width: 8em;
+  margin: 5em auto;
+  display: block;
+}
+
+#newCatMsg {
+  text-align: center;
+}

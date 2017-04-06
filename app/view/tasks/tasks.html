@@ -4,8 +4,8 @@
     <category
       class="category_box"
       ng-repeat="category in tasksCtrl.models.categories"
-      selected="self.models.selected"
       category="category"
+      id="{{ category.categoryID }}"
       >
     </category>
   </div>
