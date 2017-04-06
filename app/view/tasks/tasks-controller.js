@@ -36,7 +36,6 @@ function TasksController ($location, $scope, $log, authService, categoryService)
         .then( categories => {
           $log.debug('self.categories assigned to categories')
           self.models.categories = categories
-          self.models.categories.push(new newCategory(self.models.categories.length))
         })
     })
     .catch( err => {

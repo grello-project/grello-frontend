@@ -6,6 +6,14 @@ function categoryService ($q, $log, $http, authService, taskService) {
 
   let service = {}
 
+  function uniqueCategory (id, name, priority, category, tasks=[]) {
+    this.categoryID = id
+    this.categoryName = name
+    this.categoryPriority = priority
+    this.categoryRef = category
+    this.tasks = tasks
+  }
+
   service.categories = []
 
   service.fetchCategories = function () {
@@ -17,17 +25,18 @@ function categoryService ($q, $log, $http, authService, taskService) {
         let uniqueCategories = {}
         tasks.forEach(task => {
           if (!uniqueCategories.hasOwnProperty(task.category._id)) {
-            uniqueCategories[task.category._id] = {
-              categoryID: task.category._id,
-              categoryName: task.category.name,
-              categoryPriority: task.category.priority,
-              categoryRef: task.category,
-              tasks: [task]
-            }
-          } else {
-            uniqueCategories[task.category._id].tasks.push(task)
+            uniqueCategories[task.category._id] = new uniqueCategory(
+              task.category._id,
+              task.category.name,
+              task.category.priority,
+              task.category
+            )
           }
 
+          // get rid of "placeholder" tasks used to link newly created categories to taskService fetch
+          if (task.author !== 'system') {
+            uniqueCategories[task.category._id].tasks.push(task)
+          }
         })
 
         $log.debug('here are the uniqueCategories:', uniqueCategories)
@@ -47,7 +56,27 @@ function categoryService ($q, $log, $http, authService, taskService) {
 
   service.createCategory = function (name) {
     $log.debug('new category created with name:', name)
-    return Promise.resolve()
+    return authService
+      .getToken()
+      .then( token => {
+        let url = `${__API_URL__}/api/categories`
+        let config = {
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+        return $http.post(url, {name: name, priority: service.categories.length}, config)
+      })
+      .then( res => {
+        service.categories.push(new uniqueCategory(
+          res.data._id,
+          res.data.name,
+          res.data.priority,
+          res.data
+        ))
+      })
   }
 
   service.updateCategories = function () {
