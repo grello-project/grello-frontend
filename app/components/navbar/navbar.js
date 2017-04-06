@@ -28,8 +28,9 @@ function NavbarController($log, $location, $rootScope, authService, profileServi
     profileService.getUser()
   }
 
-  $rootScope.$on('$locationChangeSuccess', () => {
+  const deregistrationCallback = $rootScope.$on('$locationChangeSuccess', () => {
     this.checkPath()
   })
 
+  $rootScope.$on('$destroy', deregistrationCallback)
 }
