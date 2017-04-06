@@ -80,6 +80,11 @@ describe('auth-service', function() {
       this.$rootScope.$apply()
     })
   })
+  describe('authService', () => {
+    it('should be a function', () => {
+      expect().toEqual()
+    })
+  })
 
 
   // describe('authService.setToken()', () => {
