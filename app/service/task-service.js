@@ -84,8 +84,8 @@ function taskService($q, $log, $http, authService) {
           Authorization: `Bearer ${token}`
         }
       }
-      return $q.resolve(testResponse)
-      // return $http.get(url, config)
+      // return $q.resolve(testResponse)
+      return $http.get(url, config)
     })
     .then( res => {
       $log.log('task retrieved')

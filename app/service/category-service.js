@@ -55,13 +55,27 @@ function categoryService ($q, $log, $http, authService, taskService) {
 
   service.createCategory = function (name) {
     $log.debug('new category created with name:', name)
-    service.categories.push(new uniqueCategory(
-      null,
-      name,
-      service.categories.length,
-      null
-    ))
-    return Promise.resolve()
+    return authService
+      .getToken()
+      .then( token => {
+        let url = `${__API_URL__}/api/categories`
+        let config = {
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+        return $http.post(url, {name: name, priority: service.categories.length}, config)
+      })
+      .then( res => {
+        service.categories.push(new uniqueCategory(
+          res.data._id,
+          res.data.name,
+          res.data.priority,
+          res.data
+        ))
+      })
   }
 
   service.updateCategories = function () {
