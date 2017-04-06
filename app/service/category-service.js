@@ -29,13 +29,14 @@ function categoryService ($q, $log, $http, authService, taskService) {
               task.category._id,
               task.category.name,
               task.category.priority,
-              task.category,
-              [task]
+              task.category
             )
-          } else {
-            uniqueCategories[task.category._id].tasks.push(task)
           }
 
+          // get rid of "placeholder" tasks used to link newly created categories to taskService fetch
+          if (task.author !== 'system') {
+            uniqueCategories[task.category._id].tasks.push(task)
+          }
         })
 
         $log.debug('here are the uniqueCategories:', uniqueCategories)

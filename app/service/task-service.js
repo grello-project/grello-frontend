@@ -104,7 +104,7 @@ function taskService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/task/${task._id}`
+      let url = `${__API_URL__}/api/tasks/${task._id}`
       let config = {
         headers: {
           Accept: 'application/json',
@@ -113,7 +113,7 @@ function taskService($q, $log, $http, authService) {
         },
       }
 
-      return $http.put(url, taskData, config)
+      return $http.put(url, task, config)
     })
     .then( res => {
       for (let i = 0; i < service.tasks.length; i++) {
