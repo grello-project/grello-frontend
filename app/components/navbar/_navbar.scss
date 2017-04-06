@@ -1,3 +1,4 @@
+
 @import "../../scss/lib/theme/vars";
 
 nav {
@@ -9,29 +10,16 @@ nav {
   background-color: #294247;
 }
 
-p {
-  color: #E74C3C;
+h1 {
   font-size: 2em;
   font-weight: bold;
 }
 
-ul{
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // margin-top: 0;
-  // list-style-type: none;
-}
 
-li{
-  // border: .025em solid black;
-  // padding: 10%;
-}
-
-a {
-  text-decoration: none;
-  color: #E74C3C;
-}
+// a {
+//   text-decoration: none;
+//   color: #E74C3C;
+// }
 
 button {
   background-color: #E74C3C;
@@ -52,9 +40,10 @@ button {
 }
 
 .logo {
-  margin-top: 20%;
+  margin-top: 30%;
   cursor: pointer;
   cursor: hand;
+  color: #E74C3C;
 }
 
 .buttons {
