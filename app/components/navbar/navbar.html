@@ -1,11 +1,14 @@
 <section>
   <nav>
-    <div><h1 class="logo"><a class="home-tag" href="#!/tasks">Wattle</a></h1></div>
+    <a href="#!/tasks"><h1>Wattle</h1></a>
 
     <div ng-hide="navbarCtrl.hideButtons" uib-dropdown is-open="status.isopen">
 
+      <div class="profile">
+        <h3>Welcome, {{navbarCtrl.user.name}}</h3>
         <img class="profile-pic" uib-dropdown-toggle ng-disabled="disabled"
-      src="http://www.designbytic.com/wp-content/uploads/2015/09/google-dk-flat1.png">
+        ng-src="{{navbarCtrl.user.profilePic}}"/>
+      </div>
 
       <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu">
         <li role="menuitem"><a href='#'>Settings</a></li>
@@ -14,10 +17,10 @@
     </div>
 
       <!--show if the user is not logged in -->
-      <div ng-hide="navbarCtrl.hideLogButtons" class="buttons in-nav">
-        <button type="submit" class="signup">SIGNUP</button>
-        <button class="login">LOGIN</button>
-      </div>
+    <div ng-hide="navbarCtrl.hideLogButtons" class="buttons in-nav">
+      <button type="submit" class="signup">SIGNUP</button>
+      <button class="login">LOGIN</button>
+    </div>
 
   </nav>
 </section>

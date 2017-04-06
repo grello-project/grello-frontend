@@ -4,11 +4,11 @@ require('./_navbar.scss')
 
 module.exports = {
   template: require('./navbar.html'),
-  controller: ['$log', '$location', '$rootScope', 'authService', NavbarController],
+  controller: ['$log', '$location', '$rootScope', 'authService', 'profileService', NavbarController],
   controllerAs: 'navbarCtrl'
 }
 
-function NavbarController($log, $location, $rootScope, authService){
+function NavbarController($log, $location, $rootScope, authService, profileService){
   $log.debug('NavbarController')
 
   this.checkPath = function() {
@@ -27,8 +27,12 @@ function NavbarController($log, $location, $rootScope, authService){
     authService.logout()
   }
 
+
   const deregistrationCallback = $rootScope.$on('$locationChangeSuccess', () => {
     this.checkPath()
+    profileService.getUser()
+    .then(user => this.user = user)
+    .catch(err => $log.error(err))
   })
 
   $rootScope.$on('$destroy', deregistrationCallback)
