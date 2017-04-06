@@ -2,9 +2,8 @@
   <nav>
     <div><p class="logo"><a class="home-tag" href="#!/tasks">Wattle</a></p></div>
 
-    <div ng-hide ng-showuib-dropdown is-open="status.isopen" class="drop-nav">
+    <div ng-hide="navbarCtrl.hideButtons" uib-dropdown is-open="status.isopen">
 
-      <!-- show when the user is logged in -->
         <img class="profile-pic" uib-dropdown-toggle ng-disabled="disabled"
       src="http://www.designbytic.com/wp-content/uploads/2015/09/google-dk-flat1.png">
 
@@ -15,7 +14,7 @@
     </div>
 
       <!--show if the user is not logged in -->
-      <div ng-hide="navbarCtrl.menuShow()" class="buttons in-nav">
+      <div ng-hide="navbarCtrl.hideLogButtons" class="buttons in-nav">
         <button type="submit" class="signup">SIGNUP</button>
         <button ng-click="navbarCtrl.logout()" class="login">LOGIN</button>
       </div>

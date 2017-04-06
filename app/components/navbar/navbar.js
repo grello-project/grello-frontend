@@ -15,29 +15,13 @@ function NavbarController($log, $location, $rootScope, authService){
     let path = $location.path()
     if (path === '/join'){
       this.hideButtons = true
-    }
-
-    if (path !== '/join') {
+      this.hideLogButtons = false
+    } else {
       this.hideButtons = false
-      authService.getToken()
-      .catch( () => {
-        $location.url('/join#login')
-      })
+      this.hideLogButtons = true
     }
   }
 
   this.checkPath()
 
-  let checkPathListener = $rootScope.$on('$locationChangeSuccess', () => {
-    this.checkPath()
-  })
-
-  this.logout = function() {
-    $log.log('navbarCtrl.logout()')
-    this.hideButtons = true
-    authService.logout()
-    .then( () => {
-      $location.url('')
-    })
-  }
 }
