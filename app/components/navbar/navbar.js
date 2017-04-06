@@ -11,8 +11,6 @@ module.exports = {
 function NavbarController($log, $location, $rootScope, authService){
   $log.debug('NavbarController')
 
-  $on
-
   this.checkPath = function() {
     let path = $location.path()
     $log.debug('THE PATH', path)
@@ -29,8 +27,9 @@ function NavbarController($log, $location, $rootScope, authService){
     authService.logout()
   }
 
-  $rootScope.$on('$locationChangeSuccess', () => {
+  const deregistrationCallback = $rootScope.$on('$locationChangeSuccess', () => {
     this.checkPath()
   })
 
+  $rootScope.$on('$destroy', deregistrationCallback)
 }
