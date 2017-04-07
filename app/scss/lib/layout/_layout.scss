@@ -1,3 +1,16 @@
 // main {
 //   min-height: 36em;
 // }
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  min-height: 5vh;
+}
+
+main {
+  min-height: 95vh;
+}
