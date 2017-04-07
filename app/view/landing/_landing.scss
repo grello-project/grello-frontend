@@ -13,7 +13,7 @@
   height: 100%;
 }
 
-.main {
+.dialog-box {
   max-width: 40%;
   display: flex;
   flex-flow: column;
@@ -26,6 +26,12 @@
   padding: 5% 10%;
 }
 
+.dialog-text {
+  color: black;
+  font-weight: bold;
+  font-size: 2em;
+}
+
 .get-started {
   font-size: 18px;
   color: white;
@@ -34,10 +40,4 @@
 .get-started-button {
   margin: 5% 15% 0 15%;
   padding: 3% 12%;
-}
-
-.main-para {
-  color: black;
-  font-weight: bold;
-  font-size: 2em;
 }
