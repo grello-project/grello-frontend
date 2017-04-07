@@ -5,6 +5,9 @@
 
 .category_view {
   display: flex;
+  width: 100vw;
+  min-height: 25vw;
+  overflow-x: scroll;
   border: 1px solid red;
 }
 
