@@ -6,6 +6,8 @@
 |---------------|---------------|---------------|------------|-------------------------|
 | Ron Dunphy    | Kyle Winckler | Carolina Ceja | Dan Peters | Jessica Vasquez-Soltero |
 
+<img width="102" alt="ron" src="https://cloud.githubusercontent.com/assets/15117936/24783972/64cebe56-1b04-11e7-9356-6bac7d0291f7.png">  <img width="90" alt="kyle" src="https://cloud.githubusercontent.com/assets/15117936/24783967/5a76c78c-1b04-11e7-9952-006769c44db0.png">  <img width="100" alt="carolina" src="https://cloud.githubusercontent.com/assets/15117936/24783952/46ca6d88-1b04-11e7-80e5-e08710f8ed08.png">    <img width="100" alt="dan" src="https://cloud.githubusercontent.com/assets/15117936/24783980/7417e1da-1b04-11e7-872d-5966a99a326d.png">  <img width="100" alt="jessica" src="https://cloud.githubusercontent.com/assets/15117936/24783910/14cc8c44-1b04-11e7-90ff-d4f059799db3.png">
+
 # Project Objective
 
 Our goal is to provide a project workflow that will easily couple tasks to the assignee and allow for those tasks to be placed into categories.  The work flows from google docs to the Wattle application where the tasks can be assigned, from an uncategorized list, to the categories that each user sets.
