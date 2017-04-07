@@ -1,11 +1,11 @@
 @import "../../scss/lib/theme/vars";
 
 nav {
-  height: 3em;
+  // height: 3em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: $color-primary-dark;
+  // background-color: $color-primary-dark;
   padding: 2%;
   margin: 0;
   // background-color: #294247;
@@ -43,13 +43,6 @@ nav {
 
 .in-nav {
   margin: 5px 25px;
-}
-
-.logo {
-  // margin-top: 30%;
-  cursor: pointer;
-  cursor: hand;
-  color: $txt-color-white;
 }
 
 .buttons {

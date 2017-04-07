@@ -7,10 +7,46 @@ body {
   flex-direction: column;
 }
 
-nav {
+.main-header {
   min-height: 5vh;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.logo {
+  // margin-top: 30%;
+  cursor: pointer;
+  cursor: hand;
+  color: $txt-color-black;
+  margin-left: .5em;
+}
+
+nav {
+  // margin-right: .5em;
 }
 
 main {
-  min-height: 95vh;
+  min-height: 85vh;
+}
+
+.button {
+  padding: .5em;
+  margin: .5em;
+  background: $color-secondary;
+  color: $txt-color-white;
+  // font-size: 2vw;
+  border: none;
+  border-radius: $btn-radius;
+  cursor: pointer;
+  transition: 350ms all;
+}
+
+.btn-std {
+  @extend button;
+}
+
+.input-std {
+  @extend input[type="text"];
+  display: inline-block;
 }

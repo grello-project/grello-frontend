@@ -16,18 +16,40 @@
   height: 95vh;
 }
 
+@media (min-width: 700px) {
+  .dialog-box {
+    max-width: 20%;
+    min-height: 20%;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    background: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    // margin-left: auto ;
+    // margin-right: auto ;
+    // margin-top: 10%;
+    padding: 5% 10%;
+  }
+
+  .dialog-text {
+    color: black;
+    font-weight: bold;
+    font-size: 2em;
+  }
+}
+
 .dialog-box {
-  max-width: 40%;
-  max-height: 20%;
+  min-height: 20%;
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.9);
   text-align: center;
-  margin-left: auto ;
-  margin-right: auto ;
-  margin-top: 10%;
+  // margin-left: auto ;
+  // margin-right: auto ;
+  // margin-top: 10%;
   padding: 5% 10%;
+  box-shadow: 5px 5px 1px rgba(0, 0, 0, 0.3);
 }
 
 .dialog-text {
@@ -37,8 +59,8 @@
 }
 
 .get-started {
-  font-size: 18px;
-  color: white;
+font-size: 18px;
+color: white;
 }
 
 .get-started-button {
