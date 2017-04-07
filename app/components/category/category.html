@@ -29,7 +29,7 @@
     <form ng-submit="categoryCtrl.createNewCategory()">
       <label>Category name:</label>
       <input ng-model="categoryCtrl.newCategoryName" />
-      <button ng-click="categoryCtrl.showNewCategoryForm = false">Cancel</button>
+      <button type='reset' ng-click="categoryCtrl.showNewCategoryForm = false">Cancel</button>
       <button type="submit">Submit</button>
     </form>
   </div>
