@@ -3,12 +3,12 @@
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 //
 // // Reset and dependencies
-// @import "~bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/normalize";
 // @import "~bootstrap-sass/assets/stylesheets/bootstrap/print";
-// // @import "~bootstrap-sass/assets/stylesheets/bootstrap/glyphicons";
+// @import "~bootstrap-sass/assets/stylesheets/bootstrap/glyphicons";
 //
 // // Core CSS
-// // @import "~bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
+// @import "~bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
 // @import "~bootstrap-sass/assets/stylesheets/bootstrap/type";
 // @import "~bootstrap-sass/assets/stylesheets/bootstrap/code";
 // @import "~bootstrap-sass/assets/stylesheets/bootstrap/grid";
@@ -17,7 +17,7 @@
 // @import "~bootstrap-sass/assets/stylesheets/bootstrap/buttons";
 //
 // // Components
-// @import "~bootstrap-sass/assets/stylesheets/bootstrap/component-animations";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/component-animations";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/dropdowns";
 // @import "~bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
 // @import "~bootstrap-sass/assets/stylesheets/bootstrap/input-groups";
