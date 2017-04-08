@@ -1,3 +1,5 @@
+@import "../../scss/lib/theme/_vars.scss";
+
 .category {
   background: transparent;
   border: 1px solid gray;
@@ -8,7 +10,8 @@
 }
 
 .category_title {
-  background: gray;
+  background: $color-primary-dark;
+  color: $txt-color-white;
   width: 100%;
   height: 1.2em;
   text-align: center;

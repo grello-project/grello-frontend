@@ -1,10 +1,14 @@
 .tasks-view {
-  background-image: none;
-  background-color: white;
+  // background-image: none;
+  // background-color: white;
+  padding: 1em;
 }
 
 .category_view {
   display: flex;
+  width: 100vw;
+  min-height: 25vw;
+  overflow-x: scroll;
   border: 1px solid red;
 }
 
