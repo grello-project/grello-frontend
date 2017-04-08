@@ -7,3 +7,4 @@ before_script:
   - npm build install
   - npm run build
   - npm run lint
+  
