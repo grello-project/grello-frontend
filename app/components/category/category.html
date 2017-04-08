@@ -37,7 +37,7 @@
     dnd-list="categoryCtrl.category.tasks"
     >
       <li
-      ng-repeat="task in categoryCtrl.category.tasks"
+      ng-repeat="task in categoryCtrl.category.tasks | resolved"
       class="task_item"
       dnd-draggable="task"
       dnd-moved="categoryCtrl.category.tasks.splice($index, 1)"
