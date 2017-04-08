@@ -7,11 +7,15 @@
     "test": "test"
   },
   "scripts": {
+    "start": "node server.js",
     "build": "./node_modules/webpack/bin/webpack.js",
     "build-watch": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot",
     "test": "./node_modules/karma/bin/karma start --single-run",
     "test-watch": "./node_modules/karma/bin/karma start",
     "lint": "eslint ."
+  },
+  "engines": {
+   "node": "4.4.7"
   },
   "authors": [
     "Dan Peters <daniel.r.peters@icloud.com>",
