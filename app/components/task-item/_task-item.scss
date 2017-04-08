@@ -26,13 +26,40 @@
   cursor: grabbing;
 }
 
+.task-handle-centered {
+  display: flex;
+  align-items: center;
+}
+
 .task-content {
   min-width: 75%;
   max-width: 75%;
 }
 
+.task-h4 {
+  font-weight: bold;
+  // font-style: italic;
+  font-size: .80em;
+  color: $color-secondary-dark;
+  margin-bottom: 1em;
+}
+
+.task-document {
+  font-size: .75em;
+}
+
+.task-content-separator {
+  margin-top: .5em;
+  padding-top: .5em;
+  border-top: 1px solid $color-primary-light;
+}
+
+.task-comment {
+
+}
+
 .task-quote {
-  margin-top: .25em;
+
 }
 
 .drag_drop_icon {

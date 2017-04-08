@@ -2,7 +2,7 @@
   <h3 ng-show="categoryCtrl.category.categoryID !== 'newCat'"
       class="category_title">
       {{ categoryCtrl.title }}
-      <i ng-click="categoryCtrl.showSettings = !categoryCtrl.showSettings" class="material-icons">settings</i>
+      <i ng-hide="categoryCtrl.title==='uncategorized'" ng-click="categoryCtrl.showSettings = !categoryCtrl.showSettings" class="material-icons">settings</i>
   </h3>
 
   <div ng-show="categoryCtrl.showSettings" class="category_settings">

@@ -1,15 +1,25 @@
 <div class="inner-task-item">
-  <div>
-    <i class="material-icons icon-vertical-center">drag_handle</i>
+  <div class="task-handle-centered">
+    <i class="material-icons">drag_handle</i>
   </div>
   <div class="task-content">
-    <div class="task-quote">
+    <p class="task-document">
+      <a ng-href="{{ taskCtrl.task.link }}" target="_blank">Go to document</a>
+    </p>
+    <div class="task-comment task-content-separator">
+      <h4 class="task-h4">Assigned Task</h4>
       <p>
-        {{ taskCtrl.task.quote }}
-        <a ng-href="{{ taskCtrl.task.link }}" class="material-icons">chat</a>    
+        {{ taskCtrl.task.comment }}
       </p>
     </div>
-    <div ng-show="taskCtrl.showInfo" class="task-info">
+    <div class="task-quote task-content-separator">
+      <h4 class="task-h4">Document Text</h4>
+      <p>
+        {{ taskCtrl.task.quote }}
+      </p>
+    </div>
+    <div ng-show="taskCtrl.showInfo" class="task-info task-content-separator">
+      <h4 class="task-h4">Info</h4>
       <p>Created By: {{taskCtrl.task.author}}</p>
       <p>Date created: {{taskCtrl.task.assignedDate | date}}</p>
     </div>
