@@ -14,4 +14,10 @@ module.exports = {
 function taskController () {
   let self = this
 
+  self.showInfo = false
+
+  self.showInfoToggle = function () {
+    return self.showInfo = !self.showInfo
+  }
+
 }
