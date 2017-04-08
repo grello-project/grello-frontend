@@ -40,12 +40,22 @@ function categoryController ($log, $scope, taskService, categoryService) {
     self.showNewCategoryForm = false
   }
 
+  self.updateCategory = function () {
+    $log.debug('$categoryCtrl.updateCategory', self.category)
+    categoryService
+      .updateCategory(self.category.categoryID, self.title)
+      .then(() => {
+        $log.debug('category updated from ctrl')
+        self.showSettings = false
+      })
+  }
+
   self.deleteCategory = function () {
     $log.debug('$categoryCtrl.deleteCategory()')
     categoryService
       .deleteCategory(self.category.categoryID)
       .then(() => {
-        $log.debug('category deleted')
+        $log.debug('category deleted from ctrl')
       })
   }
 
