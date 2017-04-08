@@ -21,6 +21,7 @@ body {
   color: $txt-color-black;
   margin-left: .5em;
   font-size: 1.75em;
+  text-decoration: none;
 }
 
 main {
@@ -28,6 +29,7 @@ main {
 }
 
 .button {
+  text-decoration: none;
   padding: .5em;
   margin: .5em;
   background: $color-secondary;
@@ -37,6 +39,10 @@ main {
   border-radius: $btn-radius;
   cursor: pointer;
   transition: 350ms all;
+}
+
+.button a {
+  text-decoration: none;
 }
 
 .btn-std {

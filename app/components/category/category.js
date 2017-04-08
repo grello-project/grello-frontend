@@ -15,11 +15,13 @@ function categoryController ($log, $scope, taskService, categoryService) {
   let self = this
   self.showNewCategoryForm = false
   self.newCategoryName = null
+  self.editCategoryTitle = null
   self.showSettings = false
 
   self.$onInit = function () {
     $log.debug('this is the category:', self.category)
     self.title = self.category.categoryName
+    self.editCategoryTitle = self.title
     self.tasks_clone = angular.copy(self.category.tasks)
   }
 
@@ -42,12 +44,18 @@ function categoryController ($log, $scope, taskService, categoryService) {
 
   self.updateCategory = function () {
     $log.debug('$categoryCtrl.updateCategory', self.category)
+    self.title = self.editCategoryTitle
     categoryService
-      .updateCategory(self.category.categoryID, self.title)
+      .updateCategory(self.category.categoryID, self.editCategoryTitle)
       .then(() => {
         $log.debug('category updated from ctrl')
         self.showSettings = false
       })
+  }
+
+  self.cancelEdit = function () {
+    self.editCategoryTitle = self.title
+    self.showSettings = false
   }
 
   self.deleteCategory = function () {
