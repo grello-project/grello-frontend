@@ -79,11 +79,77 @@ function categoryService ($q, $log, $http, authService, taskService) {
       })
   }
 
-  service.updateCategories = function () {
-    service.categories.forEach( category => {
-      category.tasks.forEach( task => {
-        taskService.updateTask(task)
+  service.updateCategory = function (categoryID, title) {
+    $log.debug('categoryService.updateCategory()')
+    return authService
+      .getToken()
+      .then( token => {
+        let url = `${__API_URL__}/api/categories/${categoryID}`
+        let config = {
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+        return $http.put(url, {name: title, priority: service.categories.length}, config)
       })
+      .then( res => {
+        $log.debug('category was updated from service')
+
+        // for(let i = 0; i < service.galleries.length; i++) {
+        //   let curr = service.galleries[i];
+        //
+        //   if(curr._id === gallery._id) {
+        //     service.galleries[i] = res.data;
+        //     break;
+        //   }
+        // }
+        // })
+        // .catch(err => {
+        // $log.error(err.message);
+        // return $q.reject(err);
+        // });
+      })
+
+
+    // service.categories.forEach( category => {
+    //   $log.debug('THIS IS A CAT JESSICA', category)
+    //   category.tasks.forEach( task => {
+    //     taskService.updateTask(task)
+    //   })
+    // })
+  }
+
+  service.deleteCategory = function (id) {
+
+    $log.debug('categoryService.deleteCategory', id)
+    return authService
+      .getToken()
+      .then( token => {
+        let url = `${__API_URL__}/api/categories/${id}`
+        let config = {
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+        }
+        return $http.delete(url, config)
+      })
+      .then(() => {
+        $log.log('category deleted from service')
+
+        for(let i = 0; i < service.categories.length; i++) {
+          let curr = service.categories[i]
+          if(curr.categoryID === id) {
+            service.categories.splice(i, 1)
+            break
+          }
+        }
+
+      })
+    .catch(err => {
+      $log.error(err.message)
+      return $q.reject(err)
     })
   }
 

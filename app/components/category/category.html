@@ -1,30 +1,50 @@
-
 <div class="inner_category">
   <h3 ng-show="categoryCtrl.category.categoryID !== 'newCat'"
       class="category_title">
       {{ categoryCtrl.title }}
+      <i ng-click="categoryCtrl.showSettings = !categoryCtrl.showSettings" class="material-icons">settings</i>
   </h3>
-  <ul ng-show="categoryCtrl.category.categoryID !== 'newCat'"
-      class="task_list"
-      dnd-list="categoryCtrl.category.tasks"
-      >
-    <li
+
+  <div ng-show="categoryCtrl.showSettings" class="category_settings">
+    <p>Note: Deleting a category will move all tasks to uncategorized bucket.</p>
+    <form
+      name="settingsForm"
+      ng-submit="categoryCtrl.updateCategory()"
+      novalidate>
+      <label>Category name:</label>
+      <input class="input-std"
+        type="text"
+        name="category title"
+        ng-model="categoryCtrl.title"
+        required>
+        <button type="button" ng-click="categoryCtrl.showSettings = false">Cancel</button>
+        <button type="button" ng-click="categoryCtrl.deleteCategory()">Delete</button>
+        <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <div ng-show="!categoryCtrl.showSettings">
+    <ul ng-show="categoryCtrl.category.categoryID !== 'newCat'"
+    class="task_list"
+    dnd-list="categoryCtrl.category.tasks"
+    >
+      <li
       ng-repeat="task in categoryCtrl.category.tasks"
       class="task_item"
       dnd-draggable="task"
       dnd-moved="categoryCtrl.category.tasks.splice($index, 1)"
       dnd-effect-allowed="move"
       >
-      <task-item task='task'></task-item>
-    </li>
-  </ul>
+        <task-item task='task'></task-item>
+      </li>
+    </ul>
   <div
-    ng-show="categoryCtrl.category.categoryID === 'newCat' && !categoryCtrl.showNewCategoryForm"
-    ng-click="categoryCtrl.showNewCategoryForm = true">
-    <img id="newCatPlus" src="../../assets/noun_705280.svg" />
-    <p id="newCatMsg">
-      Add a new category
-    </p>
+  ng-show="categoryCtrl.category.categoryID === 'newCat' && !categoryCtrl.showNewCategoryForm"
+  ng-click="categoryCtrl.showNewCategoryForm = true">
+  <img id="newCatPlus" src="../../assets/noun_705280.svg" />
+  <p id="newCatMsg">
+    Add a new category
+  </p>
   </div>
   <div ng-show="categoryCtrl.showNewCategoryForm">
     <form ng-submit="categoryCtrl.createNewCategory()">
@@ -33,5 +53,6 @@
       <button type='reset' ng-click="categoryCtrl.showNewCategoryForm = false">Cancel</button>
       <button type="submit">Submit</button>
     </form>
+  </div>
   </div>
 </div>
