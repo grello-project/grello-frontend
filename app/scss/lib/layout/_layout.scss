@@ -8,7 +8,7 @@ body {
 }
 
 .main-header {
-  min-height: 10vh;
+  min-height: 4em;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,6 +20,7 @@ body {
   cursor: hand;
   color: $txt-color-black;
   margin-left: .5em;
+  font-size: 1.75em;
 }
 
 main {

@@ -8,10 +8,14 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  // align-items: center;
   position: relative;
   padding: 1em;
-  box-shadow: 5px 5px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.3);
+}
+
+.inner-task-item:active {
+  box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.3);
 }
 
 .task_item:hover {
@@ -25,6 +29,10 @@
 .task-content {
   min-width: 75%;
   max-width: 75%;
+}
+
+.task-quote {
+  margin-top: .25em;
 }
 
 .drag_drop_icon {
@@ -43,4 +51,8 @@
 .task-info {
   margin-top: 1em;
   // transition:all linear 1s;
+}
+
+.icon-vertical-center {
+  margin: 50% auto;
 }
