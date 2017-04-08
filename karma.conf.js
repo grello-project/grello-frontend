@@ -23,13 +23,7 @@ module.exports = function(config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome', 'Chrome_without_security', 'PhantomJS'],
-    customLaunchers: {
-      Chrome_without_security: {
-        base: 'Chrome',
-        flags: ['__disable-web-security']
-      }
-    },
+    browsers: ['PhantomJS'],
     singleRun: false,
     concurrency: Infinity
   })
