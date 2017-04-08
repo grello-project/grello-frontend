@@ -15,6 +15,7 @@ function categoryController ($log, $scope, taskService, categoryService) {
   let self = this
   self.showNewCategoryForm = false
   self.newCategoryName = null
+  self.showSettings = false
 
   self.$onInit = function () {
     $log.debug('this is the category:', self.category)
@@ -37,6 +38,26 @@ function categoryController ($log, $scope, taskService, categoryService) {
         $log.debug('resolved')
       })
     self.showNewCategoryForm = false
+  }
+
+  self.updateCategory = function () {
+    $log.debug('$categoryCtrl.updateCategory', self.category)
+    categoryService
+      .updateCategory(self.category.categoryID, self.title)
+      .then(() => {
+        $log.debug('category updated from ctrl')
+        self.showSettings = false
+      })
+  }
+
+  self.deleteCategory = function () {
+    $log.debug('$categoryCtrl.deleteCategory()')
+    categoryService
+      .deleteCategory(self.category.categoryID)
+      .then(() => {
+        $log.debug('category deleted from ctrl')
+        self.showSettings = false
+      })
   }
 
   function updateTasks () {

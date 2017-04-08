@@ -1,11 +1,27 @@
-<div class="task_item">
-  <div class="left_icon">
-    <img class="drag_drop_icon" src="../../assets/noun_31655.svg" alt="drag drop icon" />
+<div class="inner-task-item">
+  <div>
+    <i class="material-icons icon-vertical-center">drag_handle</i>
   </div>
-  <uib-accordion class="right_content">
-    <div uib-accordion-group heading="{{ taskCtrl.task.quote }}">
+  <div class="task-content">
+    <div class="task-quote">
+      <p>
+        {{ taskCtrl.task.quote }}
+        <a ng-href="{{ taskCtrl.task.link }}" class="material-icons">chat</a>    
+      </p>
+    </div>
+    <div ng-show="taskCtrl.showInfo" class="task-info">
       <p>Created By: {{taskCtrl.task.author}}</p>
       <p>Date created: {{taskCtrl.task.assignedDate | date}}</p>
     </div>
-  </uib-accordion>
+    <!-- <uib-accordion class="right_content">
+      <div uib-accordion-group heading="{{ taskCtrl.task.quote }}">
+        <p>Created By: {{taskCtrl.task.author}}</p>
+        <p>Date created: {{taskCtrl.task.assignedDate | date}}</p>
+      </div>
+    </uib-accordion> -->
+  </div>
+  <div ng-click="taskCtrl.showInfoToggle()">
+    <i ng-show="!taskCtrl.showInfo" class="material-icons icon-vertical-center">info_outline</i>
+    <i ng-show="taskCtrl.showInfo" class="material-icons icon-vertical-center">close</i>
+  </div>
 </div>

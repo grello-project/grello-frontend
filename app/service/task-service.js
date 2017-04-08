@@ -1,66 +1,5 @@
 'use strict'
 
-let testResponse = {}
-testResponse.data = [
-  {
-    _id: 1,
-    comment: 'task1',
-    priority: 1,
-    category: {
-      _id: '000',
-      name: 'uncategorized',
-      priority: 1
-    },
-    document: {
-      _id: 1,
-      name: 'document1'
-    },
-    user: '123'
-  },{
-    _id: 2,
-    comment: 'task2',
-    priority: 2,
-    category: {
-      _id: '000',
-      name: 'uncategorized',
-      priority: 1
-    },
-    document: {
-      _id: 1,
-      name: 'document1'
-    },
-    user: '123'
-  },{
-    _id: 3,
-    comment: 'task3',
-    priority: 3,
-    category: {
-      _id: '001',
-      name: 'P0',
-      priority: 2
-    },
-    document: {
-      _id: 1,
-      name: 'document1'
-    },
-    user: '123'
-  },{
-    _id: 4,
-    comment: 'task4',
-    priority: 4,
-    category: {
-      _id: '001',
-      name: 'P0',
-      priority: 2
-    },
-    document: {
-      _id: 1,
-      name: 'document1'
-    },
-    user: '123'
-  }
-]
-
 module.exports = ['$q', '$log', '$http', 'authService', taskService]
 
 function taskService($q, $log, $http, authService) {
@@ -84,7 +23,6 @@ function taskService($q, $log, $http, authService) {
           Authorization: `Bearer ${token}`
         }
       }
-      // return $q.resolve(testResponse)
       return $http.get(url, config)
     })
     .then( res => {

@@ -1,26 +1,28 @@
-<section>
-  <nav>
-    <h1 class="logo"><a class="home-tag logo" href="#!/tasks">Wattle</a></h1>
+<nav>
 
-    <div ng-hide="navbarCtrl.hideButtons" uib-dropdown is-open="status.isopen">
+  <div ng-hide="navbarCtrl.hideButtons" uib-dropdown is-open="status.isopen">
 
-      <div class="profile">
-        <h3>Welcome, {{navbarCtrl.user.name}}</h3>
-        <img class="profile-pic" uib-dropdown-toggle ng-disabled="disabled"
-        ng-src="{{navbarCtrl.user.profilePic}}"/>
-      </div>
-
-      <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu">
-        <li role="menuitem"><a href='#'>Settings</a></li>
-        <li role="menuitem" ng-click="navbarCtrl.logout()"><a href='#'>Logout</a></li>
-      </ul>
+    <div
+    class="profile"
+    uib-dropdown-toggle>
+      <h3 class="greeting">Welcome, {{navbarCtrl.user.name}}!</h3>
+      <img class="profile-pic"
+      ng-disabled="disabled"
+      ng-src="{{navbarCtrl.user.profilePic}}"
+      ng-show="navbarCtrl.user.profilePic"/>
+      <i ng-show="!navbarCtrl.user.profilePic" class="material-icons profile-pic">face</i>
     </div>
 
-    <!--show if the user is not logged in -->
-    <div ng-hide="navbarCtrl.hideLogButtons" class="buttons in-nav">
-      <button class="login">LOGIN</button>
-    </div>
+    <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu">
+      <li role="menuitem"><a href='#'>Settings</a></li>
+      <li role="menuitem" ng-click="navbarCtrl.logout()"><a href='#'>Logout</a></li>
+    </ul>
+  </div>
+
+  <!--show if the user is not logged in -->
+  <div ng-hide="navbarCtrl.hideLogButtons" class="buttons in-nav">
+    <button class="button login">LOGIN</button>
+  </div>
 
 
-  </nav>
-</section>
+</nav>

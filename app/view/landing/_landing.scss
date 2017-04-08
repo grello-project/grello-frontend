@@ -1,43 +1,69 @@
 .landing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-image: url('../../assets/landing-background.jpg');
-  position: fixed;
+  // position: fixed;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   background-position: center;
-  padding: 0;
-  margin: 0;
-  left: 0;
+  // padding: 0;
+  // margin: 0;
+  // left: 0;
   width: 100%;
-  height: 100%;
+  height: 95vh;
 }
 
-.main {
-  max-width: 40%;
+@media (min-width: 700px) {
+  .dialog-box {
+    max-width: 20%;
+    min-height: 20%;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    background: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    // margin-left: auto ;
+    // margin-right: auto ;
+    // margin-top: 10%;
+    padding: 5% 10%;
+  }
+
+  .dialog-text {
+    color: black;
+    font-weight: bold;
+    font-size: 2em;
+  }
+}
+
+.dialog-box {
+  min-height: 20%;
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.9);
   text-align: center;
-  margin-left: auto ;
-  margin-right: auto ;
-  margin-top: 10%;
+  // margin-left: auto ;
+  // margin-right: auto ;
+  // margin-top: 10%;
   padding: 5% 10%;
+  box-shadow: 5px 5px 1px rgba(0, 0, 0, 0.3);
+}
+
+.dialog-text {
+  color: black;
+  font-weight: bold;
+  font-size: 2em;
 }
 
 .get-started {
-  font-size: 18px;
-  color: white;
+font-size: 18px;
+color: white;
 }
 
 .get-started-button {
   margin: 5% 15% 0 15%;
   padding: 3% 12%;
-}
-
-.main-para {
-  color: black;
-  font-weight: bold;
-  font-size: 2em;
 }

@@ -1,13 +1,21 @@
-.task_item {
-  border: 1px solid black;
-  margin-top: 1em;
+@import "../../scss/lib/theme/_vars.scss";
+
+.inner-task-item {
+  border: 1px solid $color-primary-dark;
+  margin: 1em;
   min-height: 3em;
   min-width: 19em;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  // align-items: center;
   position: relative;
   padding: 1em;
+  box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.3);
+}
+
+.inner-task-item:active {
+  box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.3);
 }
 
 .task_item:hover {
@@ -18,11 +26,33 @@
   cursor: grabbing;
 }
 
+.task-content {
+  min-width: 75%;
+  max-width: 75%;
+}
+
+.task-quote {
+  margin-top: .25em;
+}
+
 .drag_drop_icon {
   max-width: 2em;
   max-height: 2em;
 }
-.left_icon {
-  margin: .5em;
-  min-width: 2em;
+
+.item-left {
+  align-self: flex-start;
+}
+
+.item-right {
+  align-self: flex-end;
+}
+
+.task-info {
+  margin-top: 1em;
+  // transition:all linear 1s;
+}
+
+.icon-vertical-center {
+  margin: 50% auto;
 }
