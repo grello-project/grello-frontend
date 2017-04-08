@@ -18,17 +18,22 @@
         {{ taskCtrl.task.quote }}
       </p>
     </div>
-    <div ng-show="taskCtrl.showInfo" class="task-info task-content-separator">
-      <h4 class="task-h4">Info</h4>
-      <p>Created By: {{taskCtrl.task.author}}</p>
-      <p>Date created: {{taskCtrl.task.assignedDate | date}}</p>
-    </div>
-    <!-- <uib-accordion class="right_content">
-      <div uib-accordion-group heading="{{ taskCtrl.task.quote }}">
+    <div ng-show="taskCtrl.showInfo">
+      <div class="task-replies task-content-separator" ng-show="taskCtrl.task.replies.length">
+        <h4 class="task-h4">Replies</h4>
+        <div class="reply" ng-repeat="reply in taskCtrl.task.replies">
+          <i class="material-icons md-18">subdirectory_arrow_right</i>
+          <p>
+            {{ reply.content }}
+          </p>
+        </div>
+      </div>
+      <div class="task-info task-content-separator">
+        <h4 class="task-h4">Info</h4>
         <p>Created By: {{taskCtrl.task.author}}</p>
         <p>Date created: {{taskCtrl.task.assignedDate | date}}</p>
       </div>
-    </uib-accordion> -->
+      </div>
   </div>
   <div ng-click="taskCtrl.showInfoToggle()">
     <i ng-show="!taskCtrl.showInfo" class="material-icons icon-vertical-center">info_outline</i>

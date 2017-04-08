@@ -28,6 +28,10 @@ header {
   z-index: 1;
 }
 
+h1, h2, h3 {
+  text-decoration: none;
+}
+
 h1 {
   font-size: 3em;
   // margin-bottom: $gutter-sm;
@@ -54,11 +58,11 @@ a {
 }
 
 input[type="text"] {
-  width: 100%;
-  padding: 1.5vw 2vw;
-  // font-size: 2vw;
-  border: solid 1px $color-secondary;
-  border-radius: $btn-radius;
+  width: 75%;
+  padding: .5em 1em;
+  margin: 1em 1em 1em 0;
+  border: solid 1px #e53635;
+  border-radius: 0em;
   box-sizing: border-box;
 
   &:focus {
@@ -78,3 +82,17 @@ input[disabled="disabled"] {
 fieldset {
   margin: 2% 0;
 }
+
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
