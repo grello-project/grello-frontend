@@ -56,6 +56,7 @@ function categoryController ($log, $scope, taskService, categoryService) {
       .deleteCategory(self.category.categoryID)
       .then(() => {
         $log.debug('category deleted from ctrl')
+        self.showSettings = false
       })
   }
 

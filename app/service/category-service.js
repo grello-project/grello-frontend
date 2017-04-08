@@ -96,12 +96,20 @@ function categoryService ($q, $log, $http, authService, taskService) {
       })
       .then( res => {
         $log.debug('category was updated from service')
-        // service.categories.push(new uniqueCategory(
-        //   res.data._id,
-        //   res.data.name,
-        //   res.data.priority,
-        //   res.data
-        // ))
+
+        // for(let i = 0; i < service.galleries.length; i++) {
+        //   let curr = service.galleries[i];
+        //
+        //   if(curr._id === gallery._id) {
+        //     service.galleries[i] = res.data;
+        //     break;
+        //   }
+        // }
+        // })
+        // .catch(err => {
+        // $log.error(err.message);
+        // return $q.reject(err);
+        // });
       })
 
 
@@ -113,13 +121,13 @@ function categoryService ($q, $log, $http, authService, taskService) {
     // })
   }
 
-  service.deleteCategory = function (categoryID) {
+  service.deleteCategory = function (id) {
 
-    $log.debug('categoryService.deleteCategory', categoryID)
+    $log.debug('categoryService.deleteCategory', id)
     return authService
       .getToken()
       .then( token => {
-        let url = `${__API_URL__}/api/categories/${categoryID}`
+        let url = `${__API_URL__}/api/categories/${id}`
         let config = {
           headers: {
             Authorization: `Bearer ${token}`
@@ -130,21 +138,19 @@ function categoryService ($q, $log, $http, authService, taskService) {
       .then(() => {
         $log.log('category deleted from service')
 
-        // for(let i = 0; i < service.galleries.length; i++) {
-        //   let curr = service.galleries[i]
-        //
-        //   if(curr._id === id) {
-        //     service.galleries.splice(i, 1)
-        //     break
-        //   }
-        // }
+        for(let i = 0; i < service.categories.length; i++) {
+          let curr = service.categories[i]
+          if(curr.categoryID === id) {
+            service.categories.splice(i, 1)
+            break
+          }
+        }
 
       })
-    // .catch(err => {
-    //   $log.error(err.message)
-    //   return $q.reject(err)
-    // })
-
+    .catch(err => {
+      $log.error(err.message)
+      return $q.reject(err)
+    })
   }
 
   return service
