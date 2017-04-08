@@ -1,8 +1,9 @@
-<h3 ng-show="categoryCtrl.category.categoryID !== 'newCat'"
-    class="category_title">
-    {{ categoryCtrl.title }}
-</h3>
+
 <div class="inner_category">
+  <h3 ng-show="categoryCtrl.category.categoryID !== 'newCat'"
+      class="category_title">
+      {{ categoryCtrl.title }}
+  </h3>
   <ul ng-show="categoryCtrl.category.categoryID !== 'newCat'"
       class="task_list"
       dnd-list="categoryCtrl.category.tasks"

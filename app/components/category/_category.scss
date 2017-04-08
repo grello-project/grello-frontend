@@ -18,8 +18,10 @@
 }
 
 .inner_category {
+  min-height: 25em;
   margin: 1em;
-  padding: 1em;
+  border: 1px solid $color-primary-dark;
+  box-shadow: 5px 5px 1px rgba(0, 0, 0, 0.3);
 }
 
 .task-item {
@@ -43,9 +45,9 @@ ul[dnd-list] .dndPlaceholder {
   min-height: 20em;
 }
 
-#newCat {
+#newCat .inner_category {
   border: 1px dashed gray;
-  margin-right: 10em;
+  // margin-right: 10em;
 }
 
 #newCatPlus {

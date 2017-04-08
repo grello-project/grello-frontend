@@ -1,11 +1,26 @@
 <div class="inner-task-item">
-  <div class="left_icon">
+  <div>
     <i class="material-icons">drag_handle</i>
   </div>
-  <uib-accordion class="right_content">
-    <div uib-accordion-group heading="{{ taskCtrl.task.quote }}">
+  <div class="task-content">
+    <div class="task-quote">
+      <p>
+        {{ taskCtrl.task.quote }}
+      </p>
+    </div>
+    <div ng-show="taskCtrl.showInfo" class="task-info">
       <p>Created By: {{taskCtrl.task.author}}</p>
       <p>Date created: {{taskCtrl.task.assignedDate | date}}</p>
     </div>
-  </uib-accordion>
+    <!-- <uib-accordion class="right_content">
+      <div uib-accordion-group heading="{{ taskCtrl.task.quote }}">
+        <p>Created By: {{taskCtrl.task.author}}</p>
+        <p>Date created: {{taskCtrl.task.assignedDate | date}}</p>
+      </div>
+    </uib-accordion> -->
+  </div>
+  <div ng-click="taskCtrl.showInfoToggle()">
+    <i ng-show="!taskCtrl.showInfo" class="material-icons">info_outline</i>
+    <i ng-show="taskCtrl.showInfo" class="material-icons">close</i>
+  </div>
 </div>

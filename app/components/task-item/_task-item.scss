@@ -1,10 +1,14 @@
+@import "../../scss/lib/theme/_vars.scss";
+
 .inner-task-item {
-  border: 1px solid black;
+  border: 1px solid $color-primary-dark;
+  margin: 1em;
   min-height: 3em;
   min-width: 19em;
   display: flex;
   flex-direction: row;
-  // align-items: center;
+  justify-content: space-between;
+  align-items: center;
   position: relative;
   padding: 1em;
   box-shadow: 5px 5px 1px rgba(0, 0, 0, 0.3);
@@ -18,11 +22,25 @@
   cursor: grabbing;
 }
 
+.task-content {
+  min-width: 75%;
+  max-width: 75%;
+}
+
 .drag_drop_icon {
   max-width: 2em;
   max-height: 2em;
 }
-.left_icon {
-  margin: .5em;
-  min-width: 2em;
+
+.item-left {
+  align-self: flex-start;
+}
+
+.item-right {
+  align-self: flex-end;
+}
+
+.task-info {
+  margin-top: 1em;
+  // transition:all linear 1s;
 }
