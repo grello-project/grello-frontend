@@ -31,7 +31,9 @@ function NavbarController($log, $location, $rootScope, authService, profileServi
   const deregistrationCallback = $rootScope.$on('$locationChangeSuccess', () => {
     this.checkPath()
     profileService.getUser()
-    .then(user => this.user = user)
+    .then(user => {
+      this.user = user
+    })
     .catch(err => $log.error(err))
   })
 

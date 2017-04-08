@@ -8,9 +8,9 @@ body {
 }
 
 .main-header {
-  min-height: 5vh;
+  min-height: 10vh;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -20,10 +20,6 @@ body {
   cursor: hand;
   color: $txt-color-black;
   margin-left: .5em;
-}
-
-nav {
-  // margin-right: .5em;
 }
 
 main {
