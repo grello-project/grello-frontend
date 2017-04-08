@@ -81,10 +81,45 @@ function categoryService ($q, $log, $http, authService, taskService) {
 
   service.updateCategories = function () {
     service.categories.forEach( category => {
+      $log.debug('THIS IS A CAT JESSICA', category)
       category.tasks.forEach( task => {
         taskService.updateTask(task)
       })
     })
+  }
+
+  service.deleteCategory = function (categoryID) {
+
+    $log.debug('categoryService.deleteCategory', categoryID)
+    return authService
+      .getToken()
+      .then( token => {
+        let url = `${__API_URL__}/api/categories/${categoryID}`
+        let config = {
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+        }
+        return $http.delete(url, config)
+      })
+      .then(() => {
+        $log.log('category deleted')
+
+        // for(let i = 0; i < service.galleries.length; i++) {
+        //   let curr = service.galleries[i]
+        //
+        //   if(curr._id === id) {
+        //     service.galleries.splice(i, 1)
+        //     break
+        //   }
+        // }
+
+      })
+    // .catch(err => {
+    //   $log.error(err.message)
+    //   return $q.reject(err)
+    // })
+
   }
 
   return service

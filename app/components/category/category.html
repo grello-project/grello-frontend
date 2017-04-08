@@ -1,8 +1,28 @@
 <h3 ng-show="categoryCtrl.category.categoryID !== 'newCat'"
     class="category_title">
     {{ categoryCtrl.title }}
+    <i ng-click="categoryCtrl.showSettings = !categoryCtrl.showSettings" class="material-icons">settings</i>
 </h3>
-<div class="inner_category">
+
+<div ng-show="categoryCtrl.showSettings" class="category_settings">
+  <p>Note: Deleting a category will move all tasks to uncategorized bucket.</p>
+  <form
+    name="settingsForm"
+    ng-submit="categoryCtrl.deleteCategory()"
+    novalidate>
+    <span class="input-label">Category Title:</span>
+    <input class="input-std"
+      type="text"
+      name="category title"
+      ng-model="categoryCtrl.title"
+      required>
+    <input type="submit" ng-click="categoryCtrl.showSettings = false" class="btn-std" value="Delete">
+    <input type="submit" class="btn-std" value="Edit">
+  </form>
+
+</div>
+
+<div ng-show="!categoryCtrl.showSettings" class="inner_category">
   <ul ng-show="categoryCtrl.category.categoryID !== 'newCat'"
       class="task_list"
       dnd-list="categoryCtrl.category.tasks"
