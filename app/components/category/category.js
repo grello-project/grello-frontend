@@ -4,7 +4,7 @@ require('./_category.scss')
 
 module.exports = {
   template: require('./category.html'),
-  controller: ['$log', '$scope', 'taskService', 'categoryService', categoryController],
+  controller: ['$log', '$scope', '$state', 'taskService', 'categoryService', categoryController],
   controllerAs: 'categoryCtrl',
   bindings: {
     category: '<'
@@ -65,6 +65,7 @@ function categoryController ($log, $scope, taskService, categoryService) {
       .then(() => {
         $log.debug('category deleted from ctrl')
         self.showSettings = false
+        $state.reload()
       })
   }
 
