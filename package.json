@@ -6,7 +6,12 @@
   "directories": {
     "test": "test"
   },
+  "engines": {
+  "node": "4.4.7"
+  },
   "scripts": {
+    "start": "node server.js",
+    "heroku-postbuild": "webpack -p --progress",
     "build": "./node_modules/webpack/bin/webpack.js",
     "build-watch": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot",
     "test": "./node_modules/karma/bin/karma start --single-run",
