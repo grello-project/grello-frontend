@@ -8,7 +8,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  // align-items: center;
   position: relative;
   padding: 1em;
   box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.3);
@@ -38,7 +37,6 @@
 
 .task-h4 {
   font-weight: bold;
-  // font-style: italic;
   font-size: .80em;
   color: $color-secondary-dark;
   margin-bottom: 1em;
@@ -52,14 +50,6 @@
   margin-top: 1.2em;
   padding-top: .5em;
   border-top: 1px solid $color-primary-light;
-}
-
-.task-comment {
-
-}
-
-.task-quote {
-
 }
 
 .reply {
@@ -83,7 +73,6 @@
 
 .task-info {
   margin-top: 1em;
-  // transition:all linear 1s;
 }
 
 .icon-vertical-center {

@@ -1,9 +1,6 @@
 @import "../../scss/lib/theme/_vars.scss";
 
 .tasks-view {
-  // background-image: none;
-  // background-color: white;
-  // padding: 1em;
   padding-top: 2em;
   padding-bottom: 2em;
 }
@@ -16,16 +13,13 @@
 .category_view {
   display: flex;
   flex-direction: row;
-  // width: 100vw;
   min-height: 50vw;
   overflow-x: scroll;
-  // border: 1px solid red;
 }
 
 .category_box {
   min-height: 15em;
   min-width: 100%;
-  // max-width: 30%;
 }
 
 @media (min-width:550px) {

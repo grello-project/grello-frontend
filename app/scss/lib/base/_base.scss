@@ -6,7 +6,6 @@ html, body {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   background: $txt-color-white;
-  // color: $btn-primary * 1.5;
 }
 
 @media (max-width: 900px) {
@@ -34,17 +33,14 @@ h1, h2, h3 {
 
 h1 {
   font-size: 3em;
-  // margin-bottom: $gutter-sm;
 }
 
 h2 {
   font-size: 2.5em;
-  // margin: $gutter-sm / 2 0;
 }
 
 h3 {
   font-size: 2em;
-  // margin-bottom: $gutter-sm;
 }
 
 p {
@@ -52,9 +48,7 @@ p {
 }
 
 a {
-  // text-decoration: none;
   color: $color-primary-dark;
-  // font-weight: 700;
 }
 
 input[type="text"] {

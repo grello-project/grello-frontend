@@ -28,7 +28,7 @@ describe('auth-service', function() {
 
       this.authService.getToken()
       .then( token => {
-        expect(token).toEqual('test')
+        expect(token).toEqual('test token')
       })
       .catch( err => {
         expect(err).toEqual(null)
@@ -37,13 +37,6 @@ describe('auth-service', function() {
       this.$rootScope.$apply()
     })
   })
-
-  describe('authService.login()', () => {
-    it('should be a function', () => {
-      expect(typeof this.authService.login).toEqual('function')
-    })
-  })
-
 
   describe('authService.getToken()', () => {
     it('should return a token', () => {
@@ -52,7 +45,7 @@ describe('auth-service', function() {
 
       this.authService.getToken()
       .then( token => {
-        expect(token).toEqual('test')
+        expect(token).toEqual('test token')
       })
       .catch( err => {
         expect(err).toEqual(null)
@@ -63,20 +56,13 @@ describe('auth-service', function() {
   })
 
   describe('authService.logout()', () => {
-    it('should be a function', () => {
-      expect(typeof this.authService.getToken).toEqual('function')
-    })
-  })
-
-
-  describe('authService.logout()', () => {
     it('should logout the user', () => {
       this.authService.token = null
       this.$window.localStorage.setItem('token', 'test token')
 
       this.authService.getToken()
       .then( token => {
-        expect(token).toEqual('test')
+        expect(token).toEqual('test token')
       })
       .catch( err => {
         expect(err).toEqual(null)
@@ -91,12 +77,6 @@ describe('auth-service', function() {
       })
 
       this.$rootScope.$apply()
-    })
-  })
-
-  describe('authService.logout()', () => {
-    it('should be a function', () => {
-      expect(typeof this.authService.logout).toEqual('function')
     })
   })
 
