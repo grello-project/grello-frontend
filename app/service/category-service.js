@@ -97,30 +97,6 @@ function categoryService ($q, $log, $http, authService, taskService) {
       .then( res => {
         $log.debug('category was updated from service')
 
-        // for(let i = 0; i < service.galleries.length; i++) {
-        //   let curr = service.galleries[i];
-        //
-        //   if(curr._id === gallery._id) {
-        //     service.galleries[i] = res.data;
-        //     break;
-        //   }
-        // }
-        // })
-        // .catch(err => {
-        // $log.error(err.message);
-        // return $q.reject(err);
-        // });
-      })
-
-
-    // service.categories.forEach( category => {
-    //   $log.debug('THIS IS A CAT JESSICA', category)
-    //   category.tasks.forEach( task => {
-    //     taskService.updateTask(task)
-    //   })
-    // })
-  }
-
   service.deleteCategory = function (id) {
 
     $log.debug('categoryService.deleteCategory', id)
