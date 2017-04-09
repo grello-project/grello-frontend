@@ -5,9 +5,28 @@
   padding-bottom: 2em;
 }
 
+.title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .task-page-title {
   margin-left: 1.25em;
   font-size: 2rem;
+}
+
+.task-page-refresh {
+  margin-right: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.refresh-title {
+  text-align: center;
+  font-size: .75em;
 }
 
 .category_view {

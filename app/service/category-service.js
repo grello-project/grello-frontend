@@ -17,6 +17,7 @@ function categoryService ($q, $log, $http, authService, taskService) {
   service.categories = []
 
   service.fetchCategories = function () {
+    service.categories = []
     return taskService
       .fetchTasks()
       .then(tasks => {

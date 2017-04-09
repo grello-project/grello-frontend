@@ -7,17 +7,18 @@ module.exports = [
   '$scope',
   '$log',
   'authService',
+  'taskService',
   'categoryService',
   TasksController
 ]
 
-function TasksController ($location, $scope, $log, authService, categoryService) {
+function TasksController ($location, $scope, $log, authService, taskService, categoryService) {
   const self = this
-  self.models = {
-    selected: null,
-    categories: []
-  }
-
+  // self.models = {
+  //   selected: null,
+  //   categories: []
+  // }
+  self.categories = null
   // this is a special placeholder category for creating new categories
   let newCategory = function (i) {
     this.categoryID = 'newCat'
@@ -35,12 +36,29 @@ function TasksController ($location, $scope, $log, authService, categoryService)
         .fetchCategories()
         .then( categories => {
           $log.debug('self.categories assigned to categories')
-          self.models.categories = categories
+          self.categories = categories
         })
     })
     .catch( err => {
       $log.debug(err)
       $location.url('/')
     })
+
+  self.refresh = function () {
+    taskService
+      .refresh()
+      .then( () => {
+        return categoryService
+          .fetchCategories()
+          .then( categories => {
+            $log.debug('self.categories assigned to categories')
+            self.categories = categories
+            $log.debug(self.categories)
+          })
+      })
+      .catch( err => {
+        $log.error(err)
+      })
+  }
 
 }

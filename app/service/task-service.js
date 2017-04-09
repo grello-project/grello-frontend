@@ -98,5 +98,27 @@ function taskService($q, $log, $http, authService) {
     })
   }
 
+  service.refresh = function() {
+    $log.debug('refresh')
+
+    return authService
+      .getToken()
+      .then( token => {
+        let url = `${__API_URL__}/api/google/tasks`
+        let config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+
+        return $http.put(url,{},config)
+      })
+      .catch( err => {
+        $log.error(err.message)
+        return $q.reject(err)
+      })
+
+  }
+
   return service
 }
