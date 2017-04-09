@@ -96,6 +96,9 @@ function categoryService ($q, $log, $http, authService, taskService) {
       })
       .then( res => {
         $log.debug('category was updated from service')
+      })
+  }
+
 
   service.deleteCategory = function (id) {
 
