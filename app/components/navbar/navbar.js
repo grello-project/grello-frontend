@@ -27,7 +27,7 @@ function NavbarController($log, $location, $rootScope, authService, profileServi
   const googleAuthResponseType = 'response_type=code'
   const googleAuthClientID = `client_id=${__CLIENT_ID__}`
   const googleAuthScope = 'scope=profile%20email%20openid%20https://www.googleapis.com/auth/drive'
-  const googleAuthRedirectURI = 'redirect_uri=http://localhost:3000/auth/google/callback'
+  const googleAuthRedirectURI = `redirect_uri=${__API_URL__}/auth/google/callbac`
   const googleAuthAccessType = 'access_type=offline'
   const googleAuthPrompt = 'prompt=consent'
 
