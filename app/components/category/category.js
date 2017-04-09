@@ -40,6 +40,7 @@ function categoryController ($log, $scope, taskService, categoryService) {
         $log.debug('resolved')
       })
     self.showNewCategoryForm = false
+    self.newCategoryName = null
   }
 
   self.updateCategory = function () {
@@ -66,6 +67,11 @@ function categoryController ($log, $scope, taskService, categoryService) {
         $log.debug('category deleted from ctrl')
         self.showSettings = false
       })
+  }
+
+  self.cancelNewCategoryForm  = function () {
+    self.showNewCategoryForm = false
+    self.newCategoryName = null
   }
 
   function updateTasks () {

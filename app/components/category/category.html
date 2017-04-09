@@ -54,12 +54,25 @@
     Add a new category
   </p>
   </div>
-  <div ng-show="categoryCtrl.showNewCategoryForm">
-    <form ng-submit="categoryCtrl.createNewCategory()">
-      <label>Category name:</label>
-      <input ng-model="categoryCtrl.newCategoryName" />
-      <button type='reset' ng-click="categoryCtrl.showNewCategoryForm = false">Cancel</button>
-      <button type="submit">Submit</button>
+  <div
+    ng-show="categoryCtrl.showNewCategoryForm"
+    class="category-settings">
+    <form
+      class="edit-category"
+      name="newCategoryForm"
+      ng-submit="categoryCtrl.createNewCategory()"
+      novalidate>
+      <label>New Category Name:</label>
+      <input
+        class="input-std"
+        type="text"
+        name="category title"
+        ng-model="categoryCtrl.newCategoryName"
+        required/>
+      <div class="button-group">
+        <button type="button" ng-click="categoryCtrl.cancelNewCategoryForm()">Cancel</button>
+        <button type="submit">Submit</button>
+      </div>
     </form>
   </div>
   </div>
