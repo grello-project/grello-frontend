@@ -7,24 +7,24 @@ module.exports = ['$log', '$location', '$rootScope', 'authService', LandingContr
 function LandingController($log, $location, $rootScope, authService) {
   $log.debug('LandingController')
 
-  const token = $location.search().token
-
-  if(token){
-    authService.setToken(token)
-    .then(() => {
-      $location.url('/tasks')
-    })
-  }
-
-  authService
-    .getToken()
-    .then( token => {
-      $location.url('/tasks')
-    })
-    .catch( err => {
-      $log.debug(err)
-      $location.url('/')
-    })
+  // const token = $location.search().token
+  //
+  // if(token){
+  //   authService.setToken(token)
+  //   .then(() => {
+  //     $location.url('/tasks')
+  //   })
+  // }
+  //
+  // authService
+  //   .getToken()
+  //   .then( token => {
+  //     $location.url('/tasks')
+  //   })
+  //   .catch( err => {
+  //     $log.debug(err)
+  //     $location.url('/')
+  //   })
 
   authService.getGoogleRedirectURL()
     .then(res => this.googleAuthURL = res.data)
