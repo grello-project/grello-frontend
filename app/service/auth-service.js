@@ -42,11 +42,5 @@ function authService($q, $log, $location, $http, $window){
     return $q.resolve()
   }
 
-  service.getGoogleRedirectURL = function(){
-    $log.debug('authService.getGoogleRedirectURL()')
-    let url = `${__API_URL__}/gapi/auth`
-    return $http.get(url)
-  }
-
   return service
 }
