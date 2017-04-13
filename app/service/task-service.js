@@ -10,7 +10,7 @@ function taskService($q, $log, $http, authService) {
   service.tasks = []
 
   service.fetchTasks = function() {
-    $log.debug('taskService.createTasks()')
+    $log.debug('taskService.fetchTasks()')
 
     return authService.getToken()
     .then( token => {

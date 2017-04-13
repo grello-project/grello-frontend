@@ -80,9 +80,9 @@ angular-animate@^1.6.3:
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.3.tgz#d228a14f47a4e50bea44ed15bbc4651d44d194f5"
 
-angular-drag-and-drop-lists@^2.1.0:
+"angular-drag-and-drop-lists@https://github.com/jessicamvs/angular-drag-and-drop-lists.git":
   version "2.1.0"
-  resolved "https://registry.yarnpkg.com/angular-drag-and-drop-lists/-/angular-drag-and-drop-lists-2.1.0.tgz#da10cc85c804251fbaaa84d837f7380fb0cd780f"
+  resolved "https://github.com/jessicamvs/angular-drag-and-drop-lists.git#2475ca3d6f6bc0002f85c8f3628c6876a5d49f5f"
 
 angular-mocks@^1.6.3:
   version "1.6.3"

@@ -4,3 +4,4 @@
 **/coverage/*
 **/build/*
 webpack.config.js
+server.js
