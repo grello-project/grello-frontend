@@ -7,7 +7,7 @@
     "test": "test"
   },
   "engines": {
-  "node": "4.4.7"
+    "node": "4.4.7"
   },
   "scripts": {
     "start": "node server.js",
@@ -29,7 +29,7 @@
   "dependencies": {
     "angular": "^1.6.3",
     "angular-animate": "^1.6.3",
-    "angular-drag-and-drop-lists": "^2.1.0",
+    "angular-drag-and-drop-lists": "https://github.com/jessicamvs/angular-drag-and-drop-lists.git",
     "angular-route": "^1.6.3",
     "angular-touch": "^1.6.3",
     "angular-ui-bootstrap": "^2.5.0",

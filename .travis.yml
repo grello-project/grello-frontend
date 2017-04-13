@@ -14,4 +14,5 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - sleep 3
 script:
+    - npm run lint
     - npm run test
