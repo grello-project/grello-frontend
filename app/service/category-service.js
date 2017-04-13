@@ -34,7 +34,6 @@ function categoryService ($q, $log, $http, authService, taskService) {
             )
           }
 
-          // get rid of "placeholder" tasks used to link newly created categories to taskService fetch
           if (task.author !== 'system') {
             uniqueCategories[task.category._id].tasks.push(task)
           }
