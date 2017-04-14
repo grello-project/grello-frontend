@@ -7,7 +7,7 @@
           <label for="document-filter" class="material-icons">filter_list</label>
           <select name="document-filter" id="document-filter" ng-model="tasksCtrl.docFilter">
             <option value="">--Filter Tasks by Document--</option>
-            <option ng-repeat="document in tasksCtrl.documents" value="{{ document.googleID }}">{{ document.name | uppercase}}</option>
+            <option ng-repeat="document in tasksCtrl.documents | orderBy : 'name' " value="{{ document.googleID }}">{{ document.name | uppercase}}</option>
           </select>
         </form>
       </div>
