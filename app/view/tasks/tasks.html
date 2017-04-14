@@ -2,6 +2,13 @@
   <div class="title-bar">
     <div>
       <h2 class="task-page-title">Tasks View</h2>
+      <form name="myForm">
+        <label for="document-filter" class="material-icons">filter_list</label>
+        <select name="document-filter" id="document-filter" ng-model="tasksCtrl.docFilter">
+          <option value="">--Filter by Document--</option>
+          <option ng-repeat="document in tasksCtrl.documents" value="{{ document.googleID }}">{{ document.name }}</option>
+        </select>
+      </form>
     </div>
     <div ng-click="tasksCtrl.refresh()" class="task-page-refresh">
       <i class="material-icons">refresh</i>
