@@ -1,0 +1,18 @@
+.settings-view {
+  transform: translate(-50%,-50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.settings-profile-pic {
+  width: 13em;
+
+  img {
+    width: 100%;
+  }
+}
+
+.settings-user-info {
+  display: inline-block;
+}
