@@ -1,8 +1,10 @@
 .settings-view {
-  transform: translate(-50%,-50%);
+  padding-top: 4em;
+  padding-bottom: 2em;
+  transform: translate(-50%);
   position: absolute;
-  top: 50%;
   left: 50%;
+  width: 70%;
 }
 
 .settings-profile-pic {
@@ -13,6 +15,17 @@
   }
 }
 
-.settings-user-info {
-  display: inline-block;
+// .settings-user-info {
+//   display: inline-block;
+// }
+
+.tab-content {
+  padding: 1em;
+}
+
+.delete-profile-button {
+  border: none;
+  background-color: red;
+  color: white;
+  padding: .65em;
 }

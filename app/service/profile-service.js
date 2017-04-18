@@ -34,5 +34,29 @@ function profileService($q, $log, $http, authService) {
     })
   }
 
+  service.deleteProfile = function() {
+    $log.debug('profileService.deleteProfile()')
+
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/users`
+      let config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+      return $http.delete(url, config)
+    })
+    .then( res => {
+      $log.log('user profile deleted')
+      service.user = null
+      return service.user
+    })
+    .catch( err => {
+      $log.error(err.message)
+      return $q.reject(err)
+    })
+  }
+
   return service
 }

@@ -19,4 +19,15 @@ function SettingsController ($location, $scope, $log, authService, taskService, 
     $log.log('THIS IS THE USER FROM SETTINGS VIEW', this.user)
   })
   .catch(err => $log.error(err))
+
+  this.deleteProfile = function() {
+    $log.debug('settingsCtrl.deleteProfile()')
+    profileService.deleteProfile()
+    .then(() =>{
+      authService.logout()
+    })
+    .then(() => {
+      $location.url('/join')
+    })
+  }
 }
