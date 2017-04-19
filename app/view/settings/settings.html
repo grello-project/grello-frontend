@@ -12,9 +12,13 @@
     </div>
     <div class="settings-tabs">
       <uib-tabset active="active">
-        <uib-tab index="0" heading="OVERVIEW">OVERVIEW</uib-tab>
+        <uib-tab index="0" heading="OVERVIEW">
+          <div class="tab-content">
+            <p>OVERVIEW</p>
+          </div>
+        </uib-tab>
         <uib-tab index="1" heading="DOCUMENTS">
-          <div ng-repeat="document in settingsCtrl.docs">
+          <div class="tab-content" ng-repeat="document in settingsCtrl.docs">
             <a ng-href="{{ document.link }}" target="_blank">{{ document.name }}</a>
           </div>
         </uib-tab>
@@ -23,15 +27,20 @@
             <h3>Delete Your Account</h3>
             <p>Deleting your account will remove all of your data from Wattle.io.</p>
             <h4>Enter "{{ settingsCtrl.user.name | lowercase}}"</h4>
-            <input type="text" ng-model="settingsCtrl.deleteInput" placeholder="Enter '{{ settingsCtrl.user.name | lowercase}}'">
-            <button ng-disabled="settingsCtrl.deleteInput !== settingsCtrl.user.name.toLowerCase()"
-              ng-class="{'disabled-class': false}"
-              ng-click="settingsCtrl.deleteProfile()"
-              class="delete-profile-button"
-              type="button"
-              name="button">
-              DELETE
-            </button>
+            <form ng-submit="settingsCtrl.deleteProfile()">
+              <input
+                type="text"
+                ng-model="settingsCtrl.deleteInput"
+                placeholder="Enter '{{ settingsCtrl.user.name | lowercase}}'">
+              <button
+                ng-disabled="settingsCtrl.deleteInput !== settingsCtrl.user.name.toLowerCase()"
+                ng-class="{ 'disabled-button': settingsCtrl.deleteInput !== settingsCtrl.user.name.toLowerCase()}"
+                class="delete-profile-button"
+                type="submit"
+                name="button">
+                DELETE
+              </button>
+            </form>
           </div>
         </uib-tab>
       </uib-tabset>

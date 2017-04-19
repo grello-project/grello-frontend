@@ -19,7 +19,7 @@
     display: flex;
     flex-flow: column;
     justify-content: flex-start;
-    background: rgba(255, 255, 255, 0.9);
+    // background: rgba(255, 255, 255, 0.2);
     text-align: center;
     padding: 5% 10%;
   }
@@ -36,21 +36,26 @@
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.7);
   text-align: center;
   padding: 5% 10%;
-  box-shadow: 5px 5px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 1px rgba(0, 0, 0, 0.1);
+
+  button {
+    margin-top: 1.5em;
+  }
 }
 
 .dialog-text {
   color: black;
   font-weight: bold;
+  line-height: normal;
   font-size: 2em;
 }
 
 .get-started {
-font-size: 18px;
-color: white;
+  font-size: 18px;
+  color: white;
 }
 
 .get-started-button {
