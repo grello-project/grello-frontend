@@ -6,9 +6,22 @@
 }
 
 .title-bar {
+  margin-left: 1em;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.document-filter-form {
+  display: flex;
+}
+
+#document-filter {
+  margin-left: 0.5em;
+}
+
+.tasks-flex-groups {
+  display: flex;
 }
 
 .task-page-title {

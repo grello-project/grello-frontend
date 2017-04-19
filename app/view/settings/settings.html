@@ -1,13 +1,15 @@
 <section class="settings-view">
   <div class="settings-profile">
-    <div class="settings-profile-pic">
-      <img ng-src="{{ settingsCtrl.user.profilePic }}" alt="Profile Pic">
-    </div>
-    <div class="settings-user-info">
-      <h3>{{ settingsCtrl.user.name }}</h1>
-      <span class="settings-last-login"> <i class="material-icons">access_time</i> Last Login on April 19, 2017 at 1:23 pm{{ settingsCtrl.user.lastLogin }}</span>
-    </div>
 
+    <div class="settings-group-flex">
+      <div class="settings-profile-pic">
+        <img ng-src="{{ settingsCtrl.user.profilePic }}" alt="Profile Pic">
+      </div>
+      <div class="settings-user-info">
+        <h3>{{ settingsCtrl.user.name }}</h1>
+        <span class="settings-last-login"> <i class="material-icons">access_time</i> Last Login on April 19, 2017 at 1:23 pm{{ settingsCtrl.user.lastLogin }}</span>
+      </div>
+    </div>
     <div class="settings-tabs">
       <uib-tabset active="active">
         <uib-tab index="0" heading="OVERVIEW">OVERVIEW</uib-tab>
@@ -20,9 +22,16 @@
           <div class="tab-content">
             <h3>Delete Your Account</h3>
             <p>Deleting your account will remove all of your data from Wattle.io.</p>
-            <h4>Enter "{{ settingsCtrl.user.name | lowercase}}'s account"</h4>
-            <input type="text" name="" placeholder="Enter '{{ settingsCtrl.user.name | lowercase}}'s account'">
-            <button ng-click="settingsCtrl.deleteProfile()" class="delete-profile-button" type="button" name="button">DELETE</button>
+            <h4>Enter "{{ settingsCtrl.user.name | lowercase}}"</h4>
+            <input type="text" ng-model="settingsCtrl.deleteInput" placeholder="Enter '{{ settingsCtrl.user.name | lowercase}}'">
+            <button ng-disabled="settingsCtrl.deleteInput !== settingsCtrl.user.name.toLowerCase()"
+              ng-class="{'disabled-class': false}"
+              ng-click="settingsCtrl.deleteProfile()"
+              class="delete-profile-button"
+              type="button"
+              name="button">
+              DELETE
+            </button>
           </div>
         </uib-tab>
       </uib-tabset>

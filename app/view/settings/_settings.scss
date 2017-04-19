@@ -15,9 +15,18 @@
   }
 }
 
-// .settings-user-info {
-//   display: inline-block;
-// }
+.settings-group-flex {
+  display: flex;
+}
+
+.settings-profile-pic {
+  margin-right: 1em;
+  margin-bottom: 1em;
+}
+
+.disabled-class {
+  background-color: green;
+}
 
 .tab-content {
   padding: 1em;
