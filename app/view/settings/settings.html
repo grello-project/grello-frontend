@@ -11,7 +11,11 @@
     <div class="settings-tabs">
       <uib-tabset active="active">
         <uib-tab index="0" heading="OVERVIEW">OVERVIEW</uib-tab>
-        <uib-tab index="1" heading="DOCUMENTS">DOCS</uib-tab>
+        <uib-tab index="1" heading="DOCUMENTS">
+          <div ng-repeat="document in settingsCtrl.docs">
+            <a ng-href="{{ document.link }}" target="_blank">{{ document.name }}</a>
+          </div>
+        </uib-tab>
         <uib-tab index="2" heading="SETTINGS">
           <div class="tab-content">
             <h3>Delete Your Account</h3>

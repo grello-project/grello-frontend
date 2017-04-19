@@ -20,6 +20,12 @@ function SettingsController ($location, $scope, $log, authService, taskService, 
   })
   .catch(err => $log.error(err))
 
+  documentService.fetchDocuments()
+  .then(docs => {
+    this.docs = docs
+  })
+  .catch(err => $log.error(err))
+
   this.deleteProfile = function() {
     $log.debug('settingsCtrl.deleteProfile()')
     profileService.deleteProfile()
