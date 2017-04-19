@@ -57,6 +57,7 @@
     "clean-webpack-plugin": "^0.1.16",
     "css-loader": "^0.27.3",
     "dotenv": "^4.0.0",
+    "drag-drop-webkit-mobile": "^1.4.1",
     "express": "^4.15.2",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.10.1",
