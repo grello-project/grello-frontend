@@ -20,14 +20,14 @@
         ng-model="categoryCtrl.editCategoryTitle"
         required>
         <div class="button-group">
-          <button type="button" ng-click="categoryCtrl.cancelEdit()">Cancel</button>
-          <button type="submit">Submit</button>
+          <button class="settings-button" type="button" ng-click="categoryCtrl.cancelEdit()">Cancel</button>
+          <button class="settings-button" type="submit">Submit</button>
         </div>
     </form>
     <div class="delete-category">
       <h4>Delete Category</h4>
       <p>Note: Deleting a category will move all tasks to uncategorized bucket. You cannot undo this action.</p>
-      <button type="button" ng-click="categoryCtrl.deleteCategory()">Delete</button>
+      <button class="settings-button" type="button" ng-click="categoryCtrl.deleteCategory()">Delete</button>
     </div>
   </div>
 
@@ -37,7 +37,7 @@
     dnd-list="categoryCtrl.category.tasks"
     >
       <li
-      ng-repeat="task in categoryCtrl.category.tasks | resolved"
+      ng-repeat="task in categoryCtrl.category.tasks | resolved | document : categoryCtrl.docfilter"
       class="task_item"
       dnd-draggable="task"
       dnd-moved="categoryCtrl.category.tasks.splice($index, 1)"
@@ -70,8 +70,8 @@
         ng-model="categoryCtrl.newCategoryName"
         required/>
       <div class="button-group">
-        <button type="button" ng-click="categoryCtrl.cancelNewCategoryForm()">Cancel</button>
-        <button type="submit">Submit</button>
+        <button class="settings-button" type="button" ng-click="categoryCtrl.cancelNewCategoryForm()">Cancel</button>
+        <button class="settings-button" type="submit">Submit</button>
       </div>
     </form>
   </div>

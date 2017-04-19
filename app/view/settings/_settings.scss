@@ -1,0 +1,31 @@
+.settings-view {
+  padding-top: 4em;
+  padding-bottom: 2em;
+  transform: translate(-50%);
+  position: absolute;
+  left: 50%;
+  width: 70%;
+}
+
+.settings-profile-pic {
+  width: 13em;
+
+  img {
+    width: 100%;
+  }
+}
+
+// .settings-user-info {
+//   display: inline-block;
+// }
+
+.tab-content {
+  padding: 1em;
+}
+
+.delete-profile-button {
+  border: none;
+  background-color: red;
+  color: white;
+  padding: .65em;
+}

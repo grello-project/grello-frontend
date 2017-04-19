@@ -44,7 +44,7 @@
 }
 
 .delete-category {
-  margin-top: 2em;
+  margin-top: 3em;
   border-top: 1px solid $color-primary-light;
   padding-top: 2em;
 }
@@ -56,6 +56,13 @@
 
 .delete-category button {
   margin-top: 1em;
+}
+
+.settings-button {
+  background-color: $color-primary;
+  border: none;
+  color: white;
+  padding: 0.5em;
 }
 
 .inner_category {

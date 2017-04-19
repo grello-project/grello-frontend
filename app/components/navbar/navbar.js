@@ -14,7 +14,7 @@ function NavbarController($log, $location, $rootScope, authService, profileServi
   this.checkPath = function() {
     let path = $location.path()
     $log.debug('THE PATH', path)
-    if (path !== '/tasks' ){
+    if (path === '/join' ){
       this.hideButtons = true
       this.hideLogButtons = false
     } else {
