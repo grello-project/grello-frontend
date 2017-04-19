@@ -26,8 +26,6 @@ function LandingController($log, $location, $rootScope, authService) {
       $location.url('/')
     })
 
-  authService.getGoogleRedirectURL()
-    .then(res => this.googleAuthURL = res.data)
-    .catch(err => angular.error(err))
-  
+  this.googleAuthURL = `${__API_URL__}/gapi/auth`
+
 }
