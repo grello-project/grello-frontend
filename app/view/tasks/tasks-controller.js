@@ -9,16 +9,18 @@ module.exports = [
   'authService',
   'taskService',
   'categoryService',
+  'documentService',
   TasksController
 ]
 
-function TasksController ($location, $scope, $log, authService, taskService, categoryService) {
+function TasksController ($location, $scope, $log, authService, taskService, categoryService, documentService) {
   const self = this
   // self.models = {
   //   selected: null,
   //   categories: []
   // }
   self.categories = null
+  self.documents = []
   // this is a special placeholder category for creating new categories
   let newCategory = function (i) {
     this.categoryID = 'newCat'
@@ -44,6 +46,17 @@ function TasksController ($location, $scope, $log, authService, taskService, cat
       $location.url('/')
     })
 
+  self.fetchDocuments = function() {
+    $log.debug('tasksCtrl.fetchDocuments()')
+    documentService
+      .fetchDocuments()
+      .then(documents => {
+        $log.debug('tasksCtrl has fetched documents')
+        self.documents = documents
+        $log.log('self.documents', self.documents)
+      })
+  }
+
   self.refresh = function () {
     taskService
       .refresh()
@@ -60,5 +73,7 @@ function TasksController ($location, $scope, $log, authService, taskService, cat
         $log.error(err)
       })
   }
+
+  self.fetchDocuments()
 
 }

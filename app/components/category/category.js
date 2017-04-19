@@ -7,7 +7,8 @@ module.exports = {
   controller: ['$log', '$scope', 'taskService', 'categoryService', categoryController],
   controllerAs: 'categoryCtrl',
   bindings: {
-    category: '<'
+    category: '<',
+    docfilter: '<'
   }
 }
 
