@@ -26,5 +26,13 @@ function LandingController($log, $location, $rootScope, authService) {
       $location.url('/')
     })
 
-  this.googleAuthURL = 'http://localhost:3000/gapi/auth'
+  const googleAuthBase = 'https://accounts.google.com/o/oauth2/v2/auth'
+  const googleAuthResponseType = 'response_type=code'
+  const googleAuthClientID = `client_id=${__CLIENT_ID__}`
+  const googleAuthScope = 'scope=profile%20email%20openid%20https://www.googleapis.com/auth/drive'
+  const googleAuthRedirectURI = `redirect_uri=${__API_URL__}/auth/google/callback`
+  const googleAuthAccessType = 'access_type=offline'
+  const googleAuthPrompt = 'prompt=consent'
+
+  this.googleAuthURL = `${googleAuthBase}?${googleAuthResponseType}&${googleAuthClientID}&${googleAuthScope}&${googleAuthRedirectURI}&${googleAuthAccessType}&${googleAuthPrompt}`
 }

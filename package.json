@@ -6,25 +6,45 @@
   "directories": {
     "test": "test"
   },
+  "engines": {
+    "node": "4.4.7"
+  },
   "scripts": {
+    "start": "node server.js",
+    "heroku-postbuild": "webpack -p --progress",
     "build": "./node_modules/webpack/bin/webpack.js",
     "build-watch": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot",
     "test": "./node_modules/karma/bin/karma start --single-run",
     "test-watch": "./node_modules/karma/bin/karma start",
     "lint": "eslint ."
   },
-  "authors": [
-    "Dan Peters <daniel.r.peters@icloud.com>",
-    "Jessica Soltero <jessicamvs@gmail.com>",
-    "Ron Dunphy <ronhdunphy@gmail.com>",
-    "Kyle Winkler <kyle.winckler@gmail.com>",
-    "Carolina Ceja <cejac10@gmail.com"
+  "contributors": [
+    {
+      "name": "Dan Peters",
+      "url": "https://github.com/ShibaScream"
+    },
+    {
+      "name": "Jessica Vasquez-Soltero",
+      "url": "https://github.com/jessicamvs"
+    },
+    {
+      "name": "Kyle Winckler",
+      "url": "https://github.com/kdwinck"
+    },
+    {
+      "name": "Carolina Ceja",
+      "url": "https://github.com/cejac"
+    },
+    {
+      "name": "Ron Dunphy",
+      "url": "https://github.com/Rubiksron"
+    }
   ],
   "license": "MIT",
   "dependencies": {
     "angular": "^1.6.3",
     "angular-animate": "^1.6.3",
-    "angular-drag-and-drop-lists": "^2.1.0",
+    "angular-drag-and-drop-lists": "https://github.com/jessicamvs/angular-drag-and-drop-lists.git",
     "angular-route": "^1.6.3",
     "angular-touch": "^1.6.3",
     "angular-ui-bootstrap": "^2.5.0",
