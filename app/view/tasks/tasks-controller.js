@@ -29,6 +29,9 @@ function TasksController ($location, $scope, $log, authService, taskService, cat
     this.categoryRef = null
     this.tasks = []
   }
+  let updateCategories = $scope.$on('refresh categories', () => {
+    return self.refresh()
+  })
 
   authService
     .getToken()

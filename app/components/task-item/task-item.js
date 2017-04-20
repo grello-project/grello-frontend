@@ -4,7 +4,7 @@ require('./_task-item.scss')
 
 module.exports = {
   template: require('./task-item.html'),
-  controller: ['$log', 'taskService', taskController],
+  controller: ['$log', '$scope', 'taskService', taskController],
   controllerAs:'taskCtrl',
   bindings: {
     task: '<',
@@ -12,7 +12,7 @@ module.exports = {
   }
 }
 
-function taskController ($log, taskService) {
+function taskController ($log, $scope, taskService) {
   $log.log('THIS IS DOCFILTER FROM TASK ITEM CTRL', this.docfilter)
   let self = this
 
@@ -24,7 +24,14 @@ function taskController ($log, taskService) {
 
   self.resolveTask = function() {
     $log.log('RESOLVING TASK')
-    taskService.resolveTask(self.task._id)
+    taskService
+      .resolveTask(self.task._id)
+      .then(() => {
+        $scope.$emit('refresh categories')
+      })
+      .catch(err => {
+        $log.debug(err)
+      })
   }
 
 }

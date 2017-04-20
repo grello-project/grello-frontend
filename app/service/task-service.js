@@ -89,11 +89,12 @@ function taskService($q, $log, $http, authService) {
       $log.log(res)
       for (let i = 0; i < service.tasks.length; i++) {
         let current = service.tasks[i]
-        if (current._id === task._id) {
+        if (current._id === res.data._id) {
           service.tasks.splice(i, 1)
           break
         }
       }
+      return $q.resolve()
     })
     .catch( err => {
       $log.error(err.message)
