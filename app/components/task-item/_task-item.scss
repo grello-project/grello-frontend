@@ -78,3 +78,11 @@
 .icon-vertical-center {
   margin: 50% auto;
 }
+
+.faded-task {
+  background-color: grey;
+  opacity: .05;
+  overflow: hidden;
+  min-height: .01em;
+  height: .01em;
+}

@@ -1,4 +1,7 @@
-<div class="inner-task-item">
+<div
+  class="inner-task-item"
+  ng-class="{ 'faded-task' : taskCtrl.task.document === taskCtrl.docfilter && taskCtrl.docfilter}"
+  >
   <div class="task-handle-centered">
     <i class="material-icons">drag_handle</i>
   </div>
