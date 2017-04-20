@@ -112,3 +112,11 @@
   color: grey;
   margin-top: .15em;
 }
+
+.faded-task {
+  background-color: grey;
+  opacity: .05;
+  overflow: hidden;
+  min-height: .01em;
+  height: .01em;
+}

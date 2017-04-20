@@ -101,8 +101,10 @@ ul[dnd-list] .dndPlaceholder {
   max-width: 8em;
   margin: 5em auto;
   display: block;
+  opacity: 0.3;
 }
 
 #newCatMsg {
   text-align: center;
+  opacity: 0.5;
 }

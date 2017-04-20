@@ -7,11 +7,13 @@ module.exports = {
   controller: ['$log', taskController],
   controllerAs:'taskCtrl',
   bindings: {
-    task: '<'
+    task: '<',
+    docfilter: '<'
   }
 }
 
-function taskController () {
+function taskController ($log) {
+  $log.log('THIS IS DOCFILTER FROM TASK ITEM CTRL', this.docfilter)
   let self = this
 
   self.showInfo = false
@@ -19,5 +21,6 @@ function taskController () {
   self.showInfoToggle = function () {
     return self.showInfo = !self.showInfo
   }
+
 
 }
