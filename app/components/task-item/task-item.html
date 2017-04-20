@@ -49,8 +49,11 @@
       </div>
       </div>
   </div>
-  <div ng-click="taskCtrl.showInfoToggle()">
-    <i ng-show="!taskCtrl.showInfo" class="material-icons icon-vertical-center">info_outline</i>
-    <i ng-show="taskCtrl.showInfo" class="material-icons icon-vertical-center">close</i>
+  <div class="icons">
+    <i class="material-icons check" ng-click="taskCtrl.resolveTask()">check_circle</i>
+    <div ng-click="taskCtrl.showInfoToggle()">
+      <i ng-show="!taskCtrl.showInfo" class="material-icons icon-vertical-center">info_outline</i>
+      <i ng-show="taskCtrl.showInfo" class="material-icons icon-vertical-center">close</i>
+    </div>
   </div>
 </div>
