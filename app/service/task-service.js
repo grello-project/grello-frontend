@@ -77,7 +77,9 @@ function taskService($q, $log, $http, authService) {
       let url = `${__API_URL__}/api/resolve/${taskId}`
       let config = {
         headers: {
+          Accept: 'application/json',
           Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
         },
       }
 
@@ -85,13 +87,13 @@ function taskService($q, $log, $http, authService) {
     })
     .then( res => {
       $log.log(res)
-      // for (let i = 0; i < service.tasks.length; i++) {
-      //   let current = service.tasks[i]
-      //   if (current._id === task._id) {
-      //     service.tasks.splice(i, 1)
-      //     break
-      //   }
-      // }
+      for (let i = 0; i < service.tasks.length; i++) {
+        let current = service.tasks[i]
+        if (current._id === task._id) {
+          service.tasks.splice(i, 1)
+          break
+        }
+      }
     })
     .catch( err => {
       $log.error(err.message)
