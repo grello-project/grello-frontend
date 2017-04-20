@@ -21,11 +21,22 @@
     <div ng-show="taskCtrl.showInfo">
       <div class="task-replies task-content-separator" ng-show="taskCtrl.task.replies.length">
         <h4 class="task-h4">Replies</h4>
-        <div class="reply" ng-repeat="reply in taskCtrl.task.replies">
-          <i class="material-icons md-18">subdirectory_arrow_right</i>
-          <p>
-            {{ reply.content }}
-          </p>
+        <div class="wrapper">
+          <div class="reply" ng-repeat="reply in taskCtrl.task.replies">
+            <i class="material-icons md-18 arrow">subdirectory_arrow_right</i>
+            <div class="comment">
+              <div class="flex">
+                <img class="commentPic" ng-src="https://{{ reply.authorPic }}">
+                <div class="authorData">
+                  <p>Created by: {{ reply.authorName }}</p>
+                  <p class="date">Created on: {{ reply.createdTime | date }}</p>
+                </div>
+              </div>
+              <p class="replyContent">
+                {{ reply.content }}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
       <div class="task-info task-content-separator">
