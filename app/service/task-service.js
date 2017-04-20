@@ -36,7 +36,7 @@ function taskService($q, $log, $http, authService) {
     })
   }
 
-  service.updateTask = function(id) {
+  service.updateTask = function(task) {
     $log.debug('taskService.updateTask()')
     $log.debug(typeof task._id)
 

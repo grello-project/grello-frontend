@@ -7,7 +7,7 @@
       </div>
       <div class="settings-user-info">
         <h3>{{ settingsCtrl.user.name }}</h1>
-        <span class="settings-last-login"> <i class="material-icons">access_time</i> Joined on {{ settingsCtrl.user.createDate | date : longDate }}</span>
+        <span class="settings-last-login"> <i class="material-icons">access_time</i> Last login {{ settingsCtrl.user.lastLogin | date : 'medium' }}</span>
       </div>
     </div>
     <div class="settings-tabs">
