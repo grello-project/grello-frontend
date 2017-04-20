@@ -83,7 +83,7 @@ function taskService($q, $log, $http, authService) {
         },
       }
 
-      return $http.post(url, config)
+      return $http.post(url, {}, config)
     })
     .then( res => {
       $log.log(res)
