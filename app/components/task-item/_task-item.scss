@@ -120,3 +120,21 @@
   min-height: .01em;
   height: .01em;
 }
+
+.icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.icons:hover {
+  cursor: default;
+}
+
+.check {
+  color: black;
+}
+
+.check:hover {
+  color: $color-secondary-dark;
+}
