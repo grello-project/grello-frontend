@@ -4,7 +4,7 @@ require('./_task-item.scss')
 
 module.exports = {
   template: require('./task-item.html'),
-  controller: ['$log', taskController],
+  controller: ['$log', 'taskService', taskController],
   controllerAs:'taskCtrl',
   bindings: {
     task: '<',
@@ -12,7 +12,7 @@ module.exports = {
   }
 }
 
-function taskController ($log) {
+function taskController ($log, taskService) {
   $log.log('THIS IS DOCFILTER FROM TASK ITEM CTRL', this.docfilter)
   let self = this
 
@@ -22,5 +22,9 @@ function taskController ($log) {
     return self.showInfo = !self.showInfo
   }
 
+  self.resolveTask = function() {
+    $log.log('RESOLVING TASK')
+    taskService.resolveTask(self.task._id)
+  }
 
 }

@@ -36,7 +36,7 @@ function taskService($q, $log, $http, authService) {
     })
   }
 
-  service.updateTask = function(task) {
+  service.updateTask = function(id) {
     $log.debug('taskService.updateTask()')
     $log.debug(typeof task._id)
 
@@ -69,12 +69,12 @@ function taskService($q, $log, $http, authService) {
     })
   }
 
-  service.resolveTask = function(task) {
-    $log.debug('taskService.updateTask()')
+  service.resolveTask = function(taskId) {
+    $log.debug('taskService.resolveTask()')
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/task/${task._id}`
+      let url = `${__API_URL__}/api/resolve/${taskId}`
       let config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -84,13 +84,14 @@ function taskService($q, $log, $http, authService) {
       return $http.put(url, config)
     })
     .then( res => {
-      for (let i = 0; i < service.tasks.length; i++) {
-        let current = service.tasks[i]
-        if (current._id === task._id) {
-          service.tasks.splice(i, 1)
-          break
-        }
-      }
+      $log.log(res)
+      // for (let i = 0; i < service.tasks.length; i++) {
+      //   let current = service.tasks[i]
+      //   if (current._id === task._id) {
+      //     service.tasks.splice(i, 1)
+      //     break
+      //   }
+      // }
     })
     .catch( err => {
       $log.error(err.message)
