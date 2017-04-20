@@ -52,10 +52,15 @@
   border-top: 1px solid $color-primary-light;
 }
 
+.wrapper {
+  border-top: 2px solid $color-primary;
+}
+
 .reply {
   display: flex;
-  flex-direction: row;
-  margin-bottom: .5em;
+  background-color: $txt-color-white;
+  border: 2px solid $color-primary;
+  border-top: none;
 }
 
 .drag_drop_icon {
@@ -77,6 +82,35 @@
 
 .icon-vertical-center {
   margin: 50% auto;
+}
+
+.comment {
+  margin-bottom: .5em;
+  font-size: 1em;
+}
+
+.flex {
+  margin: 1em 0em;
+  display: flex;
+}
+
+.commentPic {
+  margin-right: 1em;
+  max-height: 2em;
+  max-width: 2em;
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  margin-right: .5em;
+  font-size: 2em;
+}
+
+.date {
+  font-size: .8em;
+  color: grey;
+  margin-top: .15em;
 }
 
 .faded-task {
