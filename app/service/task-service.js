@@ -37,8 +37,9 @@ function taskService($q, $log, $http, authService) {
   }
 
   service.updateTask = function(task) {
-    $log.debug('taskService.updateTask()')
-    $log.debug(typeof task._id)
+    // $log.debug('taskService.updateTask()')
+    // $log.debug(typeof task._id)
+    $log.debug('updating task:', task)
 
     return authService.getToken()
     .then( token => {

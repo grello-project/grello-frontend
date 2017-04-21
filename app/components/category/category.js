@@ -20,7 +20,7 @@ function categoryController ($log, $scope, taskService, categoryService) {
   self.showSettings = false
 
   self.$onInit = function () {
-    $log.debug('this is the category:', self.category)
+    // $log.debug('this is the category:', self.category)
     self.title = self.category.categoryName
     self.editCategoryTitle = self.title
     self.tasks_clone = angular.copy(self.category.tasks)
@@ -45,12 +45,12 @@ function categoryController ($log, $scope, taskService, categoryService) {
   }
 
   self.updateCategory = function () {
-    $log.debug('$categoryCtrl.updateCategory', self.category)
+    // $log.debug('$categoryCtrl.updateCategory', self.category)
     self.title = self.editCategoryTitle
     categoryService
       .updateCategory(self.category.categoryID, self.editCategoryTitle)
       .then(() => {
-        $log.debug('category updated from ctrl')
+        // $log.debug('category updated from ctrl')
         self.showSettings = false
       })
   }
@@ -61,12 +61,13 @@ function categoryController ($log, $scope, taskService, categoryService) {
   }
 
   self.deleteCategory = function () {
-    $log.debug('$categoryCtrl.deleteCategory()')
+    // $log.debug('$categoryCtrl.deleteCategory()')
     categoryService
       .deleteCategory(self.category.categoryID)
       .then(() => {
         $log.debug('category deleted from ctrl')
         self.showSettings = false
+        $scope.$emit('refresh categories')
       })
   }
 
@@ -76,11 +77,29 @@ function categoryController ($log, $scope, taskService, categoryService) {
   }
 
   function updateTasks () {
+    $log.debug(self.category.tasks)
     self.category.tasks.forEach( (task, index) => {
       task.priority = index
       task.category = self.category.categoryRef
       taskService.updateTask(task)
     })
+  }
+
+  self.removeItem = function (taskToDelete) {
+    $log.log('remove task', taskToDelete)
+    self.category.tasks = self.category.tasks.filter(function (task) {
+      return task._id !== this._id
+    }, taskToDelete)
+
+    $log.debug('updated category tasks:', self.category.tasks)
+
+    $scope.$emit('refresh categories')
+
+    return self.category.tasks
+    // let indexToRemove = self.category.tasks.findIndex((elt) => {
+    //   return elt._id === this._id
+    // }, task)
+    // return self.category.tasks.splice(indexToRemove, 1)
   }
 
 }

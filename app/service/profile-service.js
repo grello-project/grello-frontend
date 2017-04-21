@@ -3,12 +3,12 @@
 module.exports = ['$q', '$log', '$http', 'authService', profileService]
 
 function profileService($q, $log, $http, authService) {
-  $log.debug('profileService()')
+  // $log.debug('profileService()')
 
   let service = {}
 
   service.getUser = function() {
-    $log.debug('profileService.getUser()')
+    // $log.debug('profileService.getUser()')
 
     return authService.getToken()
     .then( token => {
@@ -22,9 +22,9 @@ function profileService($q, $log, $http, authService) {
       return $http.get(url, config)
     })
     .then( res => {
-      $log.log('user retrieved')
+      // $log.log('user retrieved')
       service.user = res.data
-      $log.log('user from server', res.data)
+      // $log.log('user from server', res.data)
       return service.user
 
     })
@@ -35,7 +35,7 @@ function profileService($q, $log, $http, authService) {
   }
 
   service.deleteProfile = function() {
-    $log.debug('profileService.deleteProfile()')
+    // $log.debug('profileService.deleteProfile()')
 
     return authService.getToken()
     .then( token => {
@@ -48,7 +48,7 @@ function profileService($q, $log, $http, authService) {
       return $http.delete(url, config)
     })
     .then( res => {
-      $log.log('user profile deleted')
+      // $log.log('user profile deleted')
       service.user = null
       return service.user
     })

@@ -13,7 +13,7 @@ module.exports = {
 }
 
 function taskController ($log, $scope, taskService) {
-  $log.log('THIS IS DOCFILTER FROM TASK ITEM CTRL', this.docfilter)
+  // $log.log('THIS IS DOCFILTER FROM TASK ITEM CTRL', this.docfilter)
   let self = this
 
   self.showInfo = false
