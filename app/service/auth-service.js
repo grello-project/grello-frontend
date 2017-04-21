@@ -3,7 +3,7 @@
 module.exports = ['$q', '$log', '$location', '$http', '$window', authService]
 
 function authService($q, $log, $location, $http, $window){
-  $log.debug('authService')
+  // $log.debug('authService')
 
   let service = {}
 
@@ -11,7 +11,7 @@ function authService($q, $log, $location, $http, $window){
 
   service.setToken = function(_token){
 
-    $log.debug('authService.setToken()')
+    // $log.debug('authService.setToken()')
 
     if (! _token) {
       return $q.reject(new Error('no token'))
@@ -23,7 +23,7 @@ function authService($q, $log, $location, $http, $window){
   }
 
   service.getToken = function(){
-    $log.debug('authService.getToken()')
+    // $log.debug('authService.getToken()')
     if (token) {
       return $q.resolve(token)
     }
@@ -35,7 +35,7 @@ function authService($q, $log, $location, $http, $window){
   }
 
   service.logout = function(){
-    $log.debug('authService.logout()')
+    // $log.debug('authService.logout()')
 
     $window.localStorage.removeItem('token')
     token = null

@@ -40,7 +40,7 @@
       ng-repeat="task in categoryCtrl.category.tasks | resolved"
       class="task_item"
       dnd-draggable="task"
-      dnd-moved="categoryCtrl.category.tasks.splice($index, 1)"
+      dnd-moved="categoryCtrl.removeItem(task)"
       dnd-effect-allowed="move"
       >
         <task-item

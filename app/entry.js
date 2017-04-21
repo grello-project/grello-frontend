@@ -12,13 +12,13 @@ const ngAnimate = require('angular-animate')
 const uiBootstrap = require('angular-ui-bootstrap')
 const dndLists = require('angular-drag-and-drop-lists')
 
-// https://github.com/timruffles/ios-html5-drag-drop-shim
-const iosDragDropShim = require('drag-drop-webkit-mobile')
-iosDragDropShim({
-  holdToDrag: 300,
-  // requireExplicitDraggable: true,
-  enableEnterLeave: true
-})
+// // https://github.com/timruffles/ios-html5-drag-drop-shim
+// const iosDragDropShim = require('drag-drop-webkit-mobile')
+// iosDragDropShim({
+//   holdToDrag: 300,
+//   // requireExplicitDraggable: true,
+//   enableEnterLeave: true
+// })
 
 angular.module('wattle', [ngTouch, ngAnimate, uiRouter, uiBootstrap, dndLists])
 

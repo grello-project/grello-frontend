@@ -21,8 +21,8 @@ function categoryService ($q, $log, $http, authService, taskService) {
     return taskService
       .fetchTasks()
       .then(tasks => {
-        $log.debug('here are the tasks:', tasks)
-        $log.debug('processing tasks')
+        // $log.debug('here are the tasks:', tasks)
+        // $log.debug('processing tasks')
         let uniqueCategories = {}
         tasks.forEach(task => {
           if (!uniqueCategories.hasOwnProperty(task.category._id)) {
@@ -39,17 +39,19 @@ function categoryService ($q, $log, $http, authService, taskService) {
           }
         })
 
-        $log.debug('here are the uniqueCategories:', uniqueCategories)
+        // $log.debug('here are the uniqueCategories:', uniqueCategories)
 
         let keys = Object.keys(uniqueCategories).forEach( key => {
           service.categories.push(uniqueCategories[key])
         })
 
+        $log.debug('before sort:', service.categories)
         service.categories.sort((a, b) => {
-          return a.priority - b.priority
+          return a.categoryPriority - b.categoryPriority
         })
+        $log.debug('after sort:', service.categories)
 
-        $log.debug('result equals: ', service.categories)
+        // $log.debug('result equals: ', service.categories)
         return service.categories
       })
   }
@@ -70,6 +72,7 @@ function categoryService ($q, $log, $http, authService, taskService) {
         return $http.post(url, {name: name, priority: service.categories.length}, config)
       })
       .then( res => {
+        $log.debug(res.data)
         service.categories.push(new uniqueCategory(
           res.data._id,
           res.data.name,
@@ -80,7 +83,7 @@ function categoryService ($q, $log, $http, authService, taskService) {
   }
 
   service.updateCategory = function (categoryID, title) {
-    $log.debug('categoryService.updateCategory()')
+    // $log.debug('categoryService.updateCategory()')
     return authService
       .getToken()
       .then( token => {
@@ -95,14 +98,14 @@ function categoryService ($q, $log, $http, authService, taskService) {
         return $http.put(url, {name: title, priority: service.categories.length}, config)
       })
       .then( res => {
-        $log.debug('category was updated from service')
+        // $log.debug('category was updated from service')
       })
   }
 
 
   service.deleteCategory = function (id) {
 
-    $log.debug('categoryService.deleteCategory', id)
+    // $log.debug('categoryService.deleteCategory', id)
     return authService
       .getToken()
       .then( token => {
@@ -115,7 +118,7 @@ function categoryService ($q, $log, $http, authService, taskService) {
         return $http.delete(url, config)
       })
       .then(() => {
-        $log.log('category deleted from service')
+        // $log.log('category deleted from service')
 
         for(let i = 0; i < service.categories.length; i++) {
           let curr = service.categories[i]

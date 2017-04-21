@@ -30,6 +30,7 @@ function TasksController ($location, $scope, $log, authService, taskService, cat
     this.tasks = []
   }
   let updateCategories = $scope.$on('refresh categories', () => {
+    $log.debug('refreshing categories')
     return self.refresh()
   })
 
@@ -40,7 +41,7 @@ function TasksController ($location, $scope, $log, authService, taskService, cat
       categoryService
         .fetchCategories()
         .then( categories => {
-          $log.debug('self.categories assigned to categories')
+          // $log.debug('self.categories assigned to categories')
           self.categories = categories
         })
     })
@@ -50,13 +51,13 @@ function TasksController ($location, $scope, $log, authService, taskService, cat
     })
 
   self.fetchDocuments = function() {
-    $log.debug('tasksCtrl.fetchDocuments()')
+    // $log.debug('tasksCtrl.fetchDocuments()')
     documentService
       .fetchDocuments()
       .then(documents => {
-        $log.debug('tasksCtrl has fetched documents')
+        // $log.debug('tasksCtrl has fetched documents')
         self.documents = documents
-        $log.log('self.documents', self.documents)
+        // $log.log('self.documents', self.documents)
       })
   }
 
@@ -67,9 +68,9 @@ function TasksController ($location, $scope, $log, authService, taskService, cat
         return categoryService
           .fetchCategories()
           .then( categories => {
-            $log.debug('self.categories assigned to categories')
+            // $log.debug('self.categories assigned to categories')
             self.categories = categories
-            $log.debug(self.categories)
+            // $log.debug(self.categories)
           })
       })
       .catch( err => {
