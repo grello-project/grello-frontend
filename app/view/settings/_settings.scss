@@ -39,11 +39,22 @@
   }
 }
 
+.overview {
+  p {
+    margin: 0 1em 1em 0;
+  }
+}
+
 .delete-profile-button {
   border: none;
   background-color: $button-red;
   color: $txt-color-white;
   padding: .65em;
+}
+
+.settings-text-special {
+  border-bottom: 3px solid $color-secondary;
+  padding: 0.15em;
 }
 
 .disabled-button {
